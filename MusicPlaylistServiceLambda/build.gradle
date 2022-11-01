@@ -1,7 +1,7 @@
 plugins {
     id "java"
     id "checkstyle"
-    id 'jacoco'
+    //id 'jacoco'
     id 'com.adarshr.test-logger' version '3.2.0'
 }
 
@@ -89,14 +89,14 @@ checkstyle {
 //    ignoreFailures = true
 //}
 
-check.dependsOn jacocoTestCoverageVerification
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                //minimum = 0.8
-                minimum = 0.0
-            }
-        }
-    }
-}
+//check.dependsOn jacocoTestCoverageVerification
+//jacocoTestCoverageVerification {
+//    violationRules {
+//        rule {
+//            limit {
+//                //minimum = 0.8
+//                minimum = 0.0
+//            }
+//        }
+//    }
+//}
