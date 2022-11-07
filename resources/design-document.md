@@ -10,9 +10,9 @@ Multiple people at the party want to play music, but don't want to fight over th
 
 ## 2. Top Questions to Resolve in Review
 
-1. How will we retrieve search results from Spotify and how will we store them?
+1. How will we retrieve search results and how will we store them?
 2. How we will keep track of upvotes of songs added to the queue in real time?
-3. How real can we make our playlist?
+3. How can we keep our playlist moving in real time?
 
 ## 3. Use Cases
 
@@ -24,11 +24,11 @@ U2.  As a user, I want to see all the songs on the playlist so I can upvote the 
 
 ### 4.1. In Scope
 
-Allow the functionality for multiple users to contribute songs to a singular playlist. User should easily be able to select songs from the Spotify API and upvote songs they want to hear first.
+Allow the functionality for multiple users to contribute songs to a singular playlist. Invitees should easily be able to add songs to the playlist and upvote songs they want to hear first. Guests should be able to add songs to the playlist. Invitees should only be able to upvote a song once.
 
 ### 4.2. Out of Scope
 
-Not worried about actually getting the playlist to play in real time as songs are being added. Not worried about if the playlist ends before the party. Not worried about adding songs outside of our frontend (i.e. Twitter)
+Not worried about actually getting the playlist to play audio. Not worried about if the playlist ends before the party.
 # 5. Proposed Architecture Overview
 
 Pages:
