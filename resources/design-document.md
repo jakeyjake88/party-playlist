@@ -47,20 +47,20 @@ I want to hear the oldest added song.
 
 ### 4.1. In Scope
 
+- Playlist is initially created and populated by the host
+- Each party has a playlist, one party will not have multiple playlists
+- The creator of the playlist should be able to invite other people to contribute to the playlist.
+- Because the playlist can hold a large amount of songs, playlist will display/be paginated 19 songs at a time.
 - Allow the functionality for multiple users to contribute songs to a singular playlist. 
 - Invitees should easily be able to add songs to the playlist and upvote songs they want to hear first.
-Song with the most upvotes should play after song at the top of queue is finished playing.
-- The creator of the playlist should be able to invite other people to contribute to the playlist.
+- Song with the most upvotes should play after song at the top of queue is finished playing.
 - Invitees should only be able to upvote a song once.
-- One to three songs should be suggested to the user.
 - Application should be able to check if a song and artist has already been played.
 - Songs on playlist should show number of upvotes and who upvoted them.
-- A user list should display, when clicked, shows which songs a user has upvoted and added to the playlist.
 - Admins should have their own page and be able to remove songs and make other invitees admins.
-- Because the playlist can hold a large amount of songs, playlist will display/be paginated 19 songs at a time.
-- Each party has a playlist, one party will not have multiple playlists
-- Playlist is initially created and populated by the host
+- One to three songs should be suggested to the user.
 - Song suggestions will initially be randomized from the song database
+- When clicked, a user page shows which songs a user has upvoted and added to the playlist.
 
 ### 4.2. Out of Scope
 
@@ -98,55 +98,79 @@ API:
 
 ## 6.1. Public Models
 
-*`PlaylistModel`*, *`SongModel`*, and *`UserModel`*
+*`PlaylistModel`*
+- id : String
+- playlistName : String
+- songArtist : String
+- songTitle : String
+- songLength : Number
+- hasPlayed : Boolean
+- timeAdded: ZonedDateTime
+
+*`SongModel`*
+- id : String
+- songArtist : String
+- songTitle : String
+- genre : String
+- songLength : Number
+- upvoteCount : Number
+
+*`UserModel`*
+- id : String
+- first name : String
+- last name : String
+- isAdmin : Boolean
+- songsAdded : List<Songs>
+- songsUpvoted : List<Songs>
 
 ## 6.2. _Get Playlist_
-* Accepts `GET` requests to `/playlist/:id`
+* Accepts `GET` requests to `/playlist/:playlistid`
 * Accepts a playlist ID and returns the corresponding PlaylistModel.
     * If the given playlist ID is not found, will throw a
       `PlaylistNotFoundException`
 
 ## 6.3 _Add Song to Playlist_
 
-* Accepts `POST` requests to `/playlist/song`
+* Accepts `POST` requests to `/playlist/:playlistid`
 * Accepts data to add a new song with a provided artist, provided title, and a given user
   ID. Returns the new playlist.
 
 ## 6.4 _Add Upvote to Song_
 
-* Accepts `PUT` requests to `/song:id`
+* Accepts `PUT` requests to `playlist/id/song/:songid`
 * Accepts data to add an upvote to a song on the playlist. Returns the updated song.
 
 ## 6.5 _Get Song_
 
-* Accepts `GET` requests to `/song:id`
+* Accepts `GET` requests to `/song/:songid`
 * Accepts a song ID and returns the corresponding SongModel.
   * If the given song ID is not found, will throw a 'SongNotFoundException'
+* Might not be needed
 
 ## 6.6 _Get Guest_
 
-* Accepts `GET` requests to `/user:name`
+* Accepts `GET` requests to `/user/:userId`
 * Accepts a first name and last name and returns the corresponding user.
     * If the given name is not found, will throw a 'UserNotFoundException'
 
 ## 6.7 _Create Guest_
 
-* Accepts `POST` requests to `/user:name`
+* Accepts `POST` requests to `/user/`
 * Creates a user and returns the corresponding user.
 
 ## 6.8 _Make Guest a Host_
 
-* Accepts `PUT` requests to `/user:name`
+* Accepts `PUT` requests to `/user/isAdmin/:userId`
 * Updates a user to have admin status.
 
 ## 6.9 _Remove Song from Playlist_
 
-* Accepts `DELETE` requests to `/playlist:song`
+* Accepts `DELETE` requests to `/playlist/id/:song`
 * Removes a song from the playlist.
 
 ## 6.10 _Create Playlist_
 
-* Accepts `POST` requests to `/playlist`
+* Accepts `POST` requests to `/playlist/playlistName`
 * Creates a playlist and returns playlist.
 
 
@@ -171,6 +195,7 @@ API:
   - id : String
   - songArtist : String
   - songTitle : String
+  - genre : String
   - songLength : Number
   - upvoteCount : Number
 
