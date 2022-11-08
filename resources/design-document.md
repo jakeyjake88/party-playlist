@@ -156,22 +156,24 @@ API:
 ## 6.7 _Create Guest_
 
 * Accepts `POST` requests to `/user/`
-* Creates a user and returns the corresponding user.
+* Accepts data to add a new user with a provided first name, provided last name, and a given 
+user ID. Returns the new user.
 
 ## 6.8 _Make Guest a Host_
 
-* Accepts `PUT` requests to `/user/isAdmin/:userId`
+* Accepts `PUT` requests to `/user/:userId/isAdmin`
 * Updates a user to have admin status.
 
 ## 6.9 _Remove Song from Playlist_
 
-* Accepts `DELETE` requests to `/playlist/id/:song`
+* Accepts `DELETE` requests to `/playlist/:playlistid/:songid`
 * Removes a song from the playlist.
 
 ## 6.10 _Create Playlist_
 
-* Accepts `POST` requests to `/playlist/playlistName`
-* Creates a playlist and returns playlist.
+* Accepts `POST` requests to `/playlist`
+* Accepts data to add a new playlist with a provided name and a given
+  playlist ID. Returns the new playlist.
 
 
 # 7. Tables
