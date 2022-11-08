@@ -38,7 +38,7 @@ U11. As a host, I want to be able to make other users admins.
 
 U12. As a host, I don't want a limit on the amounts of songs the playlist can hold.
 
-U13. As a host, I want to be able to start and create the playlist.
+U13. As a host, I want to be able to start and create the playlist for the party.
 
 U14. As a host, I want the most voted songs to be prioritized over the least voted. If there is a tie,
 I want to hear the oldest added song. 
@@ -57,10 +57,10 @@ Song with the most upvotes should play after song at the top of queue is finishe
 - Songs on playlist should show number of upvotes and who upvoted them.
 - A user list should display, when clicked, shows which songs a user has upvoted and added to the playlist.
 - Admins should have their own page and be able to remove songs and make other invitees admins.
-- Because the playlist can hold a large amount of songs, playlist will display 19 songs at a time.
+- Because the playlist can hold a large amount of songs, playlist will display/be paginated 19 songs at a time.
 - Each party has a playlist, one party will not have multiple playlists
 - Playlist is initially created and populated by the host
-- Song suggestions will initially be randomized
+- Song suggestions will initially be randomized from the song database
 
 ### 4.2. Out of Scope
 
@@ -70,7 +70,7 @@ Song with the most upvotes should play after song at the top of queue is finishe
 - May want to use Spotify API for library of songs.
 - May want admin to push up a song to the top of the queue.
 - May want to add more info to the user statistics, i.e. most added genre/artist.
-- May want to make the song suggestions personal to each user.
+- May want to make the song suggestions personal to each user, based off of their additions and upvotes.
 
 # 5. Proposed Architecture Overview
 
@@ -143,6 +143,11 @@ API:
 
 * Accepts `DELETE` requests to `/playlist:song`
 * Removes a song from the playlist.
+
+## 6.10 _Create Playlist_
+
+* Accepts `POST` requests to `/playlist`
+* Creates a playlist and returns playlist.
 
 
 # 7. Tables
