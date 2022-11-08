@@ -1,8 +1,6 @@
 # Design Document
 
-## Instructions
-
-## _Project Title_ Design
+## _Party Starter Playlist_ Design
 
 ## 1. Problem Statement
 
@@ -16,52 +14,63 @@ Multiple people at the party want to play music, but don't want to fight over th
 
 ## 3. Use Cases
 
-U1.  As a user, I want to add my song to the playlist
+U1.  As a guest, I want to add my song to the playlist
 
-U2.  As a user, I want to see all the songs on the playlist so I can upvote the ones I like
+U2.  As a guest, I want to see all the songs on the playlist so I can upvote the ones I like
 
-U3.  As a user, I want the to hear the song with the most upvotes to play next in the queue
+U3.  As a guest, I want the to hear the song with the most upvotes to play next in the queue
 
-U4.  As a user, I want to be able to invite users to contribute to my playlist
+U4.  As a host, I want to be able to invite users to contribute to my playlist
 
-U5.  As a user, I don't want to hear the same song twice at the party
+U5.  As a guest, I don't want to hear the same song twice at the party
 
-U6.  As a user, I don't want to hear the same artist more than three times
+U6.  As a guest, I don't want to hear the same artist more than three times
 
-U7.  As a user, I want to see suggestions for songs to add to the playlist
+U7.  As a guest, I want to see suggestions for songs to add to the playlist
 
-U8.  As a user, I want to see who upvoted a song.
+U8.  As a guest, I want to see who upvoted a song.
 
-U9.  As a user, I want to see what songs a user has upvoted and added to the playlist.
+U9.  As a guest, I want to see what songs a user has upvoted and added to the playlist.
 
-U10. As an admin, I want to be able to remove songs from the playlist.
+U10. As a host, I want to be able to remove songs from the playlist.
 
-U11. As an admin, I want to be able to make other users admins.
+U11. As a host, I want to be able to make other users admins.
+
+U12. As a host, I don't want a limit on the amounts of songs the playlist can hold.
+
+U13. As a host, I want to be able to start and create the playlist for the party.
+
+U14. As a host, I want the most voted songs to be prioritized over the least voted. If there is a tie,
+I want to hear the oldest added song. 
 
 ## 4. Project Scope
 
 ### 4.1. In Scope
 
-Allow the functionality for multiple users to contribute songs to a singular playlist. 
-Invitees should easily be able to add songs to the playlist and upvote songs they want to hear first.
+- Allow the functionality for multiple users to contribute songs to a singular playlist. 
+- Invitees should easily be able to add songs to the playlist and upvote songs they want to hear first.
 Song with the most upvotes should play after song at the top of queue is finished playing.
-The creator of the playlist should be able to invite other people to contribute to the playlist.
-Invitees should only be able to upvote a song once.
-One to three songs should be suggested to the user.
-Application should be able to check if a song and artist has already been played.
-Songs on playlist should show number of upvotes and who upvoted them.
-A user list should display, when clicked, shows which songs a user has upvoted and added to the playlist.
-Admins should have their own page and be able to remove songs and make other invitees admins.
+- The creator of the playlist should be able to invite other people to contribute to the playlist.
+- Invitees should only be able to upvote a song once.
+- One to three songs should be suggested to the user.
+- Application should be able to check if a song and artist has already been played.
+- Songs on playlist should show number of upvotes and who upvoted them.
+- A user list should display, when clicked, shows which songs a user has upvoted and added to the playlist.
+- Admins should have their own page and be able to remove songs and make other invitees admins.
+- Because the playlist can hold a large amount of songs, playlist will display/be paginated 19 songs at a time.
+- Each party has a playlist, one party will not have multiple playlists
+- Playlist is initially created and populated by the host
+- Song suggestions will initially be randomized from the song database
 
 ### 4.2. Out of Scope
 
-Not worried about actually getting the playlist to play audio. 
-Not worried about if the playlist ends before the party.
-May want to live update the playlist so songs with the most upvotes are in order.
-May want to use Spotify API for library of songs.
-May want admin to push up a song to the top of the queue.
-May want to add more info to the user statistics, i.e. most added genre/artist.
-May want to make the song suggestions personal to each user.
+- Not worried about actually getting the playlist to play audio. 
+- Not worried about if the playlist ends before the party.
+- May want to live update the playlist so songs with the most upvotes are in order.
+- May want to use Spotify API for library of songs.
+- May want admin to push up a song to the top of the queue.
+- May want to add more info to the user statistics, i.e. most added genre/artist.
+- May want to make the song suggestions personal to each user, based off of their additions and upvotes.
 
 # 5. Proposed Architecture Overview
 
@@ -89,57 +98,56 @@ API:
 
 ## 6.1. Public Models
 
-*`PlaylistModel`* and *`SongModel`*
+*`PlaylistModel`*, *`SongModel`*, and *`UserModel`*
 
-## 6.2. _First Endpoint_
-
-_Describe the behavior of the first endpoint you will build into your service API. This should include what data it requires, what data it returns, and how it will handle any known failure cases. You should also include a sequence diagram showing how a user interaction goes from user to website to service to database, and back. This first endpoint can serve as a template for subsequent endpoints. (If there is a significant difference on a subsequent endpoint, review that with your team before building it!)_
-
-_(You should have a separate section for each of the endpoints you are expecting to build...)_
+## 6.2. _Get Playlist_
 * Accepts `GET` requests to `/playlist/:id`
 * Accepts a playlist ID and returns the corresponding PlaylistModel.
     * If the given playlist ID is not found, will throw a
       `PlaylistNotFoundException`
 
-## 6.3 _Second Endpoint_
-
-_(repeat, but you can use shorthand here, indicating what is different, likely primarily the data in/out and error conditions. If the sequence diagram is nearly identical, you can say in a few words how it is the same/different from the first endpoint)_
+## 6.3 _Add Song to Playlist_
 
 * Accepts `POST` requests to `/playlist/song`
 * Accepts data to add a new song with a provided artist, provided title, and a given user
   ID. Returns the new playlist.
 
-## 6.4 _Third Endpoint_
+## 6.4 _Add Upvote to Song_
 
 * Accepts `PUT` requests to `/song:id`
 * Accepts data to add an upvote to a song on the playlist. Returns the updated song.
 
-## 6.5 _Fourth Endpoint_
+## 6.5 _Get Song_
 
 * Accepts `GET` requests to `/song:id`
 * Accepts a song ID and returns the corresponding SongModel.
   * If the given song ID is not found, will throw a 'SongNotFoundException'
 
-## 6.6 _Fifth Endpoint_
+## 6.6 _Get Guest_
 
 * Accepts `GET` requests to `/user:name`
 * Accepts a first name and last name and returns the corresponding user.
     * If the given name is not found, will throw a 'UserNotFoundException'
 
-## 6.7 _Sixth Endpoint_
+## 6.7 _Create Guest_
 
 * Accepts `POST` requests to `/user:name`
 * Creates a user and returns the corresponding user.
 
-## 6.8 _Seventh Endpoint_
+## 6.8 _Make Guest a Host_
 
 * Accepts `PUT` requests to `/user:name`
 * Updates a user to have admin status.
 
-## 6.9 _Eighth Endpoint_
+## 6.9 _Remove Song from Playlist_
 
 * Accepts `DELETE` requests to `/playlist:song`
 * Removes a song from the playlist.
+
+## 6.10 _Create Playlist_
+
+* Accepts `POST` requests to `/playlist`
+* Creates a playlist and returns playlist.
 
 
 # 7. Tables
