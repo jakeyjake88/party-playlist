@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script type="text/javascript" src="assets/test.js"></script>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.button {
+  background-color: #3d12a3; 
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: #5B84B1FF; 
+  color: black; 
+  border: 2px solid #FC766AFF;
+}
+
+.button1:hover {
+  background-color: #FC766AFF;
+  color: white;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+.header {
+  grid-area: header;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background-color: #FC766AFF;
+  padding: 30px;
+  text-align: center;
+  font-size: 30px;
+}
+
+/* The grid container */
+.grid-container {
+  display: grid;
+  grid-template-areas: 
+    'header header header header header header' 
+    'left left middle middle right right' 
+    'footer footer footer footer footer footer';
+  /* grid-column-gap: 10px; - if you want gap between the columns */
+} 
+
+.left,
+.middle,
+.right {
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Style the left column */
+.left {
+  grid-area: left;
+}
+
+/* Style the middle column */
+.middle {
+  grid-area: middle;
+}
+
+/* Style the right column */
+.right {
+  grid-area: right;
+}
+
+/* Style the footer */
+.footer {
+  grid-area: footer;
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+  .grid-container  {
+    grid-template-areas: 
+      'header header header header header header' 
+      'left left left left left left' 
+      'middle middle middle middle middle middle' 
+      'right right right right right right' 
+      'footer footer footer footer footer footer';
+  }
+}
+</style>
+</head>
+
+
+<body>
+<div class="grid-container">
+    <div class="header">
+    <h2>Party Playlist</h2>
+    <h3><i>Your Party, Your Playlist</i></h3>
+        </div>
+  
+  <div class="left" style="background-color:#5B84B1FF">
+    <h2><label for="uname">Invitee login:</label></h2>
+    <input type="text" id="uname" name="uname"><br><br> <button class="button button1">Login</button>
+</div>
+  <div class="middle" style="background-color:#5B84B1FF;"></div>  
+  <div class="right" style="background-color: #5B84B1FF;">
+    <h2><label for="auname">Admin login:</label></h2>
+    <input type="text" id="auname" name="auname"><br><br> <button class="button button1">Login</button>
+</div>
+  
+  <div class="footer" style="background-color:rosybrown"> Sponsored by: Meta</div>>
+  </div>
+</div>
+
+    </html>

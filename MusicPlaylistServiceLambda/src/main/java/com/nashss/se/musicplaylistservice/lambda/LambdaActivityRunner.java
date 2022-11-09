@@ -1,6 +1,6 @@
 package com.nashss.se.musicplaylistservice.lambda;
 
-import com.nashss.se.musicplaylistservice.dependency.DaggerServiceComponent;
+//import com.nashss.se.musicplaylistservice.dependency.DaggerServiceComponent;
 import com.nashss.se.musicplaylistservice.dependency.ServiceComponent;
 
 import org.apache.logging.log4j.LogManager;
@@ -36,7 +36,7 @@ public class LambdaActivityRunner<TRequest, TResult> {
     private ServiceComponent getService() {
         log.info("getService");
         if (service == null) {
-            service = DaggerServiceComponent.create();
+            //service = DaggerServiceComponent.create();
         }
         return service;
     }
