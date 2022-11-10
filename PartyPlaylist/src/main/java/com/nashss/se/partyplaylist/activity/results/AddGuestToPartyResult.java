@@ -1,8 +1,9 @@
 package com.nashss.se.partyplaylist.activity.results;
 
-import com.amazonaws.internal.config.Builder;
+import com.nashss.se.partyplaylist.models.UserModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AddGuestToPartyResult {
 

@@ -1,6 +1,6 @@
 package com.nashss.se.partyplaylist.exceptions;
 
-public class UserNotFoundException extends Exception {
+public class UserNotFoundException extends RuntimeException {
     private static final long serialVersionUID = -929330263478684434L;
 
     public UserNotFoundException() {

@@ -2,7 +2,7 @@ package com.nashss.se.partyplaylist.activity;
 
 import com.nashss.se.partyplaylist.activity.requests.GetGuestRequest;
 import com.nashss.se.partyplaylist.activity.results.GetGuestResult;
-import com.nashss.se.partyplaylist.converters.UserConverter;
+import com.nashss.se.partyplaylist.converters.ModelConverter;
 import com.nashss.se.partyplaylist.dynamodb.UserDAO;
 import com.nashss.se.partyplaylist.dynamodb.models.User;
 import com.nashss.se.partyplaylist.exceptions.UserNotFoundException;
@@ -49,16 +49,8 @@ public class GetGuestActivity {
         log.info("Received GetGuestRequest {}", getGuestRequest);
 
         String requestedId = getGuestRequest.getUserId();
-
-        User guest = null;
-        try {
-            guest = userDAO.getUser(requestedId);
-        } catch (UserNotFoundException e) {
-            log.error(String.format("User with UserID: %s does not exist", requestedId));
-        }
-
-        UserModel userModel = new UserConverter().toUserModel(guest);
-
+        User guest = userDAO.getUser(requestedId);
+        UserModel userModel = new ModelConverter().toUserModel(guest);
         return GetGuestResult.builder().withGuest(userModel).build();
     }
 

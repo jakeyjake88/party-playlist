@@ -2,10 +2,15 @@ package com.nashss.se.partyplaylist.activity;
 
 import com.nashss.se.partyplaylist.activity.requests.AddGuestToPartyRequest;
 import com.nashss.se.partyplaylist.activity.results.AddGuestToPartyResult;
+import com.nashss.se.partyplaylist.dynamodb.UserDAO;
+import com.nashss.se.partyplaylist.dynamodb.models.User;
+import com.nashss.se.partyplaylist.exceptions.UserNotFoundException;
+import com.nashss.se.partyplaylist.models.UserModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
+import java.util.List;
+
 
 /**
  * Implementation of the AddGuestToPartyActivity for the PartyPlaylist AddGuestToParty API.
@@ -15,24 +20,25 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 public class AddGuestToPartyActivity {
 
     private final Logger log = LogManager.getLogger();
-    private final UserDao userDao;
+    private final UserDAO userDAO;
 
     /**
      * Instantiates a new AddGuestToPartyActivity object
      * @param userDAO UserDao to access the user table
      */
+
     @Inject
-    public AddGuestToPartyActivity(UserDao userDao) {
-        this.userDao = userDao;
+    public AddGuestToPartyActivity(UserDAO userDao) {
+        this.userDAO = userDao;
     }
 
     public AddGuestToPartyResult handleRequest(final AddGuestToPartyRequest addGuestToPartyRequest) {
         log.info("Received AddGuestToPartyRequest {} ", addGuestToPartyRequest);
 
         String userId = addGuestToPartyRequest.getUserId();
-        User guestToAdd = userDao.getGuest(userId);
+        User guestToAdd = userDAO.getUser(userId);
 
-        UserList guestList = userDao.getGuestList(addGuestToPartyRequest.getUserId());
+        List<User> guestList = userDAO.getGuestList(addGuestToPartyRequest.getUserId());
 
         List<UserModel> userModels = new ModelConverter().toUserModelList(guestList.getGuestList());
 
