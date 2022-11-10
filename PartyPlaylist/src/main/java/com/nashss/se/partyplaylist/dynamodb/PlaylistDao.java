@@ -17,6 +17,7 @@ public class PlaylistDao {
      * Instantiates a PlaylistDao object.
      *
      * @param dynamoDbMapper the {@link DynamoDBMapper} used to interact with the playlists table
+     *
      */
 
     @Inject

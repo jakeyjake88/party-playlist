@@ -2,13 +2,11 @@ package com.nashss.se.partyplaylist.activity;
 
 import com.nashss.se.partyplaylist.activity.requests.CreatePlaylistRequest;
 import com.nashss.se.partyplaylist.activity.results.CreatePlaylistResult;
-import com.nashss.se.partyplaylist.converters.ModelConverter;
+import com.nashss.se.partyplaylist.converters.old.ModelConverter;
 import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.models.PlaylistModel;
 import com.nashss.se.projectresources.music.playlist.servic.util.MusicPlaylistServiceUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
