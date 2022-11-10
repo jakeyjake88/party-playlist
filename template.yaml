@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Music Playlist Service
+  Party Playlist Service
 Parameters:
   S3Bucket:
     Type: String
@@ -29,7 +29,7 @@ Globals:
       AllowHeaders: "'content-type'"
       AllowOrigin: "'*'"
 
-#Resources:
+Resources:
 #
 #  CloudFrontOriginAccessIdentity:
 #    Type: 'AWS::CloudFront::CloudFrontOriginAccessIdentity'
@@ -252,7 +252,7 @@ Globals:
         - AttributeName: "userId"
           AttributeType: "S"
       KeySchema:
-        - AttributeName: "id"
+        - AttributeName: "userId"
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "users"
