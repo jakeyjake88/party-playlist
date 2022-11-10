@@ -1,5 +1,6 @@
 package com.nashss.se.partyplaylist.test.helper;
 
+import com.nashss.se.partyplaylist.dynamodb.models.Song;
 import com.nashss.se.partyplaylist.dynamodb.models.User;
 
 import java.util.List;
@@ -15,8 +16,8 @@ public final class UserTestHelper {
         user.setFirstName("John");
         user.setLastName("Doe");
         user.setIsHost(false);
-        user.setSongsAdded(List.of("song1", "song2"));
-        user.setSongsUpvoted(List.of("song1", "song2"));
+        user.setSongsAdded(List.of(new Song(), new Song()));
+        user.setSongsUpvoted(List.of(new Song(), new Song()));
         return user;
     }
 

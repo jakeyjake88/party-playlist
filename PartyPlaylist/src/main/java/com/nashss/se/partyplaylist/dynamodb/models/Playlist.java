@@ -17,7 +17,7 @@ public class Playlist {
 
     private String playlistId;
     private String playlistName;
-    private List<String> songs;
+    private List<PlaylistEntry> songs;
 
     @DynamoDBHashKey(attributeName = "playlistId")
     public String getPlaylistId() {
@@ -38,11 +38,11 @@ public class Playlist {
     }
 
     @DynamoDBAttribute(attributeName = "songs")
-    public List<String> getSongs() {
+    public List<PlaylistEntry> getSongs() {
         return songs;
     }
 
-    public void setSongs(List<String> songs) {
+    public void setSongs(List<PlaylistEntry> songs) {
         this.songs = songs;
     }
 
