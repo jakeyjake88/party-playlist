@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Music Playlist Service
+  Party Playlist Service
 Parameters:
   S3Bucket:
     Type: String
@@ -252,19 +252,19 @@ Resources:
         - AttributeName: "userId"
           AttributeType: "S"
       KeySchema:
-        - AttributeName: "id"
+        - AttributeName: "userId"
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "users"
 
-  PlaylistsTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      AttributeDefinitions:
-        - AttributeName: "playlistId"
-          AttributeType: "S"
-      KeySchema:
-        - AttributeName: "playlistId"
-          KeyType: "HASH"
-      BillingMode: "PAY_PER_REQUEST"
-      TableName: "playlists"
+#  PlaylistsTable:
+#    Type: AWS::DynamoDB::Table
+#    Properties:
+#      AttributeDefinitions:
+#        - AttributeName: "playlistId"
+#          AttributeType: "S"
+#      KeySchema:
+#        - AttributeName: "playlistId"
+#          KeyType: "HASH"
+#      BillingMode: "PAY_PER_REQUEST"
+#      TableName: "playlists"
