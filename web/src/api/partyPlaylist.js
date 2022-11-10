@@ -1,0 +1,87 @@
+import axios from "axios";
+import BindingClass from "../util/bindingClass";
+
+
+export default class PartyPlaylistClient extends BindingClass {
+    constructor(props = {}) {
+        super();
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'getPlaylist', 
+        'addSongToPlaylist', 'getSong', 'createPlaylist'];
+        this.bindClassMethods(methodsToBind, this);
+        this.props = props;
+
+        axios.defaults.baseURL = INVOKE_URL;
+        this.client = axios;
+        this.clientLoaded(this.client);
+    }
+
+    clientLoaded(client) {
+        if (this.props.hasOwnProperty("onReady")) {
+            this.props.onReady();
+        }
+    }
+
+    async getIdentity(errorCallback) {
+        try {
+            const data = {'username': 'JakePrice'};
+            return data;
+        } catch (error) {
+            this.handleError(error, errorCallback);
+        }
+    }
+
+    async getPlaylist(id, errorCallback) {
+        try {
+            const response = await this.client.get(`playlists/${id}`);
+            return response.data.playlist;
+        } catch (error) {
+            this.handleError(error, errorCallback);
+        }
+    }
+
+    async getSong(id, errorCallback) {
+        try {
+            const response = await this.client.get(`song/${id}`);
+            return response.data.Song;
+        } catch (error) {
+            this.handleError(error, errorCallback);
+        }
+    }
+
+    async createPlaylist(name, id, errorCallback) {
+        try {
+            const response = await this.client.post(`playlists`, {
+                name: name,
+                id: id
+            });
+            return response.data.playlist;
+            }catch (error) {
+                this.handleError(error, errorCallback);
+            }
+        }
+    
+    async addSongToPlaylist(artist, title, id, songId, errorCallback) {
+        try {
+            const response = await this.client.post(`playlist/id/song/${songId}`, {
+                artist: artist,
+                title: title,
+                id: id
+            });
+            return response.data.Song;
+        } catch (error) {
+            this.handleError(error, errorCallback);
+        }
+    }
+
+    handleError(error, errorCallback) {
+        console.error(error);
+        if (error.response.data.message !== undefined) {
+            console.error(error.response.data.message)
+        }
+        if (errorCallback) {
+            errorCallback(error);
+        }
+    }
+    
+    
+}
