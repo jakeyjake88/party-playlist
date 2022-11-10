@@ -1,4 +1,6 @@
-package com.nashss.se.partylist.old;
+package com.nashss.se.partyplaylist.activity.results;
+
+import com.nashss.se.partyplaylist.models.PlaylistModel;
 
 public class GetPlaylistResult {
 

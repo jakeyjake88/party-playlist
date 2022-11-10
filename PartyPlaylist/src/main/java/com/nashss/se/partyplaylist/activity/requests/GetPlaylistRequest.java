@@ -1,4 +1,4 @@
-package com.nashss.se.partylist.old;
+package com.nashss.se.partyplaylist.activity.requests;
 
 public class GetPlaylistRequest {
 

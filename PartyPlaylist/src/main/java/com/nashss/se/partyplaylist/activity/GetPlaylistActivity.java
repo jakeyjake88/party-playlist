@@ -1,6 +1,12 @@
-package com.nashss.se.partylist.old;
+package com.nashss.se.partyplaylist.activity;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.nashss.se.partyplaylist.activity.requests.GetPlaylistRequest;
+import com.nashss.se.partyplaylist.activity.results.GetPlaylistResult;
+import com.nashss.se.partyplaylist.converters.ModelConverter;
+import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
+import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
+import com.nashss.se.partyplaylist.models.PlaylistModel;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -12,19 +18,16 @@ import javax.inject.Singleton;
 @Singleton
 public class GetPlaylistActivity {
 
-    private final DynamoDBMapper dynamoDBMapper;
-
     private final PlaylistDao playlistDao;
 
     /**
      * Instantiates a PlaylistDao object.
      *
-     * @param dynamoDbMapper the {@link DynamoDBMapper} used to interact with the playlists table
-     * @param metricsPublisher the {@link MetricsPublisher} used to record metrics.
+     * @param playlistDao PlaylistDao to access the playlist table.
      */
 
     @Inject
-    public GetPlaylistActivity(Playlist Dao playlistDao) {
+    public GetPlaylistActivity(PlaylistDao playlistDao) {
         this.playlistDao = playlistDao;
     }
 
@@ -44,8 +47,8 @@ public class GetPlaylistActivity {
         String requestedId = getPlaylistRequest.getId();
         Playlist playlist = playlistDao.getPlaylist(requestedId);
 
-//        PlaylistModel playlistModel = new ModelConverter().toPlaylistModel(playlist);
+        PlaylistModel playlistModel = new ModelConverter().toPlaylistModel(playlist);
 
-        return GetPlaylistResult.builder().withplaylist(playlistModel).build();
+        return GetPlaylistResult.builder().withPlaylist(playlistModel).build();
     }
 }
