@@ -257,14 +257,14 @@ Globals:
       BillingMode: "PAY_PER_REQUEST"
       TableName: "users"
 
-  PlaylistsTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      AttributeDefinitions:
-        - AttributeName: "playlistId"
-          AttributeType: "S"
-      KeySchema:
-        - AttributeName: "playlistId"
-          KeyType: "HASH"
-      BillingMode: "PAY_PER_REQUEST"
-      TableName: "playlists"
+#  PlaylistsTable:
+#    Type: AWS::DynamoDB::Table
+#    Properties:
+#      AttributeDefinitions:
+#        - AttributeName: "playlistId"
+#          AttributeType: "S"
+#      KeySchema:
+#        - AttributeName: "playlistId"
+#          KeyType: "HASH"
+#      BillingMode: "PAY_PER_REQUEST"
+#      TableName: "playlists"
