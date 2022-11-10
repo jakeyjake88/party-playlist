@@ -1,10 +1,9 @@
 package com.nashss.se.partyplaylist.activity.requests;
 
-import com.amazonaws.internal.config.Builder;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.List;
 
 public class AddGuestToPartyRequest {
 
@@ -16,9 +15,9 @@ public class AddGuestToPartyRequest {
 
     private Boolean isAdmin;
 
-    private List<Song> songsAdded;
+    private List<String> songsAdded;
 
-    private List<Song> songsUpvoted;
+    private List<String> songsUpvoted;
 
 
     private AddGuestToPartyRequest(String userId, String firstName, String lastName, Boolean isAdmin) {
@@ -39,9 +38,9 @@ public class AddGuestToPartyRequest {
 
     public Boolean isAdmin() { return isAdmin; }
 
-    public List<Song> getSongsAdded() { return songsAdded; }
+    public List<String> getSongsAdded() { return songsAdded; }
 
-    public List<Song> getSongsUpvoted() { return songsUpvoted; }
+    public List<String> getSongsUpvoted() { return songsUpvoted; }
 
     @Override
     public String toString() {
@@ -58,13 +57,13 @@ public class AddGuestToPartyRequest {
     @JsonPOJOBuilder
     public static class Builder {
 
-        private String id;
+        private String userId;
 
         private String firstName;
 
         private String lastName;
 
-        private Boolean isAdmin;
+        private Boolean isHost;
 
         public Builder withUserId(String userId) {
             this.userId = userId;
@@ -82,12 +81,12 @@ public class AddGuestToPartyRequest {
         }
 
         public Builder withIsAdmin(Boolean isAdmin) {
-            this.isAdmin = isAdmin;
+            this.isHost = isAdmin;
             return this;
         }
 
         public AddGuestToPartyRequest build() {
-            return new AddGuestToPartyRequest(userId, firstName, lastName, isAdmin);
+            return new AddGuestToPartyRequest(userId, firstName, lastName, isHost);
         }
 
 
