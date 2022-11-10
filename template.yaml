@@ -29,7 +29,7 @@ Globals:
       AllowHeaders: "'content-type'"
       AllowOrigin: "'*'"
 
-#Resources:
+Resources:
 #
 #  CloudFrontOriginAccessIdentity:
 #    Type: 'AWS::CloudFront::CloudFrontOriginAccessIdentity'
