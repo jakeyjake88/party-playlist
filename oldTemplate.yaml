@@ -245,17 +245,17 @@ Resources:
 
   #-----------------------------------------------------------------
 
-  UsersTable:
+  PlaylistsTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        - AttributeName: "userId"
+        - AttributeName: "id"
           AttributeType: "S"
       KeySchema:
         - AttributeName: "id"
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "users"
+      TableName: "playlists"
 
   AlbumTracksTable:
     Type: AWS::DynamoDB::Table
