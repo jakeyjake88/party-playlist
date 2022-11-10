@@ -2,7 +2,9 @@ package com.nashss.se.partyplaylist.activity;
 
 import com.nashss.se.partyplaylist.activity.requests.GetGuestRequest;
 import com.nashss.se.partyplaylist.activity.results.GetGuestResult;
+import com.nashss.se.partyplaylist.dynamodb.UserDAO;
 import com.nashss.se.partyplaylist.dynamodb.models.User;
+import com.nashss.se.partyplaylist.exceptions.UserNotFoundException;
 import com.nashss.se.partyplaylist.models.UserModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,7 +22,7 @@ public class GetGuestActivity {
 
     private final Logger log = LogManager.getLogger();
 
-    private final UserDao userDao;
+    private final UserDAO userDAO;
 
     /**
      * Instantiates a new GetGuestActivity object.
@@ -29,7 +31,7 @@ public class GetGuestActivity {
      */
 
     @Inject
-    public GetGuestActivity(UserDao userDao) { this.userDao = userDao; }
+    public GetGuestActivity(UserDAO userDAO) { this.userDAO = userDAO; }
 
     /**
      * This method handles the incoming request by retrieving the guest from the database.
@@ -47,7 +49,12 @@ public class GetGuestActivity {
 
         String requestedId = getGuestRequest.getUserId();
 
-        User guest = userDao.getUser(requestedId);
+        User guest = null;
+        try {
+            guest = userDAO.getUser(requestedId);
+        } catch (UserNotFoundException e) {
+            log.error(String.format("User with UserID: %s does not exist", requestedId));
+        }
 
         UserModel userModel = new ModelConverter().toUserModel(guest);
 
