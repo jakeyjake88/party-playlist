@@ -1,24 +1,145 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script type="text/javascript" src="assets/createPlaylist.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/background.css">
+
+<script type="text/javascript" src="assets/test.js"></script>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.button {
+  background-color: #FC766AFF; 
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: #5B84B1FF; 
+  color: black; 
+  border: 2px solid #FC766AFF;
+}
+
+.button1:hover {
+  background-color: #FC766AFF;
+  color: white;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+.header {
+  grid-area: header;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background-color: #FC766AFF;
+  padding: 30px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.leftcolumn {
+    float: left;
+    width: 75%;
+}
+
+.rightcolumn {
+    float: left;
+    width: 25%;
+    background-color:#FC766AFF;
+    padding-left: 20px;
+}
+
+.card {
+    background-color: tan;
+    width: 100%;
+    padding: 20px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 400px) {
+    .leftcolumn, .rightcolumn {
+        width: 100%;
+        height: auto;
+        padding: 0;
+    }
+}
+</style>
 </head>
-<body class="background">
-    <header class="header" id="header"></header>
-    <div class="card">
-        <h2>Create Playlist</h2>
-        <form class="card-content" id="create-playlist-form">
-            <p class="form-field">
-                <label>Playlist Name</label>
-                <input type="text" required class="validated-field" id="playlist-name" placeholder="smooth-jamz" autofocus>
+
+
+<body>
+<div class="header">
+    <h1>Party Playlist</h1>
+    <p><i>Your Party: Your Playlist</i></p>
+</div>
+
+<div class="row">
+    <div class="leftcolumn">
+        <div class="card">
+            <h2><i>A collaborative experience</i></h2>
+            <h5>Have you ever been on a yacht? Probably not, you're broke.</h5>
+            <p>But we have. And there is a common problem YachtRiders face - too many people that
+                want to add songs to a single queued playlist. Luckily, we have a solution!
             </p>
-            <p class="form-field">
-                <label>Tags</label>
-                <input type="text" id="tags" class="tags" placeholder="tag1,tag2" data-tip="Must be a comma separated list of tags">
+        </div>
+        <div class="card">
+            <h2>But...what is PartyPlaylist?</h2>
+            <p>
+                PartyPlaylist is a functional collaborative playlist that allows guests to any form of social gathering
+                to add songs to a playlist. In addition to this they are given the opportunity to upvote songs they want to hear sooner to determine their position 
+                in the queue.
             </p>
-        </form>
-        <button type="button" id="create">Create Playlist</button>
+        </div>
     </div>
-</body>
-</html>
+    <div class="rightcolumn">
+        <div class="card">
+            <h2>Admin Login</h2>
+            <p>Let's get this party started.</p>
+            <form name="aname">
+                <input type="text" name="aname">
+            </form>
+            <button class="button">Login</button>
+        </div>
+        <div class="card">
+            <h2>Guest Login</h2>
+            <p>You do not own a yacht</p>
+            <form name="uname">
+                <input type="text" name="uname">
+            </form>
+            <button class="button">Login</button>
+        </div>
+        <div class="card">
+            <h2>Designed by:</h2>
+            <p>Jake Price, Matt Leigh, Matt Reuther, Travers</p>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <h2>Sponsored by: Meta</h2>
+</div>
+
+    </html>
