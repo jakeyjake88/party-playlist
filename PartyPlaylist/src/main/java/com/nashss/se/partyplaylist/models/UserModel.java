@@ -1,5 +1,7 @@
 package com.nashss.se.partyplaylist.models;
 
+import com.nashss.se.partyplaylist.dynamodb.models.Song;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -9,10 +11,10 @@ public class UserModel {
     private final String firstName;
     private final String lastName;
     private final Boolean isHost;
-    private final List<String> songsAdded;
-    private final List<String> songsUpvoted;
+    private final List<Song> songsAdded;
+    private final List<Song> songsUpvoted;
 
-    private UserModel(String userId, String firstName, String lastName, Boolean isHost, List<String> songsAdded, List<String> songsUpvoted) {
+    private UserModel(String userId, String firstName, String lastName, Boolean isHost, List<Song> songsAdded, List<Song> songsUpvoted) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -37,11 +39,11 @@ public class UserModel {
         return isHost;
     }
 
-    public List<String> getSongsAdded() {
+    public List<Song> getSongsAdded() {
         return songsAdded;
     }
 
-    public List<String> getSongsUpvoted() {
+    public List<Song> getSongsUpvoted() {
         return songsUpvoted;
     }
 
@@ -67,8 +69,8 @@ public class UserModel {
         private String firstName;
         private String lastName;
         private Boolean isHost;
-        private List<String> songsAdded;
-        private List<String> songsUpvoted;
+        private List<Song> songsAdded;
+        private List<Song> songsUpvoted;
 
         public Builder withUserId(String userId) {
             this.userId = userId;
@@ -90,12 +92,12 @@ public class UserModel {
             return this;
         }
 
-        public Builder withSongsAdded(List<String> songsAdded) {
+        public Builder withSongsAdded(List<Song> songsAdded) {
             this.songsAdded = songsAdded;
             return this;
         }
 
-        public Builder withSongsUpvoted(List<String> songsUpvoted) {
+        public Builder withSongsUpvoted(List<Song> songsUpvoted) {
             this.songsUpvoted = songsUpvoted;
             return this;
         }

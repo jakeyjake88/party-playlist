@@ -3,6 +3,8 @@ package com.nashss.se.partyplaylist.dynamodb.models;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
+import com.nashss.se.partyplaylist.converters.SongListConverter;
 
 import java.util.List;
 import java.util.Objects;
@@ -17,8 +19,8 @@ public class User {
     private String firstName;
     private String lastName;
     private Boolean isHost;
-    private List<String> songsAdded;
-    private List<String> songsUpvoted;
+    private List<Song> songsAdded;
+    private List<Song> songsUpvoted;
 
     @DynamoDBIndexHashKey(attributeName = "userId")
     public String getUserId() {
@@ -56,21 +58,23 @@ public class User {
         this.isHost = isHost;
     }
 
+    @DynamoDBTypeConverted(converter = SongListConverter.class)
     @DynamoDBAttribute(attributeName = "songsAdded")
-    public List<String> getSongsAdded() {
+    public List<Song> getSongsAdded() {
         return songsAdded;
     }
 
-    public void setSongsAdded(List<String> songsAdded) {
+    public void setSongsAdded(List<Song> songsAdded) {
         this.songsAdded = songsAdded;
     }
 
+    @DynamoDBTypeConverted(converter = SongListConverter.class)
     @DynamoDBAttribute(attributeName = "songsUpvoted")
-    public List<String> getSongsUpvoted() {
+    public List<Song> getSongsUpvoted() {
         return songsUpvoted;
     }
 
-    public void setSongsUpvoted(List<String> songsUpvoted) {
+    public void setSongsUpvoted(List<Song> songsUpvoted) {
         this.songsUpvoted = songsUpvoted;
     }
 
