@@ -1,7 +1,6 @@
 package com.nashss.se.partyplaylist.models;
 
 import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
-import org.apache.commons.lang3.builder.Builder;
 
 import java.util.List;
 import java.util.Objects;

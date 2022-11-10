@@ -4,6 +4,8 @@ package com.nashss.se.partyplaylist.dynamodb.models;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
+import com.nashss.se.partyplaylist.converters.PlaylistEntryListConverter;
 
 import java.util.List;
 import java.util.Objects;
@@ -36,7 +38,7 @@ public class Playlist {
     public void setPlaylistName(String playlistName) {
         this.playlistName = playlistName;
     }
-
+    @DynamoDBTypeConverted(converter = PlaylistEntryListConverter.class)
     @DynamoDBAttribute(attributeName = "songs")
     public List<PlaylistEntry> getSongs() {
         return songs;
