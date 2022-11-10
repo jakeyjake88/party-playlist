@@ -12,6 +12,7 @@ class CreatePlaylist extends BindingClass {
         this.header = new Header(this.dataStore);
     }
 
+
     mount() {
         document.getElementById('create').addEventListener('click', this.submit);
         this.header.addHeaderToPage();
@@ -22,9 +23,9 @@ class CreatePlaylist extends BindingClass {
     async submit() {
         console.log("Hurrdurr");
         document.getElementById('create').innerText = 'Doing stuff..';
-        const playlistName = "PlaylistName";
+        const playlistName = document.getElementById('aname');
         console.log(playlistName);
-        const user = "User";
+        const user = Math.random(10, 10000);
         console.log(user);
         const playlist = await this.client.createPlaylist(playlistName, user);
         this.dataStore.set('playlist', playlist);
