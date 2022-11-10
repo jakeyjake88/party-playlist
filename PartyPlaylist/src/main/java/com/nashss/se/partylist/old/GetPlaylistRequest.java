@@ -1,6 +1,4 @@
-package activity.requests;
-
-import activity.results.GetPlaylistResult;
+package com.nashss.se.partylist.old;
 
 public class GetPlaylistRequest {
 

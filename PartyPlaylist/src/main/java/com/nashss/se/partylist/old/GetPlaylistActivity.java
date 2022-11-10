@@ -1,7 +1,5 @@
-package activity;
+package com.nashss.se.partylist.old;
 
-import activity.requests.GetPlaylistRequest;
-import activity.results.GetPlaylistResult;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 import javax.inject.Inject;

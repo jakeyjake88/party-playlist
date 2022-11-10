@@ -1,6 +1,4 @@
-package activity.results;
-
-import java.util.Locale;
+package com.nashss.se.partylist.old;
 
 public class GetPlaylistResult {
 
