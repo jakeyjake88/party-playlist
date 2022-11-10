@@ -1,6 +1,7 @@
 package com.nashss.se.partyplaylist.activity.requests;
 
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.nashss.se.partyplaylist.dynamodb.models.Song;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,16 +16,16 @@ public class AddGuestToPartyRequest {
 
     private Boolean isAdmin;
 
-    private List<String> songsAdded;
+    private List<Song> songsAdded;
 
-    private List<String> songsUpvoted;
+    private List<Song> songsUpvoted;
 
 
-    private AddGuestToPartyRequest(String userId, String firstName, String lastName, Boolean isAdmin) {
+    private AddGuestToPartyRequest(String userId, String firstName, String lastName) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.isAdmin = isAdmin;
+        this.isAdmin = false;
         this.songsAdded = new ArrayList<>();
         this.songsUpvoted  = new ArrayList<>();
     }
@@ -38,9 +39,9 @@ public class AddGuestToPartyRequest {
 
     public Boolean isAdmin() { return isAdmin; }
 
-    public List<String> getSongsAdded() { return songsAdded; }
+    public List<Song> getSongsAdded() { return songsAdded; }
 
-    public List<String> getSongsUpvoted() { return songsUpvoted; }
+    public List<Song> getSongsUpvoted() { return songsUpvoted; }
 
     @Override
     public String toString() {
@@ -48,7 +49,6 @@ public class AddGuestToPartyRequest {
                 "userId='" + userId + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", isAdmin='" + isAdmin +
                 '}';
     }
 
@@ -63,7 +63,6 @@ public class AddGuestToPartyRequest {
 
         private String lastName;
 
-        private Boolean isHost;
 
         public Builder withUserId(String userId) {
             this.userId = userId;
@@ -80,13 +79,8 @@ public class AddGuestToPartyRequest {
             return this;
         }
 
-        public Builder withIsAdmin(Boolean isAdmin) {
-            this.isHost = isAdmin;
-            return this;
-        }
-
         public AddGuestToPartyRequest build() {
-            return new AddGuestToPartyRequest(userId, firstName, lastName, isHost);
+            return new AddGuestToPartyRequest(userId, firstName, lastName);
         }
 
 

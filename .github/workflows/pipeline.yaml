@@ -19,7 +19,7 @@ env:
   
   PIPELINE_USER_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   PIPELINE_USER_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  SAM_TEMPLATE: oldTemplate.yaml
+  SAM_TEMPLATE: template.yaml
 
   STACK_NAME: playlist-project
   PIPELINE_EXECUTION_ROLE: arn:aws:iam::673625373805:role/aws-sam-cli-managed-ServiceS-PipelineExecutionRole-X74VEIX1CTBT
