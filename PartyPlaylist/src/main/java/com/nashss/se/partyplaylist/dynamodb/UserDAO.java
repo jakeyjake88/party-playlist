@@ -33,6 +33,15 @@ public class UserDAO {
     public UserDAO(DynamoDBMapper dynamoDbMapper) { this.dynamoDBMapper = dynamoDbMapper; }
 
     /**
+     * Adds the user to the party.
+     * @param user The user to add
+     *
+     */
+    public void addGuestToParty(User user) {
+        this.dynamoDBMapper.save(user);
+    }
+
+    /**
      * Retrieves a user by userId.
      *
      * If not found, throws UserNotFoundException.
@@ -41,7 +50,7 @@ public class UserDAO {
      * @return The corresponding user if found
      */
 
-    public User getUser(String userId) {
+    public User getGuest(String userId) {
 
         User user = dynamoDBMapper.load(User.class, userId);
         if(user == null) {
