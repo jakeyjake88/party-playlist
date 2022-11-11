@@ -1,5 +1,6 @@
 package com.nashss.se.partyplaylist.activity.results;
 
+import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.models.PlaylistModel;
 
 public class GetPlaylistResult {
@@ -8,6 +9,10 @@ public class GetPlaylistResult {
 
     private GetPlaylistResult(PlaylistModel playlist) {
         this.playlist = playlist;
+    }
+
+    public PlaylistModel getPlaylist() {
+        return playlist;
     }
 
     @Override
