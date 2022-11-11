@@ -2,13 +2,15 @@ package com.nashss.se.partyplaylist.activity;
 
 import com.nashss.se.partyplaylist.activity.requests.AddGuestToPartyRequest;
 import com.nashss.se.partyplaylist.activity.results.AddGuestToPartyResult;
+import com.nashss.se.partyplaylist.converters.ModelConverter;
 import com.nashss.se.partyplaylist.dynamodb.UserDAO;
 import com.nashss.se.partyplaylist.dynamodb.models.User;
-import com.nashss.se.partyplaylist.exceptions.UserNotFoundException;
 import com.nashss.se.partyplaylist.models.UserModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,15 +24,28 @@ public class AddGuestToPartyActivity {
     private final Logger log = LogManager.getLogger();
     private final UserDAO userDAO;
 
-    /**
-     * Instantiates a new AddGuestToPartyActivity object
-     * @param userDAO UserDao to access the user table
-     */
+
 
     @Inject
     public AddGuestToPartyActivity(UserDAO userDao) {
         this.userDAO = userDao;
     }
+
+
+    /**
+     * This method handles the incoming request by adding a guest
+     * to the party and persisting the updated guestList.
+     * <p>
+     * It then returns the updated guestList.
+     * <p>
+     * If the user does not exist, this should throw a UserNotFoundException.
+     *
+     * @param addGuestToPartyRequest request object containing the user ID
+     *                                 to retrieve the user data
+     * @return addGuestToPartyResult result object containing the party's updated list of
+     *                                 API defined {@link UserModel}s
+     */
+
 
     public AddGuestToPartyResult handleRequest(final AddGuestToPartyRequest addGuestToPartyRequest) {
         log.info("Received AddGuestToPartyRequest {} ", addGuestToPartyRequest);
@@ -38,9 +53,15 @@ public class AddGuestToPartyActivity {
         String userId = addGuestToPartyRequest.getUserId();
         User guestToAdd = userDAO.getUser(userId);
 
-        List<User> guestList = userDAO.getGuestList(addGuestToPartyRequest.getUserId());
+        List<User> guestList = userDAO.getGuestList();
+        guestList.add(guestToAdd);
 
-        List<UserModel> userModels = new ModelConverter().toUserModelList(guestList.getGuestList());
+        ModelConverter convert = new ModelConverter();
+        List<UserModel> userModels = new ArrayList<>();
+
+        for(User user : guestList) {
+            userModels.add(convert.toUserModel(user));
+        }
 
         return AddGuestToPartyResult.builder()
                 .withGuestList(userModels)
