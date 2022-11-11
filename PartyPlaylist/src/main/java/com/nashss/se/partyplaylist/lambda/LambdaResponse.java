@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+//CHECKSTYLE:OFF:ALL
+>>>>>>> origin/feature/apis-create-get
 package com.nashss.se.partyplaylist.lambda;
 
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;

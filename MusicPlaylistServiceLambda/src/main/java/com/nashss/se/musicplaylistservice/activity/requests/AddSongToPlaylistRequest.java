@@ -3,6 +3,7 @@ package com.nashss.se.musicplaylistservice.activity.requests;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+//CHECKSTYLE:OFF
 @JsonDeserialize(builder = AddSongToPlaylistRequest.Builder.class)
 public class AddSongToPlaylistRequest {
     private final String id;

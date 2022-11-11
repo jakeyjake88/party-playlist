@@ -1,3 +1,4 @@
+//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.converters;
 
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
@@ -6,6 +7,8 @@ import com.nashss.se.partyplaylist.models.PlaylistModel;
 import com.nashss.se.partyplaylist.models.UserModel;
 
 public class ModelConverter {
+
+    //CHECKSTYLE:OFF
     /**
      * Converts a provided {@link Playlist} into a {@link PlaylistModel} representation.
      * @param playlist the playlist to convert

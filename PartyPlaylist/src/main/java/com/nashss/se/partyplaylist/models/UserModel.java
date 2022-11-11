@@ -1,3 +1,4 @@
+//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.models;
 
 import com.nashss.se.partyplaylist.dynamodb.models.Song;
@@ -6,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class UserModel {
-
+    //CHECKSTYLE:OFF:ALL
     private final String userId;
     private final String firstName;
     private final String lastName;

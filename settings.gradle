@@ -1,6 +1,12 @@
 rootProject.name = 'u5-ProjectTemplate'
 include 'MusicPlaylistServiceLambda'
 include 'PartyPlaylist'
+<<<<<<< HEAD
 include 'PartyPlaylist:src'
 findProject(':PartyPlaylist:src')?.name = 'src'
+=======
+include 'PartyPlaylist:com.nashss.se.partyplaylist'
+findProject(':PartyPlaylist:com.nashss.se.partyplaylist')?.name = 'com.nashss.se.partyplaylist'
+include 'PartyPlaylist'
+>>>>>>> origin/feature/apis-create-get
 
