@@ -1,3 +1,4 @@
+//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.dependency;
 import com.nashss.se.partyplaylist.activity.CreatePlaylistActivity;
 import com.nashss.se.partyplaylist.activity.GetPlaylistActivity;

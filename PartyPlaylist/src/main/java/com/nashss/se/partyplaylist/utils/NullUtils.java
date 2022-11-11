@@ -1,3 +1,4 @@
+//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.utils;
 
 import java.util.function.Supplier;

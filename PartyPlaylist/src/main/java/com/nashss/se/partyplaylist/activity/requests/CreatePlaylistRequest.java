@@ -1,8 +1,14 @@
+//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.activity.requests;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+/**
+ * Implementation of the CreatePlaylistRequest for the PartyPlaylistService's CreatePlaylist API.
+ * <p>
+ * This API allows Creates the request for CreatePlaylistActivity.
+ */
 @JsonDeserialize(builder = CreatePlaylistRequest.Builder.class)
 public class CreatePlaylistRequest {
 
@@ -39,6 +45,7 @@ public class CreatePlaylistRequest {
 
         private String playlistId;
         private String name;
+
 
         public Builder withPlaylistId(String playlistId) {
             this.playlistId = playlistId;

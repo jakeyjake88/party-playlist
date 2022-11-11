@@ -1,3 +1,4 @@
+//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;

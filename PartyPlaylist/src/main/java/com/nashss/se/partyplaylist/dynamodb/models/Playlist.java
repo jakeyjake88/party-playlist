@@ -1,3 +1,4 @@
+//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.dynamodb.models;
 
 
@@ -13,7 +14,7 @@ import java.util.Objects;
 /**
  * Represents a Playlist in the playlist table.
  */
-
+//CHECKSTYLE:OFF:ALL
 @DynamoDBTable(tableName = "playlists")
 public class Playlist {
 

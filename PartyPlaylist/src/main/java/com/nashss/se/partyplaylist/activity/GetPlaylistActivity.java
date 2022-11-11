@@ -1,5 +1,6 @@
 package com.nashss.se.partyplaylist.activity;
 
+//CHECKSTYLE:OFF:ALL
 import com.nashss.se.partyplaylist.activity.requests.GetPlaylistRequest;
 import com.nashss.se.partyplaylist.activity.results.GetPlaylistResult;
 import com.nashss.se.partyplaylist.converters.ModelConverter;

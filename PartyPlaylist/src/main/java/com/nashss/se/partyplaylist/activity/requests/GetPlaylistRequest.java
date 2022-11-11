@@ -1,3 +1,4 @@
+//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.activity.requests;
 
 public class GetPlaylistRequest {
@@ -17,6 +18,7 @@ public class GetPlaylistRequest {
         return "GetPlaylistRequest{" + "id='" + id + '\'' + '}';
     }
 
+    //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }

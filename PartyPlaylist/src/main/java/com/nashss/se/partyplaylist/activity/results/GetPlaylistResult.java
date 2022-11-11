@@ -1,7 +1,8 @@
+//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.activity.results;
 
-import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.models.PlaylistModel;
+
 
 public class GetPlaylistResult {
 
@@ -20,6 +21,7 @@ public class GetPlaylistResult {
         return "GetPlaylistResult{" + "playlist=" + playlist + '}';
     }
 
+    //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }
