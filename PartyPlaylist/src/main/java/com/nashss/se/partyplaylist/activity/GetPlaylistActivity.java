@@ -2,7 +2,7 @@ package com.nashss.se.partyplaylist.activity;
 
 import com.nashss.se.partyplaylist.activity.requests.GetPlaylistRequest;
 import com.nashss.se.partyplaylist.activity.results.GetPlaylistResult;
-import com.nashss.se.partyplaylist.converters.old.ModelConverter;
+import com.nashss.se.partyplaylist.converters.ModelConverter;
 import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.models.PlaylistModel;
@@ -41,7 +41,6 @@ public class GetPlaylistActivity {
      * @return getPlaylistResult result object containing the API defined {@link PlaylistModel}
      */
     public GetPlaylistResult handleRequest(final GetPlaylistRequest getPlaylistRequest) {
-//        log.info("Received GetPlaylistRequest {}", getPlaylistRequest);
 
         String requestedId = getPlaylistRequest.getId();
         Playlist playlist = playlistDao.getPlaylist(requestedId);

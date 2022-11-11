@@ -5,30 +5,27 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 @JsonDeserialize(builder = CreatePlaylistRequest.Builder.class)
 public class CreatePlaylistRequest {
+
+    private final String playlistId;
     private final String name;
-    private final String customerId;
 
-
-    private CreatePlaylistRequest(String name, String customerId) {
+    private CreatePlaylistRequest(String playlistId, String name) {
+        this.playlistId = playlistId;
         this.name = name;
-        this.customerId = customerId;
+    }
+    public String getPlaylistId() {
+        return playlistId;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getCustomerId() {
-        return customerId;
-    }
-
-
-
     @Override
     public String toString() {
         return "CreatePlaylistRequest{" +
-                "name='" + name + '\'' +
-                ", customerId='" + customerId + '\'' +
+                "playlistId='" + playlistId + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 
@@ -39,22 +36,22 @@ public class CreatePlaylistRequest {
 
     @JsonPOJOBuilder
     public static class Builder {
+
+        private String playlistId;
         private String name;
-        private String customerId;
+
+        public Builder withPlaylistId(String playlistId) {
+            this.playlistId = playlistId;
+            return this;
+        }
 
         public Builder withName(String name) {
             this.name = name;
             return this;
         }
 
-        public Builder withCustomerId(String customerId) {
-            this.customerId = customerId;
-            return this;
-        }
-
-
         public CreatePlaylistRequest build() {
-            return new CreatePlaylistRequest(name, customerId);
+            return new CreatePlaylistRequest(playlistId, name);
         }
     }
 }
