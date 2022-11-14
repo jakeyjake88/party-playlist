@@ -1,4 +1,3 @@
-//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.exceptions;
 
 /**

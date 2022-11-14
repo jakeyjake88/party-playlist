@@ -1,9 +1,9 @@
-//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.dependency;
 import com.nashss.se.partyplaylist.activity.AddGuestToPartyActivity;
 import com.nashss.se.partyplaylist.activity.CreatePlaylistActivity;
 import com.nashss.se.partyplaylist.activity.GetGuestActivity;
 import com.nashss.se.partyplaylist.activity.GetPlaylistActivity;
+
 import dagger.Component;
 
 import javax.inject.Singleton;

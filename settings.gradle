@@ -1,10 +1,5 @@
 rootProject.name = 'u5-ProjectTemplate'
 include 'MusicPlaylistServiceLambda'
 include 'PartyPlaylist'
-include 'PartyPlaylist:src'
-findProject(':PartyPlaylist:src')?.name = 'src'
-include 'PartyPlaylist:com.nashss.se.partyplaylist'
-findProject(':PartyPlaylist:com.nashss.se.partyplaylist')?.name = 'com.nashss.se.partyplaylist'
-include 'PartyPlaylist'
 
 
