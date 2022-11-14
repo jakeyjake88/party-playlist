@@ -101,11 +101,7 @@ API:
 *`PlaylistModel`*
 - id : String
 - playlistName : String
-- songArtist : String
-- songTitle : String
-- songLength : Number
-- hasPlayed : Boolean
-- timeAdded: ZonedDateTime
+- songs : List<PlaylistEntry>
 
 *`SongModel`*
 - id : String
@@ -113,7 +109,6 @@ API:
 - songTitle : String
 - genre : String
 - songLength : Number
-- upvoteCount : Number
 
 *`UserModel`*
 - id : String
@@ -134,6 +129,7 @@ API:
 * Accepts `POST` requests to `/playlist/:playlistid`
 * Accepts data to add a new song with a provided artist, provided title, and a given user
   ID. Returns the new playlist.
+* If the given song ID is not found, will throw a 'SongNotFoundException'
 
 ## 6.4 _Add Upvote to Song_
 
@@ -175,6 +171,12 @@ user ID. Returns the new user.
 * Accepts data to add a new playlist with a provided name and a given
   playlist ID. Returns the new playlist.
 
+## 6.11 _Mark Song in Playlist as Played_
+
+* Accepts `PUT` requests to `/playlist/hasPlayed`
+* Accepts data to add a new playlist with a provided name and a given
+  playlist ID. Returns the new playlist.
+
 
 # 7. Tables
 
@@ -188,18 +190,13 @@ user ID. Returns the new user.
 - Playlist Table
   - id : String
   - playlistName : String
-  - songArtist : String
-  - songTitle : String
-  - songLength : Number
-  - hasPlayed : Boolean
-  - timeAdded: ZonedDateTime
+  - songs : List<Song>
 - Song Table
   - id : String
   - songArtist : String
   - songTitle : String
   - genre : String
   - songLength : Number
-  - upvoteCount : Number
 
 
 # 8. Pages
