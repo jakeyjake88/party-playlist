@@ -75,7 +75,8 @@ public class AddGuestToPartyActivity {
             User guestToAdd = userDAO.getGuest(userId);
             guestList.add(guestToAdd);
             userDAO.addGuestToParty(guestToAdd);
-            log.info("Added guest: " + guestToAdd.getFirstName() + " " + guestToAdd.getLastName() + " " + "to the list");
+            log.info("Added guest: " + guestToAdd.getFirstName() +
+                    " " + guestToAdd.getLastName() + " " + "to the list");
 
         }
 
