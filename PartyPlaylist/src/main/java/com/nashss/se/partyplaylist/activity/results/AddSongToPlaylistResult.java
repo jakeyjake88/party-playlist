@@ -1,0 +1,44 @@
+package com.nashss.se.partyplaylist.activity.results;
+
+import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class AddSongToPlaylistResult{
+
+    private final List<PlaylistEntry> songList;
+
+    private AddSongToPlaylistResult(List<PlaylistEntry> songList) {
+        this.songList = songList;
+    }
+
+    public List<PlaylistEntry> getSongList() {
+        return new ArrayList<>(songList);
+    }
+
+    @Override
+    public String toString() {
+        return "AddSongToPlaylistResult{" +
+                "songList=" + songList +
+                '}';
+    }
+
+    //CHECKSTYLE:OFF:Builder
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private List<PlaylistEntry> songList;
+
+        public Builder withSongList(List<PlaylistEntry> songList) {
+            this.songList = new ArrayList<>(songList);
+            return this;
+        }
+
+        public AddSongToPlaylistResult build() {
+            return new AddSongToPlaylistResult(songList);
+        }
+    }
+}
