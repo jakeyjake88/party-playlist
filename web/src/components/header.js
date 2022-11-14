@@ -1,4 +1,4 @@
-import MusicPlaylistClient from '../api/musicPlaylistClient';
+import PartyPlaylistClient from "../api/partyPlaylistClient";
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
 
@@ -12,7 +12,6 @@ export default class Header extends BindingClass {
         this.bindClassMethods(methodsToBind, this);
         this.dataStore = dataStore;
         this.dataStore.set('username', '');
-        this.dataStore.addChangeListener(this.updateUsernameInHeader);
     }
 
     /**
@@ -27,7 +26,7 @@ export default class Header extends BindingClass {
     }
 
     loadData() {
-        this.client = new MusicPlaylistClient({ onReady: this.clientLoaded });
+        this.client = new PartyPlaylistClient({ onReady: this.clientLoaded });
     }
 
     /**
@@ -35,10 +34,8 @@ export default class Header extends BindingClass {
      */
     addHeaderToPage() {
         document.getElementById('header').innerHTML = `
-            <div class="site-title">
-                <a class="header_home" href="index.html">Unit 5 Playlists</a>
-            </div>
-            <div id="user">${this.dataStore.get('username')}</div>
+        <h1>Party Playlist</h1>
+        <p><i>Your Party: Your Playlist</i></p>
         `;
     }
 
