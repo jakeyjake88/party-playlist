@@ -1,22 +1,23 @@
 package com.nashss.se.partyplaylist.dynamodb;
 
+import com.nashss.se.partyplaylist.dynamodb.models.User;
+import com.nashss.se.partyplaylist.exceptions.UserNotFoundException;
+
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
-import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nashss.se.aws.dynamodb.DynamoDbClientProvider;
-import com.nashss.se.partyplaylist.dynamodb.models.User;
-import com.nashss.se.partyplaylist.exceptions.UserNotFoundException;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import javax.management.Attribute;
-import java.util.*;
+
+
 
 @Singleton
 public class UserDAO {
@@ -30,12 +31,14 @@ public class UserDAO {
      */
 
     @Inject
-    public UserDAO(DynamoDBMapper dynamoDbMapper) { this.dynamoDBMapper = dynamoDbMapper; }
+    public UserDAO(DynamoDBMapper dynamoDbMapper) {
+        this.dynamoDBMapper = dynamoDbMapper;
+    }
 
     /**
      * Adds the user to the party.
-     * @param user The user to add
      *
+     * @param user The user to add
      */
     public void addGuestToParty(User user) {
         this.dynamoDBMapper.save(user);
@@ -43,7 +46,7 @@ public class UserDAO {
 
     /**
      * Retrieves a user by userId.
-     *
+     * <p>
      * If not found, throws UserNotFoundException.
      *
      * @param userId The User ID to look up
@@ -53,7 +56,7 @@ public class UserDAO {
     public User getGuest(String userId) {
 
         User user = dynamoDBMapper.load(User.class, userId);
-        if(user == null) {
+        if (user == null) {
             throw new UserNotFoundException(
                     String.format("Could not find User with UserId: '%s'", userId));
         }
@@ -77,7 +80,7 @@ public class UserDAO {
         ScanResult result = client.scan(scanRequest);
         List<Map<String, AttributeValue>> userList = result.getItems();
 
-        for(Map<String, AttributeValue> entry : userList) {
+        for (Map<String, AttributeValue> entry : userList) {
             final User guest = mapper.convertValue(userList, User.class);
             guestList.add(guest);
         }

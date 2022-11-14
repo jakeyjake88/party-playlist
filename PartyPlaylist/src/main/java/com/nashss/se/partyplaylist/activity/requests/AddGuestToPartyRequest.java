@@ -1,6 +1,7 @@
 package com.nashss.se.partyplaylist.activity.requests;
 
 import com.nashss.se.partyplaylist.dynamodb.models.Song;
+
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import java.util.ArrayList;
@@ -33,26 +34,32 @@ public class AddGuestToPartyRequest {
 
 
     public String getUserId() {
+
         return userId;
     }
 
     public String getFirstName() {
+
         return firstName;
     }
 
     public String getLastName() {
+
         return lastName;
     }
 
     public Boolean isAdmin() {
+
         return isAdmin;
     }
 
     public List<Song> getSongsAdded() {
+
         return songsAdded;
     }
 
     public List<Song> getSongsUpvoted() {
+
         return songsUpvoted;
     }
 
@@ -66,15 +73,18 @@ public class AddGuestToPartyRequest {
     }
 
     /**
-     * Creates a new builder for AddGuestToPartyRequest
+     * Creates a new builder for AddGuestToPartyRequest.
      *
      * @return Builder
      */
 
-    public static Builder builder() { return new Builder(); }
+    //CHECKSTYLE:OFF:Builder
+    public static Builder builder() {
+        return new Builder();
+    }
 
     /**
-     * Builder for AddGuestToPartyRequest
+     * Builder for AddGuestToPartyRequest.
      */
 
     @JsonPOJOBuilder
@@ -86,22 +96,41 @@ public class AddGuestToPartyRequest {
 
         private String lastName;
 
+        /**
+         * With userId parameter for AddGuestToPartyRequest builder.
+         * @param userId the userIdBuild
+         * @return this
+         */
 
         public Builder withUserId(String userId) {
             this.userId = userId;
             return this;
         }
 
+        /**
+         * With firstName parameter for AddGuestToPartyRequest builder.
+         * @param firstName the users first name
+         * @return this
+         */
         public Builder withFirstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
 
+        /**
+         * With lastName parameter for AddGuestToPartyRequest builder.
+         * @param lastName the users last name
+         * @return this
+         */
         public Builder withLastName(String lastName) {
             this.lastName = lastName;
             return this;
         }
 
+        /**
+         * Build AddGuestToPartyRequest.
+         * @return AddGuestToPartyRequest
+         */
         public AddGuestToPartyRequest build() {
             return new AddGuestToPartyRequest(userId, firstName, lastName);
         }

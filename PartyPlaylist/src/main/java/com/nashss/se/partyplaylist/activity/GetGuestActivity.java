@@ -1,5 +1,4 @@
 package com.nashss.se.partyplaylist.activity;
-
 import com.nashss.se.partyplaylist.activity.requests.GetGuestRequest;
 import com.nashss.se.partyplaylist.activity.results.GetGuestResult;
 import com.nashss.se.partyplaylist.converters.ModelConverter;
@@ -32,7 +31,9 @@ public class GetGuestActivity {
      */
 
     @Inject
-    public GetGuestActivity(UserDAO userDAO) { this.userDAO = userDAO; }
+    public GetGuestActivity(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
 
     //CHECKSTYLE:OFF:LeftCurly
     /**

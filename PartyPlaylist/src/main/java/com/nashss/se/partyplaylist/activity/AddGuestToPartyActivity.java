@@ -1,11 +1,6 @@
 package com.nashss.se.partyplaylist.activity;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import com.nashss.se.partyplaylist.activity.requests.AddGuestToPartyRequest;
 import com.nashss.se.partyplaylist.activity.results.AddGuestToPartyResult;
-
 import com.nashss.se.partyplaylist.converters.ModelConverter;
 import com.nashss.se.partyplaylist.dynamodb.UserDAO;
 import com.nashss.se.partyplaylist.dynamodb.models.User;
@@ -14,7 +9,16 @@ import com.nashss.se.partyplaylist.models.UserModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
+
+
+
+
+
+
+
 
 
 
@@ -29,11 +33,10 @@ public class AddGuestToPartyActivity {
     private final UserDAO userDAO;
 
     /**
-     * AddGuestToPartyAcitivty Constructor
+     * AddGuestToPartyAcitivty Constructor.
      *
-     * @param userDAO to initialize the userDAO;
+     * @param userDao to initialize the userDAO;
      */
-
     @Inject
     public AddGuestToPartyActivity(UserDAO userDao) {
         this.userDAO = userDao;

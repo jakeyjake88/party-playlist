@@ -1,13 +1,10 @@
-//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.models;
-
 import com.nashss.se.partyplaylist.dynamodb.models.Song;
 
 import java.util.List;
 import java.util.Objects;
 
 public class UserModel {
-    //CHECKSTYLE:OFF:ALL
     private final String userId;
     private final String firstName;
     private final String lastName;
@@ -15,7 +12,8 @@ public class UserModel {
     private final List<Song> songsAdded;
     private final List<Song> songsUpvoted;
 
-    private UserModel(String userId, String firstName, String lastName, Boolean isHost, List<Song> songsAdded, List<Song> songsUpvoted) {
+    private UserModel(String userId, String firstName, String lastName,
+                      Boolean isHost, List<Song> songsAdded, List<Song> songsUpvoted) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -25,35 +23,47 @@ public class UserModel {
     }
 
     public String getUserId() {
+
         return userId;
     }
 
     public String getFirstName() {
+
         return firstName;
     }
 
     public String getLastName() {
+
         return lastName;
     }
 
     public Boolean isHost() {
+
         return isHost;
     }
 
     public List<Song> getSongsAdded() {
+
         return songsAdded;
     }
 
     public List<Song> getSongsUpvoted() {
+
         return songsUpvoted;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         UserModel userModel = (UserModel) o;
-        return Objects.equals(userId, userModel.userId) && Objects.equals(firstName, userModel.firstName) && Objects.equals(lastName, userModel.lastName);
+        return Objects.equals(userId, userModel.userId) &&
+                Objects.equals(firstName, userModel.firstName) &&
+                Objects.equals(lastName, userModel.lastName);
     }
 
     @Override
@@ -61,7 +71,9 @@ public class UserModel {
         return Objects.hash(userId, firstName, lastName);
     }
 
+    //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
+
         return new Builder();
     }
 
