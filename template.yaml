@@ -87,62 +87,62 @@ Resources:
 #            Principal:
 #              AWS: !Sub "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOriginAccessIdentity}"
 #
-#  AccessDynamoDBTablesRole:
-#    Type: AWS::IAM::Role
-#    Properties:
-#      ManagedPolicyArns:
-#        - 'arn:aws:iam::aws:policy/service-role/AWSLambdaRole'
-#        - 'arn:aws:iam::aws:policy/AWSLambdaExecute'
-#      AssumeRolePolicyDocument:
-#        Version: "2012-10-17"
-#        Statement:
-#          - Effect: Allow
-#            Principal:
-#              Service:
-#                - lambda.amazonaws.com
-#            Action:
-#              - 'sts:AssumeRole'
-#      Policies:
-#        - PolicyName: 'WriteToCloudWatch'
-#          PolicyDocument:
-#            Version: '2012-10-17'
-#            Statement:
-#              - Effect: Allow
-#                Action:
-#                  - logs:CreateLogGroup
-#                  - logs:CreateLogStream
-#                  - logs:PutLogEvents
-#                  - cloudwatch:PutMetricData
-#                Resource: '*'
-#        - PolicyName: 'AccessPlaylistsTable'
-#          PolicyDocument:
-#            Version: '2012-10-17'
-#            Statement:
-#              - Effect: Allow
-#                Action: dynamodb:*
-#                Resource:
-#                  Fn::Join:
-#                    - ''
-#                    - - 'arn:aws:dynamodb:'
-#                      - !Ref 'AWS::Region'
-#                      - ':'
-#                      - !Ref 'AWS::AccountId'
-#                      - ':table/playlists'
-#        - PolicyName: 'AccessAlbumTracksTable'
-#          PolicyDocument:
-#            Version: '2012-10-17'
-#            Statement:
-#              - Effect: Allow
-#                Action: dynamodb:*
-#                Resource:
-#                  Fn::Join:
-#                    - ''
-#                    - - 'arn:aws:dynamodb:'
-#                      - !Ref 'AWS::Region'
-#                      - ':'
-#                      - !Ref 'AWS::AccountId'
-#                      - ':table/album_tracks'
-#
+  AccessDynamoDBTablesRole:
+    Type: AWS::IAM::Role
+    Properties:
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AWSLambdaRole'
+        - 'arn:aws:iam::aws:policy/AWSLambdaExecute'
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Policies:
+        - PolicyName: 'WriteToCloudWatch'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                  - cloudwatch:PutMetricData
+                Resource: '*'
+        - PolicyName: 'AccessPlaylistsTable'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: dynamodb:*
+                Resource:
+                  Fn::Join:
+                    - ''
+                    - - 'arn:aws:dynamodb:'
+                      - !Ref 'AWS::Region'
+                      - ':'
+                      - !Ref 'AWS::AccountId'
+                      - ':table/playlists'
+        - PolicyName: 'AccessAlbumTracksTable'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: dynamodb:*
+                Resource:
+                  Fn::Join:
+                    - ''
+                    - - 'arn:aws:dynamodb:'
+                      - !Ref 'AWS::Region'
+                      - ':'
+                      - !Ref 'AWS::AccountId'
+                      - ':table/album_tracks'
+
   GetPlaylistLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -187,7 +187,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessDynamoDBTablesRole.Arn
-      CodeUri: PartyPlaylistService
+      CodeUri: PartyPlaylist
       Handler: com.nashss.se.partyplaylist.lambda.CreatePlaylistLambda::handleRequest
       Runtime: java11
       Architectures:
