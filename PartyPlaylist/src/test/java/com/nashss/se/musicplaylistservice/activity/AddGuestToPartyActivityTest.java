@@ -10,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
+import java.util.List;
+
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
@@ -25,6 +27,7 @@ public class AddGuestToPartyActivityTest {
     void setup() {
         openMocks(this);
         addGuestToPartyActivity = new AddGuestToPartyActivity(userDAO);
+
     }
 
     @Test
@@ -47,8 +50,9 @@ public class AddGuestToPartyActivityTest {
 
         AddGuestToPartyResult result = addGuestToPartyActivity.handleRequest(request);
 
-        verify(userDAO).addGuestToParty(guest);
+        verify(userDAO).getGuest(userId);
 
     }
+
 
 }

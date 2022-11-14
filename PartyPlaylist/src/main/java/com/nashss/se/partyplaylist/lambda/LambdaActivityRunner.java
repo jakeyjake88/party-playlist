@@ -1,16 +1,7 @@
-<<<<<<< HEAD
-package com.nashss.se.partyplaylist.lambda;
-
-import com.nashss.se.musicplaylistservice.dependency.DaggerServiceComponent;
-import com.nashss.se.musicplaylistservice.dependency.ServiceComponent;
-
-=======
-//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.lambda;
 
 import com.nashss.se.partyplaylist.dependency.DaggerServiceComponent;
 import com.nashss.se.partyplaylist.dependency.ServiceComponent;
->>>>>>> origin/feature/apis-create-get
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

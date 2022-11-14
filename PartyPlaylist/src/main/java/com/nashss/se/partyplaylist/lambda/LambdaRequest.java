@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-//CHECKSTYLE:OFF:ALL
->>>>>>> origin/feature/apis-create-get
 package com.nashss.se.partyplaylist.lambda;
 
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
@@ -14,12 +10,8 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-<<<<<<< HEAD
-import static com.nashss.se.musicplaylistservice.utils.NullUtils.ifNull;
-=======
 import static com.nashss.se.partyplaylist.utils.NullUtils.ifNull;
 
->>>>>>> origin/feature/apis-create-get
 
 /**
  * Represents a generic "APIGateway" request made to a lambda function.

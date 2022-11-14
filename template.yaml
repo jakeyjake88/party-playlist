@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Party Playlist Service
+  Party Playlist
 Parameters:
   S3Bucket:
     Type: String
@@ -187,7 +187,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessDynamoDBTablesRole.Arn
-      CodeUri: PartyPlaylistService
+      CodeUri: PartyPlaylist
       Handler: com.nashss.se.partyplaylist.lambda.CreatePlaylistLambda::handleRequest
       Runtime: java11
       Architectures:

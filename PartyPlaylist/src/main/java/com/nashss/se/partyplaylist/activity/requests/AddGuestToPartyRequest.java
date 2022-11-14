@@ -1,7 +1,7 @@
 package com.nashss.se.partyplaylist.activity.requests;
 
-import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.nashss.se.partyplaylist.dynamodb.models.Song;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +22,7 @@ public class AddGuestToPartyRequest {
 
 
     private AddGuestToPartyRequest(String userId, String firstName, String lastName) {
+
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -31,17 +32,29 @@ public class AddGuestToPartyRequest {
     }
 
 
-    public String getUserId() { return userId; }
+    public String getUserId() {
+        return userId;
+    }
 
-    public String getFirstName() { return firstName; }
+    public String getFirstName() {
+        return firstName;
+    }
 
-    public String getLastName() { return lastName; }
+    public String getLastName() {
+        return lastName;
+    }
 
-    public Boolean isAdmin() { return isAdmin; }
+    public Boolean isAdmin() {
+        return isAdmin;
+    }
 
-    public List<Song> getSongsAdded() { return songsAdded; }
+    public List<Song> getSongsAdded() {
+        return songsAdded;
+    }
 
-    public List<Song> getSongsUpvoted() { return songsUpvoted; }
+    public List<Song> getSongsUpvoted() {
+        return songsUpvoted;
+    }
 
     @Override
     public String toString() {
@@ -52,7 +65,17 @@ public class AddGuestToPartyRequest {
                 '}';
     }
 
+    /**
+     * Creates a new builder for AddGuestToPartyRequest
+     *
+     * @return Builder
+     */
+
     public static Builder builder() { return new Builder(); }
+
+    /**
+     * Builder for AddGuestToPartyRequest
+     */
 
     @JsonPOJOBuilder
     public static class Builder {
