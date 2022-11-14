@@ -62,10 +62,22 @@ public class AddGuestToPartyActivity {
         log.info("Received AddGuestToPartyRequest {} ", addGuestToPartyRequest);
 
         String userId = addGuestToPartyRequest.getUserId();
-        User guestToAdd = userDAO.getGuest(userId);
-
         List<User> guestList = userDAO.getGuestList();
-        guestList.add(guestToAdd);
+        if (userDAO.getGuest(userId) == null) {
+            User newGuest = new User();
+            newGuest.setFirstName(addGuestToPartyRequest.getFirstName());
+            newGuest.setLastName(addGuestToPartyRequest.getLastName());
+            newGuest.setUserId(addGuestToPartyRequest.getUserId());
+            guestList.add(newGuest);
+            userDAO.addGuestToParty(newGuest);
+            log.info("Created a new guest object and added to list");
+        } else {
+            User guestToAdd = userDAO.getGuest(userId);
+            guestList.add(guestToAdd);
+            userDAO.addGuestToParty(guestToAdd);
+            log.info("Added guest: " + guestToAdd.getFirstName() + " " + guestToAdd.getLastName() + " " + "to the list");
+
+        }
 
         ModelConverter convert = new ModelConverter();
         List<UserModel> userModels = new ArrayList<>();
@@ -77,6 +89,5 @@ public class AddGuestToPartyActivity {
         return AddGuestToPartyResult.builder()
                 .withGuestList(userModels)
                 .build();
-
     }
 }
