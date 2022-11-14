@@ -8,18 +8,18 @@ import java.util.Objects;
 
 public class PlaylistModel {
 
-    private final String playlistID;
+    private final String playlistId;
     private final String playlistName;
     private List<PlaylistEntry> songs;
 
     private PlaylistModel(String playlistID, String playlistName, List<PlaylistEntry> songs) {
-        this.playlistID = playlistID;
+        this.playlistId = playlistID;
         this.playlistName = playlistName;
         this.songs = songs;
     }
 
     public String getPlaylistID() {
-        return playlistID;
+        return playlistId;
     }
 
     public String getPlaylistName() {
@@ -35,12 +35,12 @@ public class PlaylistModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PlaylistModel that = (PlaylistModel) o;
-        return Objects.equals(playlistID, that.playlistID) && Objects.equals(playlistName, that.playlistName) && Objects.equals(songs, that.songs);
+        return Objects.equals(playlistId, that.playlistId) && Objects.equals(playlistName, that.playlistName) && Objects.equals(songs, that.songs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playlistID, playlistName, songs);
+        return Objects.hash(playlistId, playlistName, songs);
     }
 
     public static Builder builder() {

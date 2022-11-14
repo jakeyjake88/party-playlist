@@ -4,7 +4,7 @@
       "PutRequest": {
         "Item": {
           "playlistId": { "S": "O7SFa" },
-          "name": { "S": "NSS Songs" },
+          "playlistName": { "S": "NSS Songs" },
           "songs": { "SS": [ "banjo", "triangle", "saw" ]
           }
         }
@@ -14,7 +14,7 @@
       "PutRequest": {
         "Item": {
           "playlistId": { "S": "O78S13d" },
-          "name": { "S": "This Is a Test" },
+          "playlistName": { "S": "This Is a Test" },
           "songs": { "SS": [ "Beatles", "Great", "Test" ]
           }
         }
