@@ -16,7 +16,7 @@ public class GetPlaylistLambda
         return super.runActivity(
             () -> input.fromPath(path ->
                     GetPlaylistRequest.builder()
-                            .withId(path.get("id"))
+                            .withId(path.get("playlistId"))
                             .build()),
             (request, serviceComponent) ->
                     serviceComponent.provideGetPlaylistActivity().handleRequest(request)
