@@ -16,12 +16,12 @@ public class PlaylistEntry {
 
     private Integer upvotes;
 
-    public PlaylistEntry(SongModel songModel) {
-        this.songId = songModel.getSongId();
-        this.songTitle = songModel.getSongTitle();
-        this.songArtist = songModel.getSongArtist();
-        this.genre = songModel.getGenre();
-        this.songLength = songModel.getSongLength();
+    public PlaylistEntry(Song song) {
+        this.songId = song.getSongId();
+        this.songTitle = song.getSongTitle();
+        this.songArtist = song.getSongArtist();
+        this.genre = song.getGenre();
+        this.songLength = song.getSongLength();
     }
 
     public Boolean getHasPlayed() {
