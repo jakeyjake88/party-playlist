@@ -1,12 +1,11 @@
-//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.dynamodb.models;
 
+import com.nashss.se.partyplaylist.converters.PlaylistEntryListConverter;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
-import com.nashss.se.partyplaylist.converters.PlaylistEntryListConverter;
 
 import java.util.List;
 import java.util.Objects;
@@ -14,7 +13,6 @@ import java.util.Objects;
 /**
  * Represents a Playlist in the playlist table.
  */
-//CHECKSTYLE:OFF:ALL
 @DynamoDBTable(tableName = "playlists")
 public class Playlist {
 
@@ -51,10 +49,16 @@ public class Playlist {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Playlist playlist = (Playlist) o;
-        return Objects.equals(playlistId, playlist.playlistId) && Objects.equals(playlistName, playlist.playlistName) && Objects.equals(songs, playlist.songs);
+        return Objects.equals(playlistId, playlist.playlistId) &&
+                Objects.equals(playlistName, playlist.playlistName) &&
+                Objects.equals(songs, playlist.songs);
     }
 
     @Override

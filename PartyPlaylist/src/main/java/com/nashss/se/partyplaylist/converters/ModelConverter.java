@@ -1,4 +1,3 @@
-//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.converters;
 
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
@@ -8,7 +7,6 @@ import com.nashss.se.partyplaylist.models.UserModel;
 
 public class ModelConverter {
 
-    //CHECKSTYLE:OFF
     /**
      * Converts a provided {@link Playlist} into a {@link PlaylistModel} representation.
      * @param playlist the playlist to convert
@@ -22,6 +20,11 @@ public class ModelConverter {
                 .build();
     }
 
+    /**
+     * Converts a provided {@link User} into a {@link UserModel} representation.
+     * @param user the user to convert
+     * @return the converted user
+     */
     public UserModel toUserModel(User user) {
         return UserModel.builder()
                 .withUserId(user.getUserId())

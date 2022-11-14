@@ -1,4 +1,3 @@
-//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.activity.requests;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;

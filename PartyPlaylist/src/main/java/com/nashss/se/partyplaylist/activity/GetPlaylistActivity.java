@@ -1,11 +1,13 @@
 package com.nashss.se.partyplaylist.activity;
 
-//CHECKSTYLE:OFF:ALL
 import com.nashss.se.partyplaylist.activity.requests.GetPlaylistRequest;
 import com.nashss.se.partyplaylist.activity.results.GetPlaylistResult;
+
 import com.nashss.se.partyplaylist.converters.ModelConverter;
+
 import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
+
 import com.nashss.se.partyplaylist.models.PlaylistModel;
 
 import javax.inject.Inject;

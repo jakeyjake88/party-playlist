@@ -1,4 +1,3 @@
-//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.activity.results;
 
 import com.nashss.se.partyplaylist.models.PlaylistModel;
@@ -20,7 +19,6 @@ public class CreatePlaylistResult {
                 "playlist=" + playlist +
                 '}';
     }
-
 
     public static Builder builder() {
         return new Builder();

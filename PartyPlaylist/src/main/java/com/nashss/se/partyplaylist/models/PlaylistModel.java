@@ -1,4 +1,3 @@
-//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.models;
 
 import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
@@ -26,16 +25,22 @@ public class PlaylistModel {
         return playlistName;
     }
 
-    public List<PlaylistEntry> getSongs(){
+    public List<PlaylistEntry> getSongs() {
         return songs;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         PlaylistModel that = (PlaylistModel) o;
-        return Objects.equals(playlistId, that.playlistId) && Objects.equals(playlistName, that.playlistName) && Objects.equals(songs, that.songs);
+        return Objects.equals(playlistId, that.playlistId) &&
+                Objects.equals(playlistName, that.playlistName) &&
+                Objects.equals(songs, that.songs);
     }
 
     @Override
@@ -43,6 +48,7 @@ public class PlaylistModel {
         return Objects.hash(playlistId, playlistName, songs);
     }
 
+    //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }

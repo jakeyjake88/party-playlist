@@ -1,8 +1,6 @@
-//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.activity.results;
 
 import com.nashss.se.partyplaylist.models.PlaylistModel;
-
 
 public class GetPlaylistResult {
 

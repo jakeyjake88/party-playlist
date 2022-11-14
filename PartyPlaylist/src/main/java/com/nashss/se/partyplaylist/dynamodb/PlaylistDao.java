@@ -1,9 +1,9 @@
-//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.dynamodb;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.exceptions.PlaylistNotFoundException;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 import javax.inject.Inject;
 
@@ -43,6 +43,12 @@ public class PlaylistDao {
         return playlist;
     }
 
+    /**
+     * Saves the {@link Playlist}  to in Database.
+     *
+     * @param playlist the playlist
+     * @return the saved Playlist.
+     */
     public Playlist savePlaylist(Playlist playlist) {
         this.dynamoDBMapper.save(playlist);
         return playlist;

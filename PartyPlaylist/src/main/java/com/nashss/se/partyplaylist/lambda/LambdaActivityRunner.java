@@ -1,8 +1,8 @@
-//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.lambda;
 
 import com.nashss.se.partyplaylist.dependency.DaggerServiceComponent;
 import com.nashss.se.partyplaylist.dependency.ServiceComponent;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
