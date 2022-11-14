@@ -30,7 +30,7 @@ public class AddSongToPlaylistActivity {
      * Instantiates a new AddSongToPlaylistActivity object.
      *
      * @param playlistDao PlaylistDao to access the playlist table.
-     * @param albumTrackDao AlbumTrackDao to access the album_track table.
+     * @param songDAO AlbumTrackDao to access the album_track table.
      */
     @Inject
     public AddSongToPlaylistActivity(PlaylistDAO playlistDao, SongDAO songDAO) {
@@ -48,17 +48,15 @@ public class AddSongToPlaylistActivity {
      * <p>
      * If the album track does not exist, this should throw an AlbumTrackNotFoundException.
      *
-     * @param addSongToPlaylistRequest request object containing the playlist ID and an asin and track number
+     * @param addSongToPlaylistRequest request object containing the playlist ID and songId
      *                                 to retrieve the song data
      * @return addSongToPlaylistResult result object containing the playlist's updated list of
-     *                                 API defined {@link SongModel}s
+     *                                 API defined {@link PlaylistEntry}s
      */
     public AddSongToPlaylistResult handleRequest(final AddSongToPlaylistRequest addSongToPlaylistRequest) {
         log.info("Received AddSongToPlaylistRequest {} ", addSongToPlaylistRequest);
 
         String songId = addSongToPlaylistRequest.getSongId();
-        // Allow NPE when unboxing Integer if track number is null (getTrackNumber returns Integer)
-        int trackNumber = addSongToPlaylistRequest.getTrackNumber();
 
         Playlist playlist = playlistDao.getPlaylist(addSongToPlaylistRequest.getId());
         Song songToAdd = songDAO.getSong(songId);
