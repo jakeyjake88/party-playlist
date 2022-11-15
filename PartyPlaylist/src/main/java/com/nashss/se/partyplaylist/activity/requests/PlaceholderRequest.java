@@ -1,4 +1,0 @@
-package com.nashss.se.partyplaylist.activity.requests;
-
-public class PlaceholderRequest {
-}

@@ -1,4 +1,4 @@
 package com.nashss.se.partyplaylist.activity;
 
-public class PlaceholderActivity {
+public class GetGuestActivityTest {
 }
