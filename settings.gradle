@@ -1,6 +1,5 @@
 rootProject.name = 'u5-ProjectTemplate'
 include 'MusicPlaylistServiceLambda'
 include 'PartyPlaylist'
-include 'PartyPlaylist:src'
-findProject(':PartyPlaylist:src')?.name = 'src'
+
 
