@@ -1,7 +1,7 @@
 package com.nashss.se.partyplaylist.dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.nashss.se.partyplaylist.SongNotFoundException;
+import com.nashss.se.partyplaylist.exceptions.SongNotFoundException;
 import com.nashss.se.partyplaylist.dynamodb.models.Song;
 
 import javax.inject.Inject;

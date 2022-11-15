@@ -14,5 +14,5 @@ public class AddSongToPlaylistLambda extends LambdaActivityRunner<AddSongToPlayl
                 (request, serviceComponent) ->
                         serviceComponent.provideAddSongToPlaylistActivity().handleRequest(request)
         );
-    } {
+    }
 }

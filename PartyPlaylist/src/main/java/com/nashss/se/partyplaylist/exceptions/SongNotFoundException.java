@@ -1,4 +1,4 @@
-package com.nashss.se.partyplaylist;
+package com.nashss.se.partyplaylist.exceptions;
 
 /**
  * Exception to throw when a given AlbumTrack ASIN and track number is not found
