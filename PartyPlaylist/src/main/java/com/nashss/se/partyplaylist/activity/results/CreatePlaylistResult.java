@@ -2,9 +2,13 @@ package com.nashss.se.partyplaylist.activity.results;
 
 import com.nashss.se.partyplaylist.models.PlaylistModel;
 public class CreatePlaylistResult {
-    //CHECKSTYLE:OFF:Builder
+
     private final PlaylistModel playlist;
 
+    /**
+     * Constructor for CreatePlaylistResult.
+     * @param playlist the playlist to receive from the request
+     */
     public CreatePlaylistResult(PlaylistModel playlist) {
         this.playlist = playlist;
     }
@@ -20,6 +24,8 @@ public class CreatePlaylistResult {
                 '}';
     }
 
+
+    //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }

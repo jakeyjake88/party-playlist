@@ -44,11 +44,12 @@ public class PlaylistDao {
     }
 
     /**
-     * Saves the {@link Playlist}  to in Database.
+     * Returns a saved/updated {@link Playlist} in Database.
      *
-     * @param playlist the playlist
-     * @return the saved Playlist.
+     * @param playlist to be saved/updated
+     * @return the up-to-date playlist
      */
+
     public Playlist savePlaylist(Playlist playlist) {
         this.dynamoDBMapper.save(playlist);
         return playlist;

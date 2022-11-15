@@ -1,5 +1,4 @@
 package com.nashss.se.partyplaylist.models;
-
 import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
 
 import java.util.List;
@@ -38,6 +37,7 @@ public class PlaylistModel {
             return false;
         }
         PlaylistModel that = (PlaylistModel) o;
+
         return Objects.equals(playlistId, that.playlistId) &&
                 Objects.equals(playlistName, that.playlistName) &&
                 Objects.equals(songs, that.songs);
