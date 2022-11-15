@@ -1,4 +1,5 @@
 package com.nashss.se.partyplaylist.dynamodb.models;
+
 import com.nashss.se.partyplaylist.converters.PlaylistEntryListConverter;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;

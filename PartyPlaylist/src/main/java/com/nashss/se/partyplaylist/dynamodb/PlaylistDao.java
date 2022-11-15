@@ -1,4 +1,5 @@
 package com.nashss.se.partyplaylist.dynamodb;
+
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.exceptions.PlaylistNotFoundException;
 
@@ -43,10 +44,12 @@ public class PlaylistDao {
     }
 
     /**
-     * Returns a saved/updated playlist.
+     * Returns a saved/updated {@link Playlist} in Database.
+     *
      * @param playlist to be saved/updated
      * @return the up-to-date playlist
      */
+
     public Playlist savePlaylist(Playlist playlist) {
         this.dynamoDBMapper.save(playlist);
         return playlist;

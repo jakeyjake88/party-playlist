@@ -11,8 +11,6 @@ import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 
-
-
 /**
  * Implementation of the GetGuestActivity for the PartyPlaylist GetGuest API.
  *
