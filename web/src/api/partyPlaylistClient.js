@@ -87,12 +87,6 @@ export default class PartyPlaylistClient extends BindingClass {
      */
     async createGuest(firstName, lastName, errorCallback) {
         try {
-            return {
-            firstName: "Travers",
-            lastName: "Geoffray",
-            userId: "01",
-            isHost: false
-            };
             const response = await this.client.post(`user`, {
                 firstName: firstName,
                 lastName: lastName
