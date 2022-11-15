@@ -2,6 +2,7 @@ package com.nashss.se.partyplaylist.dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 import java.util.Objects;
@@ -14,7 +15,7 @@ public class Song {
     private String genre;
     private Integer songLength;
 
-    @DynamoDBHashKey(attributeName = "songId")
+    @DynamoDBAttribute(attributeName = "songId")
     public String getSongId() {
         return songId;
     }
@@ -23,7 +24,7 @@ public class Song {
         this.songId = songId;
     }
 
-    @DynamoDBAttribute(attributeName = "songTitle")
+    @DynamoDBRangeKey(attributeName = "songTitle")
     public String getSongTitle() {
         return songTitle;
     }
@@ -32,7 +33,7 @@ public class Song {
         this.songTitle = songTitle;
     }
 
-    @DynamoDBAttribute(attributeName = "songArtist")
+    @DynamoDBHashKey(attributeName = "songArtist")
     public String getSongArtist() {
         return songArtist;
     }

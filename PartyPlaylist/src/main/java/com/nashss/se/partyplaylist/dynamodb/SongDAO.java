@@ -30,14 +30,15 @@ public class SongDAO {
      *
      * If not found, throws SongNotFoundException.
      *
-     * @param songId the songId to look up
+     * @param songTitle the songTitle to look up
+     * @param songArtist the songArtist to look up
      * @return The corresponding Song if found
      */
-    public Song getSong(String songId) {
-        Song song = dynamoDbMapper.load(Song.class, songId);
+    public Song getSong(String songTitle, String songArtist) {
+        Song song = dynamoDbMapper.load(Song.class, songArtist, songTitle);
         if (null == song) {
             throw new SongNotFoundException(
-                    String.format("Could not find Song with songId %s", songId));
+                    String.format("Could not find Song with songTitle '%s' by songArtist '%s'", songTitle, songArtist));
         }
 
         return song;

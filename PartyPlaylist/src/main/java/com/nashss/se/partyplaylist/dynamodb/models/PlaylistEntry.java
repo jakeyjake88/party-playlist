@@ -22,6 +22,28 @@ public class PlaylistEntry {
         this.songArtist = song.getSongArtist();
         this.genre = song.getGenre();
         this.songLength = song.getSongLength();
+        this.hasPlayed = false;
+        this.upvotes = 1;
+    }
+
+    public String getSongId() {
+        return songId;
+    }
+
+    public String getSongTitle() {
+        return songTitle;
+    }
+
+    public String getSongArtist() {
+        return songArtist;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public Integer getSongLength() {
+        return songLength;
     }
 
     public Boolean getHasPlayed() {

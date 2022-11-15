@@ -2,11 +2,13 @@ package com.nashss.se.partyplaylist.activity;
 
 import com.nashss.se.partyplaylist.activity.requests.AddSongToPlaylistRequest;
 import com.nashss.se.partyplaylist.activity.results.AddSongToPlaylistResult;
+import com.nashss.se.partyplaylist.converters.ModelConverter;
 import com.nashss.se.partyplaylist.dynamodb.PlaylistDAO;
 import com.nashss.se.partyplaylist.dynamodb.SongDAO;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
 import com.nashss.se.partyplaylist.dynamodb.models.Song;
+import com.nashss.se.partyplaylist.models.PlaylistEntryModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -55,23 +57,22 @@ public class AddSongToPlaylistActivity {
     public AddSongToPlaylistResult handleRequest(final AddSongToPlaylistRequest addSongToPlaylistRequest) {
         log.info("Received AddSongToPlaylistRequest {} ", addSongToPlaylistRequest);
 
-        String songId = addSongToPlaylistRequest.getSongId();
+        String songTitle = addSongToPlaylistRequest.getSongTitle();
+        String songArtist = addSongToPlaylistRequest.getSongArtist();
 
         Playlist playlist = playlistDao.getPlaylist(addSongToPlaylistRequest.getId());
-        Song songToAdd = songDAO.getSong(songId);
+        Song songToAdd = songDAO.getSong(songTitle, songArtist);
 
-        List<PlaylistEntry> albumTracks = playlist.getSongs();
-
+        List<PlaylistEntry> playlistSongs = playlist.getSongs();
         PlaylistEntry playlistEntry = new PlaylistEntry(songToAdd);
-
-        playlistEntry.setHasPlayed(false);
-        playlistEntry.setUpvotes(1);
+        playlistSongs.add(playlistEntry);
+        playlist.setSongs(playlistSongs);
 
         playlist = playlistDao.savePlaylist(playlist);
 
-/*        List<SongModel> songModels = new ModelConverter().toSongModelList(playlist.getSongList());*/
+        List<PlaylistEntryModel> playlistEntryModels = new ModelConverter().toPlaylistEntriesModel(playlist.getSongs());
         return AddSongToPlaylistResult.builder()
-                .withSongList(playlist)
+                .withSongList(playlistEntryModels)
                 .build();
     }
 
