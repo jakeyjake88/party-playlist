@@ -1,10 +1,11 @@
-//CHECKSTYLE:OFF:ALL
 package com.nashss.se.partyplaylist.converters;
+
+import com.nashss.se.partyplaylist.dynamodb.models.Song;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.nashss.se.partyplaylist.dynamodb.models.Song;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
