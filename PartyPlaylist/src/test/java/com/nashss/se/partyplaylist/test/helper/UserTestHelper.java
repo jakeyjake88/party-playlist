@@ -12,7 +12,6 @@ public final class UserTestHelper {
 
     public static User generateUser() {
         User user = new User();
-        user.setUserId("userId");
         user.setFirstName("John");
         user.setLastName("Doe");
         user.setIsHost(false);

@@ -27,7 +27,6 @@ public class ModelConverter {
      */
     public UserModel toUserModel(User user) {
         return UserModel.builder()
-                .withUserId(user.getUserId())
                 .withFirstName(user.getFirstName())
                 .withLastName(user.getLastName())
                 .withIsHost(user.isHost())
