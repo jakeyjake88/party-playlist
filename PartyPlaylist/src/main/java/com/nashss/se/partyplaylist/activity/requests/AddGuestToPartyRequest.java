@@ -10,9 +10,6 @@ import java.util.List;
 
 @JsonDeserialize(builder = AddGuestToPartyRequest.Builder.class)
 public class AddGuestToPartyRequest {
-
-    private String userId;
-
     private final String firstName;
 
     private final String lastName;
@@ -30,13 +27,6 @@ public class AddGuestToPartyRequest {
         this.isAdmin = false;
         this.songsAdded = new ArrayList<>();
         this.songsUpvoted  = new ArrayList<>();
-        this.userId = "01";
-    }
-
-
-    public String getUserId() {
-
-        return userId;
     }
 
     public String getFirstName() {
@@ -67,9 +57,11 @@ public class AddGuestToPartyRequest {
     @Override
     public String toString() {
         return "AddGuestToPartyRequest{" +
-                "userId='" + userId + '\'' +
-                ", firstName='" + firstName + '\'' +
+                "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", isAdmin=" + isAdmin +
+                ", songsAdded=" + songsAdded +
+                ", songsUpvoted=" + songsUpvoted +
                 '}';
     }
 
@@ -90,22 +82,9 @@ public class AddGuestToPartyRequest {
     @JsonPOJOBuilder
     public static class Builder {
 
-        private String userId;
-
         private String firstName;
 
         private String lastName;
-
-        /**
-         * With userId parameter for AddGuestToPartyRequest builder.
-         * @param userId the userIdBuild
-         * @return this
-         */
-
-        public Builder withUserId(String userId) {
-            this.userId = userId;
-            return this;
-        }
 
         /**
          * With firstName parameter for AddGuestToPartyRequest builder.

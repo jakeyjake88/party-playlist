@@ -81,7 +81,6 @@ export default class PartyPlaylistClient extends BindingClass {
      * Create a new guest.
      * @param firstName The first name of the guest to create.
      * @param lastName The last name of the guest to create.
-     * @param userId A unique ID assigned to the guest.
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The guest that has been created.
      */
@@ -91,7 +90,8 @@ export default class PartyPlaylistClient extends BindingClass {
                 firstName: firstName,
                 lastName: lastName
             });
-            return response.data.user;
+            console.log("Response: ", response);
+            return response.data.guest;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
