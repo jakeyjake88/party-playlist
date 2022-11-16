@@ -2,7 +2,6 @@ package com.nashss.se.partyplaylist.activity.results;
 
 import com.nashss.se.partyplaylist.models.PlaylistModel;
 
-
 public class GetPlaylistResult {
 
     private final PlaylistModel playlist;
