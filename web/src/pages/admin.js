@@ -28,18 +28,17 @@ class CreatePlaylist extends BindingClass {
         console.log(playlistName);
         console.log(hostFirstName);
         console.log(hostLastName);
-        const user = Math.random(10, 10000);
-        console.log(user);
-        const playlist = await this.client.createPlaylist(playlistName, user);
+
+        const playlist = await this.client.createPlaylist(playlistName);
         this.dataStore.set('playlist', playlist);
-        document.getElementById('create').innerText = 'Create';
+        document.getElementById('createPlaylist').innerText = 'Created';
     }
 
     redirectToAdmin() {
         console.log("redirect to admin");
         const playlist = this.dataStore.get('playlist');
         if (playlist != null) {
-            window.location.href = `/admin.html`;
+            window.location.href = `/adminPartyPlaylist.html`;
         }
     } 
 

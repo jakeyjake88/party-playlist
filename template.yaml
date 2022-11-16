@@ -30,63 +30,63 @@ Globals:
       AllowOrigin: "'*'"
 
 Resources:
-#
-#  CloudFrontOriginAccessIdentity:
-#    Type: 'AWS::CloudFront::CloudFrontOriginAccessIdentity'
-#    Condition: DeployCloudFront
-#    Properties:
-#      CloudFrontOriginAccessIdentityConfig:
-#        Comment: 'Serverless frontend website'
-#
-#  CloudfrontDistribution:
-#    Type: "AWS::CloudFront::Distribution"
-#    Condition: DeployCloudFront
-#    Properties:
-#      DistributionConfig:
-#        Comment: "Cloudfront distribution for serverless website"
-#        DefaultRootObject: "index.html"
-#        Enabled: true
-#        HttpVersion: http2
-#        PriceClass: PriceClass_100
-#        # List of origins that Cloudfront will connect to
-#        Origins:
-#          - Id: s3-website
-#            DomainName: !Sub "${S3Bucket}.s3.us-east-2.amazonaws.com"
-#            OriginPath: /static
-#            S3OriginConfig:
-#              # Restricting Bucket access through an origin access identity
-#              OriginAccessIdentity:
-#                Fn::Sub: 'origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}'
-#        # To connect the CDN to the origins you need to specify behaviours
-#        DefaultCacheBehavior:
-#          # Compress resources automatically ( gzip )
-#          Compress: 'true'
-#          AllowedMethods:
-#            - GET
-#            - HEAD
-#            - OPTIONS
-#          ForwardedValues:
-#            QueryString: false
-#          TargetOriginId: s3-website
-#          ViewerProtocolPolicy : redirect-to-https
-#          CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad
-#
-#  S3BucketPolicy:
-#    Type: AWS::S3::BucketPolicy
-#    Condition: DeployCloudFront
-#    Properties:
-#      Bucket: !Ref S3Bucket
-#      PolicyDocument:
-#        # Restricting access to cloudfront only.
-#        Statement:
-#          -
-#            Effect: Allow
-#            Action: 's3:GetObject'
-#            Resource:
-#              - !Sub "arn:aws:s3:::${S3Bucket}/*"
-#            Principal:
-#              AWS: !Sub "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOriginAccessIdentity}"
-#
+
+  CloudFrontOriginAccessIdentity:
+    Type: 'AWS::CloudFront::CloudFrontOriginAccessIdentity'
+    Condition: DeployCloudFront
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: 'Serverless frontend website'
+
+  CloudfrontDistribution:
+    Type: "AWS::CloudFront::Distribution"
+    Condition: DeployCloudFront
+    Properties:
+      DistributionConfig:
+        Comment: "Cloudfront distribution for serverless website"
+        DefaultRootObject: "index.html"
+        Enabled: true
+        HttpVersion: http2
+        PriceClass: PriceClass_100
+        # List of origins that Cloudfront will connect to
+        Origins:
+          - Id: s3-website
+            DomainName: !Sub "${S3Bucket}.s3.us-east-2.amazonaws.com"
+            OriginPath: /static
+            S3OriginConfig:
+              # Restricting Bucket access through an origin access identity
+              OriginAccessIdentity:
+                Fn::Sub: 'origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}'
+        # To connect the CDN to the origins you need to specify behaviours
+        DefaultCacheBehavior:
+          # Compress resources automatically ( gzip )
+          Compress: 'true'
+          AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+          ForwardedValues:
+            QueryString: false
+          TargetOriginId: s3-website
+          ViewerProtocolPolicy : redirect-to-https
+          CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad
+
+  S3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Condition: DeployCloudFront
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        # Restricting access to cloudfront only.
+        Statement:
+          -
+            Effect: Allow
+            Action: 's3:GetObject'
+            Resource:
+              - !Sub "arn:aws:s3:::${S3Bucket}/*"
+            Principal:
+              AWS: !Sub "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOriginAccessIdentity}"
+
 
   AccessDynamoDBTablesRole:
     Type: AWS::IAM::Role
@@ -225,25 +225,25 @@ Resources:
 #            Path: /playlists/{id}/songs
 #            Method: get
 #
-#  CreatePlaylistLambda:
-#    Type: AWS::Serverless::Function
-#    Properties:
-#      Role: !GetAtt AccessDynamoDBTablesRole.Arn
-#      CodeUri: PartyPlaylist
-#      Handler: com.nashss.se.partyplaylist.lambda.CreatePlaylistLambda::handleRequest
-#      Runtime: java11
-#      Architectures:
-#        - x86_64
-#      MemorySize: 512
-#      Environment:
-#        Variables:
-#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-#      Events:
-#        PartyPlaylist:
-#          Type: Api
-#          Properties:
-#            Path: /playlist
-#            Method: post
+  CreatePlaylistLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessDynamoDBTablesRole.Arn
+      CodeUri: PartyPlaylist
+      Handler: com.nashss.se.partyplaylist.lambda.CreatePlaylistLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        PartyPlaylist:
+          Type: Api
+          Properties:
+            Path: /playlist
+            Method: post
 
 #  UpdatePlaylistLambda:
 #    Type: AWS::Serverless::Function

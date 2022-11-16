@@ -48,16 +48,11 @@ export default class PartyPlaylistClient extends BindingClass {
         }
     }
 
-    async createPlaylist(name, id, errorCallback) {
+    async createPlaylist(playlistName, errorCallback) {
         try {
-            //TODO: Actually make the proper api call - json temporarily
-            return {
-                name: name,
-                id: id
-            }
             const response = await this.client.post(`playlists`, {
-                name: name,
-                id: id
+                playlistName: playlistName,
+                playlistId: playlistId
             });
             return response.data.playlist;
             }catch (error) {

@@ -30,7 +30,7 @@ public class CreatePlaylistActivityTest {
     @Test
     public void handleRequest_createPlaylist_createAndSavePlaylist() {
         //GIVEN
-        String expectedId = "PlaylistId";
+        String expectedId = "01";
         String expectedName = "PlaylistName";
 
         CreatePlaylistRequest request = CreatePlaylistRequest.builder()
