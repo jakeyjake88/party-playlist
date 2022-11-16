@@ -43,4 +43,8 @@ public class SongDAO {
 
         return song;
     }
+
+    public void removeSong(Song song) {
+        dynamoDbMapper.delete(song);
+    }
 }

@@ -1,6 +1,7 @@
 package com.nashss.se.partyplaylist.dependency;
 
 import com.nashss.se.partyplaylist.activity.AddSongToPlaylistActivity;
+import com.nashss.se.partyplaylist.activity.RemoveSongFromPlaylistActivity;
 import dagger.Component;
 
 import javax.inject.Singleton;
@@ -17,5 +18,7 @@ public interface ServiceComponent {
      * @return AddSongToPlaylistActivity
      */
     AddSongToPlaylistActivity provideAddSongToPlaylistActivity();
+
+    RemoveSongFromPlaylistActivity provideRemoveSongFromPlaylistActivity();
 
 }
