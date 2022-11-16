@@ -86,8 +86,7 @@ Resources:
               - !Sub "arn:aws:s3:::${S3Bucket}/*"
             Principal:
               AWS: !Sub "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOriginAccessIdentity}"
-=======
-#
+
 #  CloudFrontOriginAccessIdentity:
 #    Type: 'AWS::CloudFront::CloudFrontOriginAccessIdentity'
 #    Condition: DeployCloudFront
