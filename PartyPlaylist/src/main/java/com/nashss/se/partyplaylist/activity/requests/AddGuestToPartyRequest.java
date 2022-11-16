@@ -57,8 +57,8 @@ public class AddGuestToPartyRequest {
     @Override
     public String toString() {
         return "AddGuestToPartyRequest{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                "firstName='" + firstName +
+                ", lastName='" + lastName +
                 ", isAdmin=" + isAdmin +
                 ", songsAdded=" + songsAdded +
                 ", songsUpvoted=" + songsUpvoted +

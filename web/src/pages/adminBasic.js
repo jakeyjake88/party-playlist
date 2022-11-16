@@ -34,9 +34,6 @@ class CreateGuest extends BindingClass {
         const lastName = document.getElementById('lastName').value;
 
         const guest = await this.client.createGuest(firstName, lastName);
-        console.log(guest);
-        console.log(guest.firstName)
-        console.log(guest.lastName)
         this.dataStore.set('user', guest);
         document.getElementById('addGuestButton').innerText = 'Add Guest';
         var guestList = document.getElementById('guestList');
