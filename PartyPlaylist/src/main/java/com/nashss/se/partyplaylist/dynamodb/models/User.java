@@ -1,8 +1,9 @@
 package com.nashss.se.partyplaylist.dynamodb.models;
+
 import com.nashss.se.partyplaylist.converters.SongListConverter;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 
@@ -22,7 +23,7 @@ public class User {
     private List<Song> songsAdded;
     private List<Song> songsUpvoted;
 
-    @DynamoDBIndexHashKey(attributeName = "userId")
+    @DynamoDBHashKey(attributeName = "userId")
     public String getUserId() {
         return userId;
     }

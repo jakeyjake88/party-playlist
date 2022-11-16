@@ -21,6 +21,7 @@ public class SongListConverter implements DynamoDBTypeConverter<String, List> {
 
     @Override
     public List unconvert(String dynamoDbRepresentation) {
+        log.info("Converting");
         // need to provide the type parameter of the list to convert correctly
         return GSON.fromJson(dynamoDbRepresentation, new TypeToken<ArrayList<Song>>() { } .getType());
     }
