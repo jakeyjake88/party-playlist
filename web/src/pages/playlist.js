@@ -77,7 +77,7 @@ class ViewPlaylist extends BindingClass {
             songHtml += `
                 <li class="song">
                     <span class="title">${song.title}</span>
-                    <span class="artist">${song.album}</span>
+                    <span class="artist">${song.artist}</span>
                 </li>
             `;
         }
