@@ -3,11 +3,12 @@ package com.nashss.se.partyplaylist.activity;
 import com.nashss.se.partyplaylist.activity.requests.AddSongToPlaylistRequest;
 import com.nashss.se.partyplaylist.activity.results.AddSongToPlaylistResult;
 import com.nashss.se.partyplaylist.converters.ModelConverter;
-import com.nashss.se.partyplaylist.dynamodb.PlaylistDAO;
+import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
 import com.nashss.se.partyplaylist.dynamodb.SongDAO;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
 import com.nashss.se.partyplaylist.dynamodb.models.Song;
+import com.nashss.se.partyplaylist.exceptions.SongNotFoundException;
 import com.nashss.se.partyplaylist.models.PlaylistEntryModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,7 +25,7 @@ import java.util.List;
 public class AddSongToPlaylistActivity {
 
     private final Logger log = LogManager.getLogger();
-    private final PlaylistDAO playlistDao;
+    private final PlaylistDao playlistDao;
     private final SongDAO songDAO;
 
     /**
@@ -34,7 +35,7 @@ public class AddSongToPlaylistActivity {
      * @param songDAO AlbumTrackDao to access the album_track table.
      */
     @Inject
-    public AddSongToPlaylistActivity(PlaylistDAO playlistDao, SongDAO songDAO) {
+    public AddSongToPlaylistActivity(PlaylistDao playlistDao, SongDAO songDAO) {
         this.playlistDao = playlistDao;
         this.songDAO = songDAO;
     }
@@ -60,8 +61,13 @@ public class AddSongToPlaylistActivity {
         String songTitle = addSongToPlaylistRequest.getSongTitle();
         String songArtist = addSongToPlaylistRequest.getSongArtist();
 
-        Playlist playlist = playlistDao.getPlaylist(addSongToPlaylistRequest.getId());
+        Playlist playlist = playlistDao.getPlaylist(addSongToPlaylistRequest.getPlaylistId());
         Song songToAdd = songDAO.getSong(songTitle, songArtist);
+
+        if (songToAdd == null) {
+            throw new SongNotFoundException(
+                    String.format("'%s' by '%s' cannot be found", songTitle, songArtist));
+        }
 
         List<PlaylistEntry> playlistSongs = playlist.getSongs();
         PlaylistEntry playlistEntry = new PlaylistEntry(songToAdd);

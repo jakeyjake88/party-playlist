@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModelConverter {
+
     /**
      * Converts a provided {@link Playlist} into a {@link PlaylistModel} representation.
      * @param playlist the playlist to convert
@@ -31,7 +32,6 @@ public class ModelConverter {
      */
     public UserModel toUserModel(User user) {
         return UserModel.builder()
-                .withUserId(user.getUserId())
                 .withFirstName(user.getFirstName())
                 .withLastName(user.getLastName())
                 .withIsHost(user.isHost())

@@ -40,17 +40,27 @@ public class SongModel {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
         SongModel songModel = (SongModel) o;
-        return Objects.equals(songId, songModel.songId) && Objects.equals(songTitle, songModel.songTitle) && Objects.equals(songArtist, songModel.songArtist) && Objects.equals(genre, songModel.genre) && Objects.equals(songLength, songModel.songLength);
+        return Objects.equals(songId, songModel.songId) &&
+                Objects.equals(songTitle, songModel.songTitle) &&
+                Objects.equals(songArtist, songModel.songArtist) &&
+                Objects.equals(genre, songModel.genre) &&
+                Objects.equals(songLength, songModel.songLength);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(songId, songTitle, songArtist, genre, songLength);
     }
-
+    //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }
