@@ -5,7 +5,7 @@ import com.nashss.se.partyplaylist.models.PlaylistEntryModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddSongToPlaylistResult{
+public class AddSongToPlaylistResult {
 
     private final List<PlaylistEntryModel> songList;
 
