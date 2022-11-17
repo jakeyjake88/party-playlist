@@ -45,11 +45,11 @@ public class UserDAO {
     }
 
     /**
-     * Retrieves a user by userId.
+     * Retrieves a user by first name and last name.
      * <p>
      * If not found, throws UserNotFoundException.
      *
-     * @param userId The User ID to look up
+     * @param userId the first name to look up
      * @return The corresponding user if found
      */
 
@@ -58,7 +58,7 @@ public class UserDAO {
         User user = dynamoDBMapper.load(User.class, userId);
         if (user == null) {
             throw new UserNotFoundException(
-                    String.format("Could not find User with UserId: '%s'", userId));
+                    String.format("Could not find User '%s'", userId));
         }
         return user;
     }

@@ -87,7 +87,6 @@ Resources:
             Principal:
               AWS: !Sub "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOriginAccessIdentity}"
 
-
   AccessDynamoDBTablesRole:
     Type: AWS::IAM::Role
     Properties:
@@ -129,7 +128,6 @@ Resources:
                       - ':'
                       - !Ref 'AWS::AccountId'
                       - ':table/playlists'
-
         - PolicyName: 'AccessUsersTable'
           PolicyDocument:
             Version: '2012-10-17'
@@ -224,7 +222,7 @@ Resources:
 #          Properties:
 #            Path: /playlists/{id}/songs
 #            Method: get
-#
+
   CreatePlaylistLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -291,11 +289,15 @@ Resources:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        - AttributeName: "userId"
+        - AttributeName: "firstName"
+          AttributeType: "S"
+        - AttributeName: "lastName"
           AttributeType: "S"
       KeySchema:
-        - AttributeName: "userId"
+        - AttributeName: "firstName"
           KeyType: "HASH"
+        - AttributeName: "lastName"
+          KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "users"
 
