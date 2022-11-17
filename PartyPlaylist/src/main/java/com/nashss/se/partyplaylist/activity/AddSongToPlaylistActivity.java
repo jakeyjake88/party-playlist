@@ -3,7 +3,6 @@ package com.nashss.se.partyplaylist.activity;
 import com.nashss.se.partyplaylist.activity.requests.AddSongToPlaylistRequest;
 import com.nashss.se.partyplaylist.activity.results.AddSongToPlaylistResult;
 import com.nashss.se.partyplaylist.converters.ModelConverter;
-import com.nashss.se.partyplaylist.dynamodb.PlaylistDAO;
 import com.nashss.se.partyplaylist.dynamodb.SongDAO;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;

@@ -2,7 +2,6 @@ package com.nashss.se.partyplaylist.activity;
 
 import com.nashss.se.partyplaylist.activity.requests.RemoveSongFromPlaylistRequest;
 import com.nashss.se.partyplaylist.activity.results.RemoveSongFromPlaylistResult;
-import com.nashss.se.partyplaylist.dynamodb.PlaylistDAO;
 import com.nashss.se.partyplaylist.dynamodb.SongDAO;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.dynamodb.models.Song;
