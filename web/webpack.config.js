@@ -30,8 +30,7 @@ module.exports = {
     createPlaylist: path.resolve(__dirname, 'src', 'pages', 'createPlaylist.js'),
     viewPlaylist: path.resolve(__dirname, 'src', 'pages', 'viewPlaylist.js'),
     index: path.resolve(__dirname, 'src', 'pages', 'index.js'),
-    test: path.resolve(__dirname, 'src', 'pages', 'test.js'),
-    adminBasic: path.resolve(__dirname, 'src', 'pages', 'adminBasic.js')
+    admin: path.resolve(__dirname, 'src', 'pages', 'admin.js')
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),

@@ -34,7 +34,7 @@ class CreatePlaylist extends BindingClass {
     redirectToAdmin() {
         const playlist = this.dataStore.get('playlist');
         if (playlist != null) {
-            window.location.href = `/adminPartyPlaylist.html`;
+            window.location.href = `/admin.html`;
         }
     }
 
