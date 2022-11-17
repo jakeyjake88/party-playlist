@@ -2,7 +2,6 @@ package com.nashss.se.partyplaylist.dependency;
 
 import com.nashss.se.partyplaylist.activity.*;
 
-
 import dagger.Component;
 import javax.inject.Singleton;
 
