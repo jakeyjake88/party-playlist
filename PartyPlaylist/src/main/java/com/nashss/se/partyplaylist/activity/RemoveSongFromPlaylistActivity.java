@@ -2,6 +2,7 @@ package com.nashss.se.partyplaylist.activity;
 
 import com.nashss.se.partyplaylist.activity.requests.RemoveSongFromPlaylistRequest;
 import com.nashss.se.partyplaylist.activity.results.RemoveSongFromPlaylistResult;
+import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
 import com.nashss.se.partyplaylist.dynamodb.SongDAO;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.dynamodb.models.Song;
@@ -12,11 +13,11 @@ import javax.inject.Inject;
 
 public class RemoveSongFromPlaylistActivity {
     private final Logger log = LogManager.getLogger();
-    private final PlaylistDAO playlistDAO;
+    private final PlaylistDao playlistDAO;
     private final SongDAO songDAO;
 
     @Inject
-    public RemoveSongFromPlaylistActivity(PlaylistDAO playlistDAO, SongDAO songDAO) {
+    public RemoveSongFromPlaylistActivity(PlaylistDao playlistDAO, SongDAO songDAO) {
         this.playlistDAO = playlistDAO;
         this.songDAO = songDAO;
     }
@@ -27,10 +28,10 @@ public class RemoveSongFromPlaylistActivity {
         String songTitle = removeSongFromPlaylistRequest.getSongTitle();
         String songArtist = removeSongFromPlaylistRequest.getSongArtist();
 
-        Playlist playlist = playlistDAO.getPlaylist(addSongToPlaylistRequest.getPlaylistId());
+        Playlist playlist = playlistDAO.getPlaylist(removeSongFromPlaylistRequest.getPlaylistId());
         Song songToDelete = songDAO.getSong(songTitle, songArtist);
         songDAO.removeSong(songToDelete);
-        playlistDAO.savePlaylist();
+        playlistDAO.savePlaylist(playlist);
 
         return RemoveSongFromPlaylistResult.builder()
                 .withSong(songToDelete)
