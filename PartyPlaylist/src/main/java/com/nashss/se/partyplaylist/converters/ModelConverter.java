@@ -6,6 +6,7 @@ import com.nashss.se.partyplaylist.models.PlaylistModel;
 import com.nashss.se.partyplaylist.models.UserModel;
 
 public class ModelConverter {
+
     /**
      * Converts a provided {@link Playlist} into a {@link PlaylistModel} representation.
      * @param playlist the playlist to convert
@@ -19,9 +20,13 @@ public class ModelConverter {
                 .build();
     }
 
+    /**
+     * Converts a provided {@link User} into a {@link UserModel} representation.
+     * @param user the user to convert
+     * @return the converted user
+     */
     public UserModel toUserModel(User user) {
         return UserModel.builder()
-                .withUserId(user.getUserId())
                 .withFirstName(user.getFirstName())
                 .withLastName(user.getLastName())
                 .withIsHost(user.isHost())
