@@ -15,6 +15,7 @@ public class CreatePlaylistRequest {
     private final String playlistName;
 
     private CreatePlaylistRequest(String playlistName) {
+        // TODO replace with actual value
         this.playlistId = "01";
         this.playlistName = playlistName;
     }
