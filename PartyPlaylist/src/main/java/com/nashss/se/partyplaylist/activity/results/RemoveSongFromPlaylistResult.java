@@ -6,7 +6,9 @@ public class RemoveSongFromPlaylistResult {
 
     private final Song song;
 
-    private RemoveSongFromPlaylistResult(Song song) { this.song = song; }
+    private RemoveSongFromPlaylistResult(Song song) {
+        this.song = song;
+    }
 
     @Override
     public String toString() {

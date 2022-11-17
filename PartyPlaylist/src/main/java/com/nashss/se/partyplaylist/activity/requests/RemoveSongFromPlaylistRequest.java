@@ -29,7 +29,10 @@ public class RemoveSongFromPlaylistRequest {
         return songArtist;
     }
 
-    public String getPlaylistId() { return playlistId; }
+    public String getPlaylistId() {
+        return playlistId; 
+    }
+
 
     @Override
     public String toString() {
