@@ -5,18 +5,18 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 @JsonDeserialize(builder = AddSongToPlaylistRequest.Builder.class)
 public class AddSongToPlaylistRequest {
-    private final String songId;
+    private final String playlistId;
     private final String songTitle;
     private final String songArtist;
 
-    private AddSongToPlaylistRequest(String songId, String songTitle, String songArtist) {
-        this.songId = songId;
+    private AddSongToPlaylistRequest(String playlistId, String songTitle, String songArtist) {
+        this.playlistId = playlistId;
         this.songTitle = songTitle;
         this.songArtist = songArtist;
     }
 
-    public String getSongId() {
-        return songId;
+    public String getPlaylistId() {
+        return playlistId;
     }
 
     public String getSongTitle() {
@@ -30,7 +30,7 @@ public class AddSongToPlaylistRequest {
     @Override
     public String toString() {
         return "AddSongToPlaylistRequest{" +
-                "songId='" + songId + '\'' +
+                "playlistId='" + playlistId + '\'' +
                 ", songTitle='" + songTitle + '\'' +
                 ", songArtist='" + songArtist + '\'' +
                 '}';
@@ -43,12 +43,12 @@ public class AddSongToPlaylistRequest {
 
     @JsonPOJOBuilder
     public static class Builder {
-        private String songId;
+        private String playlistId;
         private String songTitle;
         private String songArtist;
 
-        public Builder withSongId(String songId) {
-            this.songId = songId;
+        public Builder withPlaylistId(String playlistId) {
+            this.playlistId = playlistId;
             return this;
         }
 
@@ -63,7 +63,7 @@ public class AddSongToPlaylistRequest {
         }
 
         public AddSongToPlaylistRequest build() {
-            return new AddSongToPlaylistRequest(songId, songTitle, songArtist);
+            return new AddSongToPlaylistRequest(playlistId, songTitle, songArtist);
         }
     }
 }
