@@ -22,12 +22,9 @@ class CreatePlaylist extends BindingClass {
 
     async submit() {
         document.getElementById('createPlaylist').innerText = 'Creating Playlist...';
-        const playlistName = document.getElementById('newPlaylistName');
-        const hostFirstName = document.getElementById('hostFirstName');
-        const hostLastName = document.getElementById('hostLastName');
-        console.log(playlistName);
-        console.log(hostFirstName);
-        console.log(hostLastName);
+        const playlistName = document.getElementById('newPlaylistName').value;
+        const hostFirstName = document.getElementById('hostFirstName').value;
+        const hostLastName = document.getElementById('hostLastName').value;
 
         const playlist = await this.client.createPlaylist(playlistName);
         this.dataStore.set('playlist', playlist);
@@ -35,12 +32,11 @@ class CreatePlaylist extends BindingClass {
     }
 
     redirectToAdmin() {
-        console.log("redirect to admin");
         const playlist = this.dataStore.get('playlist');
         if (playlist != null) {
             window.location.href = `/adminPartyPlaylist.html`;
         }
-    } 
+    }
 
 }
 

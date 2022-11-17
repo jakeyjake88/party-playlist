@@ -22,7 +22,7 @@ public class CreatePlaylistRequest {
         return playlistId;
     }
 
-    public String getName() {
+    public String getPlaylistName() {
         return playlistName;
     }
 
@@ -43,7 +43,7 @@ public class CreatePlaylistRequest {
     public static class Builder {
         private String playlistName;
 
-        public Builder withName(String playlistName) {
+        public Builder withPlaylistName(String playlistName) {
             this.playlistName = playlistName;
             return this;
         }

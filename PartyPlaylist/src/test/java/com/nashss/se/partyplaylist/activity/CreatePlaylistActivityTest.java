@@ -33,7 +33,7 @@ public class CreatePlaylistActivityTest {
         String expectedName = "PlaylistName";
 
         CreatePlaylistRequest request = CreatePlaylistRequest.builder()
-                .withName(expectedName)
+                .withPlaylistName(expectedName)
                 .build();
 
         //WHEN
