@@ -1,7 +1,5 @@
 package com.nashss.se.partyplaylist.dynamodb.models;
 
-import com.nashss.se.partyplaylist.models.SongModel;
-
 import java.util.Objects;
 
 public class PlaylistEntry {
@@ -16,6 +14,10 @@ public class PlaylistEntry {
 
     private Integer upvotes;
 
+    /**
+     * Creates PlaylistEntry object.
+     * @param song object with all song data.
+     */
     public PlaylistEntry(Song song) {
         this.songId = song.getSongId();
         this.songTitle = song.getSongTitle();
@@ -64,10 +66,20 @@ public class PlaylistEntry {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
         PlaylistEntry that = (PlaylistEntry) o;
-        return Objects.equals(songId, that.songId) && Objects.equals(songTitle, that.songTitle) && Objects.equals(songArtist, that.songArtist) && Objects.equals(genre, that.genre) && Objects.equals(songLength, that.songLength);
+        return Objects.equals(songId, that.songId) &&
+                Objects.equals(songTitle, that.songTitle) &&
+                Objects.equals(songArtist, that.songArtist) &&
+                Objects.equals(genre, that.genre) &&
+                Objects.equals(songLength, that.songLength);
     }
 
     @Override
