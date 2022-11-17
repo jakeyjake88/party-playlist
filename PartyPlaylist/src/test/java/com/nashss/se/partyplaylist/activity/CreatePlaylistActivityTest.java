@@ -30,12 +30,10 @@ public class CreatePlaylistActivityTest {
     @Test
     public void handleRequest_createPlaylist_createAndSavePlaylist() {
         //GIVEN
-        String expectedId = "PlaylistId";
         String expectedName = "PlaylistName";
 
         CreatePlaylistRequest request = CreatePlaylistRequest.builder()
-                .withPlaylistId(expectedId)
-                .withName(expectedName)
+                .withPlaylistName(expectedName)
                 .build();
 
         //WHEN
@@ -45,7 +43,6 @@ public class CreatePlaylistActivityTest {
         verify(playlistDao).savePlaylist(any(Playlist.class));
 
         assertNotNull(result.getPlaylist().getPlaylistID());
-        assertEquals(expectedId, result.getPlaylist().getPlaylistID());
         assertEquals(expectedName, result.getPlaylist().getPlaylistName());
     }
 
