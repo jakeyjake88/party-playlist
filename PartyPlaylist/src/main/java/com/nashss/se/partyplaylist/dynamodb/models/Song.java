@@ -61,8 +61,14 @@ public class Song {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
         Song song = (Song) o;
         return Objects.equals(songId, song.songId) && Objects.equals(songTitle, song.songTitle) && Objects.equals(songArtist, song.songArtist) && Objects.equals(genre, song.genre) && Objects.equals(songLength, song.songLength);
     }
