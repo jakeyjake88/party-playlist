@@ -70,7 +70,11 @@ public class Song {
         }
 
         Song song = (Song) o;
-        return Objects.equals(songId, song.songId) && Objects.equals(songTitle, song.songTitle) && Objects.equals(songArtist, song.songArtist) && Objects.equals(genre, song.genre) && Objects.equals(songLength, song.songLength);
+        return Objects.equals(songId, song.songId) &&
+                Objects.equals(songTitle, song.songTitle) &&
+                Objects.equals(songArtist, song.songArtist) &&
+                Objects.equals(genre, song.genre) &&
+                Objects.equals(songLength, song.songLength);
     }
 
     @Override

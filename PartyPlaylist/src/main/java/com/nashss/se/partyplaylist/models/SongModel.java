@@ -49,7 +49,11 @@ public class SongModel {
         }
 
         SongModel songModel = (SongModel) o;
-        return Objects.equals(songId, songModel.songId) && Objects.equals(songTitle, songModel.songTitle) && Objects.equals(songArtist, songModel.songArtist) && Objects.equals(genre, songModel.genre) && Objects.equals(songLength, songModel.songLength);
+        return Objects.equals(songId, songModel.songId) &&
+                Objects.equals(songTitle, songModel.songTitle) &&
+                Objects.equals(songArtist, songModel.songArtist) &&
+                Objects.equals(genre, songModel.genre) &&
+                Objects.equals(songLength, songModel.songLength);
     }
 
     @Override
