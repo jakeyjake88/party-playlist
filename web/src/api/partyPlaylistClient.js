@@ -6,7 +6,7 @@ export default class PartyPlaylistClient extends BindingClass {
     constructor(props = {}) {
         super();
         const methodsToBind = ['clientLoaded', 'getIdentity', 'getPlaylist', 
-        'addSongToPlaylist', 'getSong', 'createPlaylist'];
+        'addSongToPlaylist', 'getSong', 'createPlaylist', 'createGuest'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
 
@@ -48,19 +48,13 @@ export default class PartyPlaylistClient extends BindingClass {
         }
     }
 
-    async createPlaylist(name, id, errorCallback) {
+    async createPlaylist(playlistName, errorCallback) {
         try {
-            //TODO: Actually make the proper api call - json temporarily
-            return {
-                name: name,
-                id: id
-            }
-            const response = await this.client.post(`playlists`, {
-                name: name,
-                id: id
+            const response = await this.client.post(`playlist`, {
+                playlistName: playlistName
             });
             return response.data.playlist;
-            }catch (error) {
+            } catch (error) {
                 this.handleError(error, errorCallback);
             }
         }
@@ -75,6 +69,25 @@ export default class PartyPlaylistClient extends BindingClass {
             return response.data.songList;
         } catch (error) {
             this.handleError(error, errorCallback);
+        }
+    }
+    /**
+     * Create a new guest.
+     * @param firstName The first name of the guest to create.
+     * @param lastName The last name of the guest to create.
+     * @param errorCallback (Optional) A function to execute if the call fails.
+     * @returns The guest that has been created.
+     */
+    async createGuest(firstName, lastName, errorCallback) {
+        try {
+            const response = await this.client.post(`users`, {
+                firstName: firstName,
+                lastName: lastName
+            });
+            console.log("Response: ", response);
+            return response.data.guest;
+        } catch (error) {
+            this.handleError(error, errorCallback)
         }
     }
 

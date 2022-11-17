@@ -33,10 +33,7 @@ export default class Header extends BindingClass {
      * Add the header to the page.
      */
     addHeaderToPage() {
-        document.getElementById('header').innerHTML = `
-        <h1>Party Playlist</h1>
-        <p><i>Your Party: Your Playlist</i></p>
-        `;
+        document.getElementById('header').innerHTML = "<h1>Your Party, Your Playlist</h1>";
     }
 
     /**

@@ -2,15 +2,14 @@ package com.nashss.se.partyplaylist.activity.requests;
 
 import com.nashss.se.partyplaylist.dynamodb.models.Song;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonDeserialize(builder = AddGuestToPartyRequest.Builder.class)
 public class AddGuestToPartyRequest {
-
-    private final String userId;
-
     private final String firstName;
 
     private final String lastName;
@@ -22,20 +21,12 @@ public class AddGuestToPartyRequest {
     private List<Song> songsUpvoted;
 
 
-    private AddGuestToPartyRequest(String userId, String firstName, String lastName) {
-
-        this.userId = userId;
+    private AddGuestToPartyRequest(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.isAdmin = false;
         this.songsAdded = new ArrayList<>();
         this.songsUpvoted  = new ArrayList<>();
-    }
-
-
-    public String getUserId() {
-
-        return userId;
     }
 
     public String getFirstName() {
@@ -66,9 +57,11 @@ public class AddGuestToPartyRequest {
     @Override
     public String toString() {
         return "AddGuestToPartyRequest{" +
-                "userId='" + userId + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                "firstName='" + firstName +
+                ", lastName='" + lastName +
+                ", isAdmin=" + isAdmin +
+                ", songsAdded=" + songsAdded +
+                ", songsUpvoted=" + songsUpvoted +
                 '}';
     }
 
@@ -86,26 +79,12 @@ public class AddGuestToPartyRequest {
     /**
      * Builder for AddGuestToPartyRequest.
      */
-
     @JsonPOJOBuilder
     public static class Builder {
-
-        private String userId;
 
         private String firstName;
 
         private String lastName;
-
-        /**
-         * With userId parameter for AddGuestToPartyRequest builder.
-         * @param userId the userIdBuild
-         * @return this
-         */
-
-        public Builder withUserId(String userId) {
-            this.userId = userId;
-            return this;
-        }
 
         /**
          * With firstName parameter for AddGuestToPartyRequest builder.
@@ -132,7 +111,7 @@ public class AddGuestToPartyRequest {
          * @return AddGuestToPartyRequest
          */
         public AddGuestToPartyRequest build() {
-            return new AddGuestToPartyRequest(userId, firstName, lastName);
+            return new AddGuestToPartyRequest(firstName, lastName);
         }
 
 

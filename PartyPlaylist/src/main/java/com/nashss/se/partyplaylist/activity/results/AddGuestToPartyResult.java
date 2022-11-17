@@ -2,26 +2,22 @@ package com.nashss.se.partyplaylist.activity.results;
 
 import com.nashss.se.partyplaylist.models.UserModel;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class AddGuestToPartyResult {
 
-    private final List<UserModel> guestList;
+    private final UserModel guest;
 
-    private AddGuestToPartyResult(List<UserModel> guestList) {
-        this.guestList = guestList;
+    private AddGuestToPartyResult(UserModel guest) {
+        this.guest = guest;
     }
 
-    public List<UserModel> getGuestList() {
-
-        return new ArrayList<>(guestList);
+    public UserModel getGuest() {
+        return guest;
     }
 
     @Override
     public String toString() {
         return "AddGuestToPartyResult{" +
-                "guestList=" + guestList +
+                "guest=" + guest +
                 '}';
     }
 
@@ -35,15 +31,15 @@ public class AddGuestToPartyResult {
 
     //CHECKSTYLE:OFF:Builder
     public static class Builder {
-        private List<UserModel> guestList;
+        private UserModel userModel;
 
         /**
          * Builder to create AddGuestToPartyResult object.
-         * @param guestList the list of users at the party.
+         * @param userModel the list of users at the party.
          * @return the Builder object
          */
-        public Builder withGuestList(List<UserModel> guestList) {
-            this.guestList = new ArrayList<>(guestList);
+        public Builder withUserModel(UserModel userModel) {
+            this.userModel = userModel;
             return this;
         }
 
@@ -52,7 +48,7 @@ public class AddGuestToPartyResult {
          * @return new AddGuestToPartyResult
          */
         public AddGuestToPartyResult build() {
-            return new AddGuestToPartyResult(guestList);
+            return new AddGuestToPartyResult(userModel);
         }
     }
 

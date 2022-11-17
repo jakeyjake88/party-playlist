@@ -1,14 +1,17 @@
 package com.nashss.se.partyplaylist.dependency;
-import com.nashss.se.aws.dynamodb.DynamoDbClientProvider;
 
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.nashss.se.aws.dynamodb.DynamoDbClientProvider;
 
 import dagger.Module;
 import dagger.Provides;
 
 import javax.inject.Singleton;
 
+/**
+ * Dagger Module providing dependencies for DAO classes.
+ */
 @Module
 public class DaoModule {
     /**

@@ -9,18 +9,7 @@ import com.nashss.se.partyplaylist.models.UserModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.inject.Inject;
-
-
-
-
-
-
-
-
-
 
 /**
  * Implementation of the AddGuestToPartyActivity for the PartyPlaylist AddGuestToParty API.
@@ -61,34 +50,19 @@ public class AddGuestToPartyActivity {
     public AddGuestToPartyResult handleRequest(final AddGuestToPartyRequest addGuestToPartyRequest) {
         log.info("Received AddGuestToPartyRequest {} ", addGuestToPartyRequest);
 
-        String userId = addGuestToPartyRequest.getUserId();
-        List<User> guestList = userDAO.getGuestList();
-        if (userDAO.getGuest(userId) == null) {
-            User newGuest = new User();
-            newGuest.setFirstName(addGuestToPartyRequest.getFirstName());
-            newGuest.setLastName(addGuestToPartyRequest.getLastName());
-            newGuest.setUserId(addGuestToPartyRequest.getUserId());
-            guestList.add(newGuest);
-            userDAO.addGuestToParty(newGuest);
-            log.info("Created a new guest object and added to list");
-        } else {
-            User guestToAdd = userDAO.getGuest(userId);
-            guestList.add(guestToAdd);
-            userDAO.addGuestToParty(guestToAdd);
-            log.info("Added guest: " + guestToAdd.getFirstName() +
-                    " " + guestToAdd.getLastName() + " " + "to the list");
+        User newGuest = new User();
+        newGuest.setFirstName(addGuestToPartyRequest.getFirstName());
+        newGuest.setLastName(addGuestToPartyRequest.getLastName());
+        newGuest.setIsHost(addGuestToPartyRequest.isAdmin());
+        newGuest.setSongsAdded(addGuestToPartyRequest.getSongsAdded());
+        newGuest.setSongsUpvoted(addGuestToPartyRequest.getSongsUpvoted());
+        userDAO.addGuestToParty(newGuest);
+        log.info("Created a new guest object to the table");
 
-        }
-
-        ModelConverter convert = new ModelConverter();
-        List<UserModel> userModels = new ArrayList<>();
-
-        for (User user : guestList) {
-            userModels.add(convert.toUserModel(user));
-        }
+        UserModel userModel = new ModelConverter().toUserModel(newGuest);
 
         return AddGuestToPartyResult.builder()
-                .withGuestList(userModels)
+                .withUserModel(userModel)
                 .build();
     }
 }

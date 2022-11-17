@@ -1,8 +1,10 @@
 package com.nashss.se.partyplaylist.dynamodb.models;
+
 import com.nashss.se.partyplaylist.converters.SongListConverter;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 
@@ -15,23 +17,13 @@ import java.util.Objects;
 
 @DynamoDBTable(tableName = "users")
 public class User {
-    private String userId;
     private String firstName;
     private String lastName;
     private Boolean isHost;
     private List<Song> songsAdded;
     private List<Song> songsUpvoted;
 
-    @DynamoDBIndexHashKey(attributeName = "userId")
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    @DynamoDBAttribute(attributeName = "firstName")
+    @DynamoDBHashKey(attributeName = "firstName")
     public String getFirstName() {
         return firstName;
     }
@@ -40,7 +32,7 @@ public class User {
         this.firstName = firstName;
     }
 
-    @DynamoDBAttribute(attributeName = "lastName")
+    @DynamoDBRangeKey(attributeName = "lastName")
     public String getLastName() {
         return lastName;
     }
@@ -83,26 +75,25 @@ public class User {
         if (this == o) {
             return true;
         }
+
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
+
         User user = (User) o;
-        return Objects.equals(userId, user.userId) &&
-                Objects.equals(firstName, user.firstName) &&
-                Objects.equals(lastName, user.lastName);
+        return Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, firstName, lastName);
+        return Objects.hash(firstName, lastName);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "userId='" + userId + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                "firstName='" + firstName +
+                ", lastName='" + lastName +
                 ", isHost=" + isHost +
                 ", songsAdded=" + songsAdded +
                 ", songsUpvoted=" + songsUpvoted +
