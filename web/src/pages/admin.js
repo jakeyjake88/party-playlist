@@ -14,31 +14,29 @@ class CreatePlaylist extends BindingClass {
 
 
     mount() {
-        document.getElementById('create').addEventListener('click', this.submit);
+        document.getElementById('createPlaylist').addEventListener('click', this.submit);
         this.header.addHeaderToPage();
         this.header.loadData();
         this.client = new PartyPlaylistClient();
     }
 
     async submit() {
-        console.log("Hurrdurr");
-        document.getElementById('create').innerText = 'Doing stuff..';
-        const playlistName = document.getElementById('aname');
-        console.log(playlistName);
-        const user = Math.random(10, 10000);
-        console.log(user);
-        const playlist = await this.client.createPlaylist(playlistName, user);
+        document.getElementById('createPlaylist').innerText = 'Creating Playlist...';
+        const playlistName = document.getElementById('newPlaylistName').value;
+        const hostFirstName = document.getElementById('hostFirstName').value;
+        const hostLastName = document.getElementById('hostLastName').value;
+
+        const playlist = await this.client.createPlaylist(playlistName);
         this.dataStore.set('playlist', playlist);
-        document.getElementById('create').innerText = 'Create';
+        document.getElementById('createPlaylist').innerText = 'Created';
     }
 
     redirectToAdmin() {
-        console.log("redirect to admin");
         const playlist = this.dataStore.get('playlist');
         if (playlist != null) {
-            window.location.href = `/admin.html`;
+            window.location.href = `/adminPartyPlaylist.html`;
         }
-    } 
+    }
 
 }
 
