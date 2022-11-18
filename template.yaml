@@ -142,6 +142,20 @@ Resources:
                       - ':'
                       - !Ref 'AWS::AccountId'
                       - ':table/users'
+        - PolicyName: 'AccessSongsTable'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: dynamodb:*
+                Resource:
+                  Fn::Join:
+                    - ''
+                    - - 'arn:aws:dynamodb:'
+                      - !Ref 'AWS::Region'
+                      - ':'
+                      - !Ref 'AWS::AccountId'
+                      - ':table/songs'
 
   AddGuestToPartyLambda:
     Type: AWS::Serverless::Function
@@ -268,7 +282,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessDynamoDBTablesRole.Arn
       CodeUri: PartyPlaylist
-      Handler: com.nashss.se.partyplaylistservice.lambda.AddSongToPlaylistLambda::handleRequest
+      Handler: com.nashss.se.partyplaylist.lambda.AddSongToPlaylistLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -280,7 +294,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /playlist/{playlistId}
+            Path: /playlist/{playlistId}/songs
             Method: post
 
   #-----------------------------------------------------------------

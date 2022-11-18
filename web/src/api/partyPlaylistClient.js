@@ -32,7 +32,7 @@ export default class PartyPlaylistClient extends BindingClass {
 
     async getPlaylist(id, errorCallback) {
         try {
-            const response = await this.client.get(`playlists/${id}`);
+            const response = await this.client.get(`playlist/${id}`);
             return response.data.playlist;
         } catch (error) {
             this.handleError(error, errorCallback);
@@ -59,11 +59,11 @@ export default class PartyPlaylistClient extends BindingClass {
             }
         }
     
-    async addSongToPlaylist(artist, title, playlistId, errorCallback) {
+    async addSongToPlaylist(songArtist, songTitle, playlistId, errorCallback) {
         try {
-            const response = await this.client.post(`playlist/${playlistId}`, {
-                artist: artist,
-                title: title,
+            const response = await this.client.post(`playlist/${playlistId}/songs`, {
+                songArtist: songArtist,
+                songTitle: songTitle,
                 playlistId: playlistId
             });
             return response.data.songList;
@@ -100,6 +100,4 @@ export default class PartyPlaylistClient extends BindingClass {
             errorCallback(error);
         }
     }
-    
-    
 }
