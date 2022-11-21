@@ -40,12 +40,15 @@ public class RemoveSongFromPlaylistActivity {
     public RemoveSongFromPlaylistResult handleRequest(final RemoveSongFromPlaylistRequest request) {
         log.info("Received RemoveSongFromPlaylistRequest {} ", request);
 
-        String songId = request.getSongId();
+        String songArtist = request.getSongArtist();
+        String songTitle = request.getSongTitle();
+        String playlistId = request.getPlaylistId();
 
-        Playlist playlist = playlistDAO.getPlaylist(request.getPlaylistId());
-        List<PlaylistEntry> songList = new ArrayList<>(playlist.getSongs());
+        Playlist playlist = playlistDAO.getPlaylist(playlistId);
+        List<PlaylistEntry> songList = playlist.getSongs();
 
-        songList.removeIf(p -> p.getSongId().equals(songId));
+        songList.removeIf(p -> p.getSongArtist().equals(songArtist)
+                && p.getSongTitle().equals(songTitle));
         playlist.setSongs(songList);
         playlistDAO.savePlaylist(playlist);
 
