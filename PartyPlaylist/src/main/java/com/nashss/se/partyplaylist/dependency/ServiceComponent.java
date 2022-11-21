@@ -1,16 +1,13 @@
 package com.nashss.se.partyplaylist.dependency;
-
-<<<<<<< HEAD
-import com.nashss.se.partyplaylist.activity.*;
-=======
 import com.nashss.se.partyplaylist.activity.AddGuestToPartyActivity;
 import com.nashss.se.partyplaylist.activity.AddSongToPlaylistActivity;
 import com.nashss.se.partyplaylist.activity.CreatePlaylistActivity;
 import com.nashss.se.partyplaylist.activity.GetGuestActivity;
 import com.nashss.se.partyplaylist.activity.GetPlaylistActivity;
->>>>>>> main
+import com.nashss.se.partyplaylist.activity.RemoveSongFromPlaylistActivity;
 
 import dagger.Component;
+
 import javax.inject.Singleton;
 
 /**
@@ -29,7 +26,7 @@ public interface ServiceComponent {
 
 
     /**
-     * Removes song from playlist
+     * Removes song from playlist.
      * @return RemoveSongFromPlaylistActivity
      */
     RemoveSongFromPlaylistActivity provideRemoveSongFromPlaylistActivity();

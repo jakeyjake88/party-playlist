@@ -341,9 +341,4 @@ Resources:
         - AttributeName: "songTitle"
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
-<<<<<<< HEAD
       TableName: "songs"
-
-=======
-      TableName: "songs"
->>>>>>> main

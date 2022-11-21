@@ -45,6 +45,10 @@ public class SongDAO {
         return song;
     }
 
+    /**
+     * Removes a song object from the database.
+     * @param song to be deleted
+     */
     public void removeSong(Song song) {
         dynamoDbMapper.delete(song);
     }
