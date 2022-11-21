@@ -1,49 +1,52 @@
+import PartyPlaylistClient from '../api/partyPlaylistClient';
+import Header from '../components/header';
 import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
-import Header from '../components/header';
-import PartyPlaylistClient from '../api/partyPlaylistClient';
 
-class CreatePlaylist extends BindingClass {
-    constructor(){
+/**
+ * Logic needed for the create guest page of the website.
+ */
+class CreateGuest extends BindingClass {
+    constructor() {
         super();
-        this.bindClassMethods(['mount', 'submit', 'redirectToAdmin'], this);
+        this.bindClassMethods(['mount', 'submit'], this);
         this.dataStore = new DataStore();
-        this.dataStore.addChangeListener(this.redirectToAdmin);
         this.header = new Header(this.dataStore);
     }
 
-
+    /**
+     * Add the header to the page and load the PartyPlaylistClient.
+     */
     mount() {
-        document.getElementById('create').addEventListener('click', this.submit);
+        document.getElementById('addGuestButton').addEventListener('click', this.submit);
         this.header.addHeaderToPage();
         this.header.loadData();
         this.client = new PartyPlaylistClient();
     }
 
+    /**
+     * Method to run when the create guest submit button is pressed. Call the PartyPlaylistService to create the
+     * playlist.
+     */
     async submit() {
-        console.log("Hurrdurr");
-        document.getElementById('create').innerText = 'Doing stuff..';
-        const playlistName = document.getElementById('aname');
-        console.log(playlistName);
-        const user = Math.random(10, 10000);
-        console.log(user);
-        const playlist = await this.client.createPlaylist(playlistName, user);
-        this.dataStore.set('playlist', playlist);
-        document.getElementById('create').innerText = 'Create';
+        document.getElementById('addGuestButton').innerText = 'Adding...';
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+
+        const guest = await this.client.createGuest(firstName, lastName);
+        this.dataStore.set('user', guest);
+        document.getElementById('addGuestButton').innerText = 'Add Guest';
+        var guestList = document.getElementById('guestList');
+        guestList.innerHTML += "<li>" + guest.firstName + " " + guest.lastName + "</li>";
     }
+ }
 
-    redirectToAdmin() {
-        console.log("redirect to admin");
-        const playlist = this.dataStore.get('playlist');
-        if (playlist != null) {
-            window.location.href = `/admin.html`;
-        }
-    } 
+/**
+ * Main method to run when the page contents have loaded.
+ */
+const main = async () => {
+    const createGuest = new CreateGuest();
+    createGuest.mount();
+};
 
-}
-
-    const main = async () => {
-        const createPlaylist = new CreatePlaylist();
-        createPlaylist.mount();
-    }
-    window.addEventListener('DOMContentLoaded', main);
+window.addEventListener('DOMContentLoaded', main);

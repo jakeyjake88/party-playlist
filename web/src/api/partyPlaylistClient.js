@@ -32,7 +32,7 @@ export default class PartyPlaylistClient extends BindingClass {
 
     async getPlaylist(id, errorCallback) {
         try {
-            const response = await this.client.get(`playlists/${id}`);
+            const response = await this.client.get(`playlist/${id}`);
             return response.data.playlist;
         } catch (error) {
             this.handleError(error, errorCallback);
@@ -48,31 +48,25 @@ export default class PartyPlaylistClient extends BindingClass {
         }
     }
 
-    async createPlaylist(name, id, errorCallback) {
+    async createPlaylist(playlistName, errorCallback) {
         try {
-            //TODO: Actually make the proper api call - json temporarily
-            return {
-                name: name,
-                id: id
-            }
-            const response = await this.client.post(`playlists`, {
-                name: name,
-                id: id
+            const response = await this.client.post(`playlist`, {
+                playlistName: playlistName
             });
             return response.data.playlist;
-            }catch (error) {
+            } catch (error) {
                 this.handleError(error, errorCallback);
             }
         }
     
-    async addSongToPlaylist(artist, title, id, songId, errorCallback) {
+    async addSongToPlaylist(songArtist, songTitle, playlistId, errorCallback) {
         try {
-            const response = await this.client.post(`playlist/id/song/${songId}`, {
-                artist: artist,
-                title: title,
-                id: id
+            const response = await this.client.post(`playlist/${playlistId}/songs`, {
+                songArtist: songArtist,
+                songTitle: songTitle,
+                playlistId: playlistId
             });
-            return response.data.Song;
+            return response.data.songList;
         } catch (error) {
             this.handleError(error, errorCallback);
         }
@@ -106,6 +100,4 @@ export default class PartyPlaylistClient extends BindingClass {
             errorCallback(error);
         }
     }
-    
-    
 }

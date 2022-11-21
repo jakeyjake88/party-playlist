@@ -1,7 +1,5 @@
 package com.nashss.se.partyplaylist.models;
 
-import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
-
 import java.util.Objects;
 
 public class PlaylistEntryModel {
@@ -13,7 +11,8 @@ public class PlaylistEntryModel {
     private final Boolean hasPlayed;
     private final Integer upvotes;
 
-    private PlaylistEntryModel(String songId, String songTitle, String songArtist, String genre, Integer songLength, Boolean hasPlayed, Integer upvotes) {
+    private PlaylistEntryModel(String songId, String songTitle, String songArtist,
+                               String genre, Integer songLength, Boolean hasPlayed, Integer upvotes) {
         this.songId = songId;
         this.songTitle = songTitle;
         this.songArtist = songArtist;
@@ -53,17 +52,27 @@ public class PlaylistEntryModel {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
         PlaylistEntryModel playlistEntryModel = (PlaylistEntryModel) o;
-        return Objects.equals(songId, playlistEntryModel.songId) && Objects.equals(songTitle, playlistEntryModel.songTitle) && Objects.equals(songArtist, playlistEntryModel.songArtist) && Objects.equals(genre, playlistEntryModel.genre) && Objects.equals(songLength, playlistEntryModel.songLength);
+        return Objects.equals(songId, playlistEntryModel.songId) &&
+                Objects.equals(songTitle, playlistEntryModel.songTitle) &&
+                Objects.equals(songArtist, playlistEntryModel.songArtist) &&
+                Objects.equals(genre, playlistEntryModel.genre) &&
+                Objects.equals(songLength, playlistEntryModel.songLength);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(songId, songTitle, songArtist, genre, songLength);
     }
-
+    //CHECKSTYLE:OFF:Builder
     public static PlaylistEntryModel.Builder builder() {
         return new PlaylistEntryModel.Builder();
     }

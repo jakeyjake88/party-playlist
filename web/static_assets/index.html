@@ -1,60 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" type="text/css" href="css/background.css">
-<script type="text/javascript" src="assets/admin.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="assets/index.js"></script>
 </head>
+<body class="background">
+<header class="header" id="header"><h1>Welcome to Party Playlist!</h1></header>
 
-
-<body>
-<div class="header" id="header">
-</div>
-
-<div class="row">
-    <div class="leftcolumn">
-        <div class="card">
-            <h2><i>A collaborative experience</i></h2>
-            <h5>Have you ever been on a yacht? Probably not, you're broke.</h5>
-            <p>But we have. And there is a common problem YachtRiders face - too many people that
-                want to add songs to a single queued playlist. Luckily, we have a solution!
+<div class="flex-container">
+    <div class="login-form">
+        <h2>Login To Your Party's Playlist</h2>
+        <form class="card-content" id="playlist-login">
+            <p class="form-field">
+                <label>Playlist Name</label>
+                <input type="text" required class="validated-field" id="partyPlaylistName" placeholder="Playlist Name" autofocus>
             </p>
-        </div>
-        <div class="card">
-            <h2>But...what is PartyPlaylist?</h2>
-            <p>
-                PartyPlaylist is a functional collaborative playlist that allows guests to any form of social gathering
-                to add songs to a playlist. In addition to this they are given the opportunity to upvote songs they want to hear sooner to determine their position 
-                in the queue.
-            </p>
-        </div>
+        </form>
+        <button type="button" id="addGuestButton">Login</button>
     </div>
-    <div class="rightcolumn">
-        <div class="card">
-            <h2>Admin Login</h2>
-            <p>Let's get this party started.</p>
-            <form name="inputform">
-                <input type="text" id="aname" name="aname">
-            </form>
-            <button class="button">Login</button><button class="button" id="create">Create Playlist</button>
-        </div>
-        <div class="card">
-            <h2>Guest Login</h2>
-            <p>You do not own a yacht</p>
-            <form name="unameform">
-                <input type="text" name="unameinput">
-            </form>
-            <button class="button" id="uname">Login</button>
-        </div>
-        <div class="card">
-            <h2>Designed by:</h2>
-            <p>Jake Price, Matt Leigh, Matt Reuther, Travers</p>
-        </div>
+
+    <div class="create-playlist">
+        <h2>Create A New Playlist</h2>
+        <form class="card-content" id="create-playlist">
+            <p class="form-field">
+                <label>Playlist Name</label>
+                <input type="text" required class="validated-field" id="newPlaylistName" placeholder="Playlist Name" autofocus>
+            </p>
+            <p class="form-field">
+                <label>Host First Name</label>
+                <input type="text" required class="validated-field" id="hostFirstName" placeholder="First Name" autofocus>
+            </p>
+            <p class="form-field">
+                <label>Host Last Name</label>
+                <input type="text" required class="validated-field" id="hostLastName" placeholder="Last Name" autofocus>
+            </p>
+        </form>
+        <button type="button" id="createPlaylist">Create Playlist</button>
     </div>
 </div>
-<div class="footer">
-    <h2>Sponsored by: </h2><img src="images/catyacht.png">
-    
-</div>
 
-    </html>
+</body>
+</html>

@@ -8,12 +8,15 @@ import com.nashss.se.partyplaylist.dynamodb.SongDAO;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
 import com.nashss.se.partyplaylist.dynamodb.models.Song;
+import com.nashss.se.partyplaylist.exceptions.SongNotFoundException;
 import com.nashss.se.partyplaylist.models.PlaylistEntryModel;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+import javax.inject.Inject;
+
 
 import javax.inject.Inject;
 
@@ -62,8 +65,14 @@ public class AddSongToPlaylistActivity {
         String songTitle = addSongToPlaylistRequest.getSongTitle();
         String songArtist = addSongToPlaylistRequest.getSongArtist();
 
-        Playlist playlist = playlistDao.getPlaylist("Placeholder for Travers");
+
+        Playlist playlist = playlistDao.getPlaylist(addSongToPlaylistRequest.getPlaylistId());
         Song songToAdd = songDAO.getSong(songTitle, songArtist);
+
+        if (songToAdd == null) {
+            throw new SongNotFoundException(
+                    String.format("'%s' by '%s' cannot be found", songTitle, songArtist));
+        }
 
         List<PlaylistEntry> playlistSongs = playlist.getSongs();
         PlaylistEntry playlistEntry = new PlaylistEntry(songToAdd);

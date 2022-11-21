@@ -1,8 +1,9 @@
 package com.nashss.se.partyplaylist.dynamodb;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.nashss.se.partyplaylist.exceptions.SongNotFoundException;
 import com.nashss.se.partyplaylist.dynamodb.models.Song;
+import com.nashss.se.partyplaylist.exceptions.SongNotFoundException;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -22,8 +23,8 @@ public class SongDAO {
      */
     @Inject
     public SongDAO(DynamoDBMapper dynamoDbMapper) {
-            this.dynamoDbMapper = dynamoDbMapper;
-        }
+        this.dynamoDbMapper = dynamoDbMapper;
+    }
 
     /**
      * Retrieves a Song by songID.

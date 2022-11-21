@@ -16,7 +16,7 @@ class CreatePlaylist extends BindingClass {
     }
 
     /**
-     * Add the header to the page and load the MusicPlaylistClient.
+     * Add the header to the page and load the PartyPlaylist.
      */
     mount() {
         document.getElementById('create').addEventListener('click', this.submit);
@@ -26,7 +26,7 @@ class CreatePlaylist extends BindingClass {
     }
 
     /**
-     * Method to run when the create playlist submit button is pressed. Call the MusicPlaylistService to create the
+     * Method to run when the create playlist submit button is pressed. Call the PartyPlaylist to create the
      * playlist.
      */
     async submit() {

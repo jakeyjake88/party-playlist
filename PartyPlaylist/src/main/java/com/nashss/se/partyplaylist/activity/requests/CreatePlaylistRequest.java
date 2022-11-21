@@ -12,25 +12,26 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 public class CreatePlaylistRequest {
 
     private final String playlistId;
-    private final String name;
+    private final String playlistName;
 
-    private CreatePlaylistRequest(String playlistId, String name) {
-        this.playlistId = playlistId;
-        this.name = name;
+    private CreatePlaylistRequest(String playlistName) {
+        // TODO replace with actual value
+        this.playlistId = "01";
+        this.playlistName = playlistName;
     }
     public String getPlaylistId() {
         return playlistId;
     }
 
-    public String getName() {
-        return name;
+    public String getPlaylistName() {
+        return playlistName;
     }
 
     @Override
     public String toString() {
         return "CreatePlaylistRequest{" +
                 "playlistId='" + playlistId + '\'' +
-                ", name='" + name + '\'' +
+                ", name='" + playlistName + '\'' +
                 '}';
     }
 
@@ -41,23 +42,15 @@ public class CreatePlaylistRequest {
 
     @JsonPOJOBuilder
     public static class Builder {
+        private String playlistName;
 
-        private String playlistId;
-        private String name;
-
-
-        public Builder withPlaylistId(String playlistId) {
-            this.playlistId = playlistId;
-            return this;
-        }
-
-        public Builder withName(String name) {
-            this.name = name;
+        public Builder withPlaylistName(String playlistName) {
+            this.playlistName = playlistName;
             return this;
         }
 
         public CreatePlaylistRequest build() {
-            return new CreatePlaylistRequest(playlistId, name);
+            return new CreatePlaylistRequest(playlistName);
         }
     }
 }
