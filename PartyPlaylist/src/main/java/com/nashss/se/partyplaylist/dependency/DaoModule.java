@@ -10,9 +10,11 @@ import dagger.Provides;
 
 import javax.inject.Singleton;
 
+
 /**
  * Dagger Module providing dependencies for DAO classes.
  */
+
 @Module
 public class DaoModule {
     /**
@@ -20,7 +22,6 @@ public class DaoModule {
      *
      * @return DynamoDBMapper object
      */
-
     @Singleton
     @Provides
     public DynamoDBMapper provideDynamoDBMapper() {
