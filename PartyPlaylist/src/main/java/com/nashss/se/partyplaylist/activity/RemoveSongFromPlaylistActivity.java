@@ -2,15 +2,15 @@ package com.nashss.se.partyplaylist.activity;
 
 import com.nashss.se.partyplaylist.activity.requests.RemoveSongFromPlaylistRequest;
 import com.nashss.se.partyplaylist.activity.results.RemoveSongFromPlaylistResult;
+import com.nashss.se.partyplaylist.converters.ModelConverter;
 import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
-import com.nashss.se.partyplaylist.dynamodb.SongDAO;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
+import com.nashss.se.partyplaylist.models.PlaylistModel;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -19,17 +19,14 @@ import javax.inject.Inject;
 public class RemoveSongFromPlaylistActivity {
     private final Logger log = LogManager.getLogger();
     private final PlaylistDao playlistDAO;
-    private final SongDAO songDAO;
 
     /**
      *
      * @param playlistDAO PlaylistDao to access the playlist table.
-     * @param songDAO AlbumTrackDao to access the album_track table.
      */
     @Inject
-    public RemoveSongFromPlaylistActivity(PlaylistDao playlistDAO, SongDAO songDAO) {
+    public RemoveSongFromPlaylistActivity(PlaylistDao playlistDAO) {
         this.playlistDAO = playlistDAO;
-        this.songDAO = songDAO;
     }
 
     /**
@@ -47,14 +44,15 @@ public class RemoveSongFromPlaylistActivity {
         Playlist playlist = playlistDAO.getPlaylist(playlistId);
         List<PlaylistEntry> songList = playlist.getSongs();
 
-        songList.removeIf(p -> p.getSongArtist().equals(songArtist)
-                && p.getSongTitle().equals(songTitle));
+        songList.removeIf(p -> p.getSongArtist().equals(songArtist) &&
+                p.getSongTitle().equals(songTitle));
         playlist.setSongs(songList);
         playlistDAO.savePlaylist(playlist);
 
+        PlaylistModel playlistModel = new ModelConverter().toPlaylistModel(playlist);
+
         return RemoveSongFromPlaylistResult.builder()
-                .withSong(songDAO.getSong(request.getSongTitle(),
-                        request.getSongArtist()))
+                .withPlaylist(playlistModel)
                 .build();
     }
 }

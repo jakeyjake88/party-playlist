@@ -6,7 +6,7 @@ export default class PartyPlaylistClient extends BindingClass {
     constructor(props = {}) {
         super();
         const methodsToBind = ['clientLoaded', 'getIdentity', 'getPlaylist', 
-        'addSongToPlaylist', 'getSong', 'createPlaylist', 'createGuest'];
+        'addSongToPlaylist', 'getSong', 'createPlaylist', 'createGuest', 'removeSongFromPlaylist'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
 
@@ -62,6 +62,19 @@ export default class PartyPlaylistClient extends BindingClass {
     async addSongToPlaylist(songArtist, songTitle, playlistId, errorCallback) {
         try {
             const response = await this.client.post(`playlist/${playlistId}/songs`, {
+                songArtist: songArtist,
+                songTitle: songTitle,
+                playlistId: playlistId
+            });
+            return response.data.songList;
+        } catch (error) {
+            this.handleError(error, errorCallback);
+        }
+    }
+
+    async removeSongFromPlaylist(songArtist, songTitle, playlistId, errorCallback) {
+        try {
+            const response = await this.client.delete(`playlist/${playlistId}/songs`, {
                 songArtist: songArtist,
                 songTitle: songTitle,
                 playlistId: playlistId

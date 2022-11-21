@@ -29,7 +29,6 @@ module.exports = {
   entry: {
     playlist: path.resolve(__dirname, 'src', 'pages', 'playlist.js'),
     createPlaylist: path.resolve(__dirname, 'src', 'pages', 'createPlaylist.js'),
-//    viewPlaylist: path.resolve(__dirname, 'src', 'pages', 'viewPlaylist.js'),
     index: path.resolve(__dirname, 'src', 'pages', 'index.js'),
     admin: path.resolve(__dirname, 'src', 'pages', 'admin.js')
   },

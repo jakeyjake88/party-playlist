@@ -1,19 +1,19 @@
 package com.nashss.se.partyplaylist.activity.results;
 
-import com.nashss.se.partyplaylist.dynamodb.models.Song;
+import com.nashss.se.partyplaylist.models.PlaylistModel;
 
 public class RemoveSongFromPlaylistResult {
 
-    private final Song song;
+    private final PlaylistModel playlist;
 
-    private RemoveSongFromPlaylistResult(Song song) {
-        this.song = song;
+    private RemoveSongFromPlaylistResult(PlaylistModel playlistModel) {
+        this.playlist = playlistModel;
     }
 
     @Override
     public String toString() {
         return "RemoveSongFromPlaylistResult{" +
-                "song" + song +
+                "playlistModel" + playlist +
                 '}';
     }
 
@@ -21,13 +21,13 @@ public class RemoveSongFromPlaylistResult {
     public static Builder builder() { return new Builder(); }
 
     public static class Builder {
-        private Song song;
+        private PlaylistModel playlist;
 
-        public Builder withSong(Song song) {
-            this.song = new Song();
+        public Builder withPlaylist(PlaylistModel playlist) {
+            this.playlist = playlist;
             return this;
         }
 
-        public RemoveSongFromPlaylistResult build() { return new RemoveSongFromPlaylistResult(song); }
+        public RemoveSongFromPlaylistResult build() { return new RemoveSongFromPlaylistResult(playlist); }
     }
 }
