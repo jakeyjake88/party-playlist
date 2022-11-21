@@ -1,4 +1,5 @@
 package com.nashss.se.partyplaylist.dependency;
+
 import com.nashss.se.aws.dynamodb.DynamoDbClientProvider;
 
 import com.amazonaws.regions.Regions;
@@ -9,6 +10,9 @@ import dagger.Provides;
 
 import javax.inject.Singleton;
 
+/**
+ * Dagger Module providing dependencies for DAO classes.
+ */
 @Module
 public class DaoModule {
     /**
