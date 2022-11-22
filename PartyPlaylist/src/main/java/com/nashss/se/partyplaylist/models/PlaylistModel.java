@@ -8,7 +8,7 @@ public class PlaylistModel {
 
     private final String playlistId;
     private final String playlistName;
-    private List<PlaylistEntry> songs;
+    private final List<PlaylistEntry> songs;
 
     private PlaylistModel(String playlistID, String playlistName, List<PlaylistEntry> songs) {
         this.playlistId = playlistID;

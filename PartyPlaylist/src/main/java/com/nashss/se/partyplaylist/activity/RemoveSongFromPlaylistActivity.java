@@ -6,7 +6,7 @@ import com.nashss.se.partyplaylist.converters.ModelConverter;
 import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
-import com.nashss.se.partyplaylist.models.PlaylistModel;
+import com.nashss.se.partyplaylist.models.PlaylistEntryModel;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,10 +49,10 @@ public class RemoveSongFromPlaylistActivity {
         playlist.setSongs(songList);
         playlistDAO.savePlaylist(playlist);
 
-        PlaylistModel playlistModel = new ModelConverter().toPlaylistModel(playlist);
+        List<PlaylistEntryModel> playlistEntryModels = new ModelConverter().toPlaylistEntriesModel(playlist.getSongs());
 
         return RemoveSongFromPlaylistResult.builder()
-                .withPlaylist(playlistModel)
+                .withPlaylist(playlistEntryModels)
                 .build();
     }
 }

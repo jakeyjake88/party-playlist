@@ -295,7 +295,7 @@ Resources:
           Type: Api
           Properties:
             Path: /playlist/{playlistId}/songs
-            Method: delete
+            Method: put
 
   AddSongToPlaylistLambda:
     Type: AWS::Serverless::Function

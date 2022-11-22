@@ -19,8 +19,8 @@ class CreateGuest extends BindingClass {
      */
     mount() {
         document.getElementById('addGuestButton').addEventListener('click', this.submit);
-        document.getElementById('add-song-admin').addEventListener('click', this.submit);
-        document.getElementById('remove-song-admin').addEventListener('click', this.submit);
+        document.getElementById('add-song-admin').addEventListener('click', this.addSong);
+        document.getElementById('remove-song-admin').addEventListener('click', this.removeSong);
         this.header.addHeaderToPage();
         this.header.loadData();
         this.client = new PartyPlaylistClient();

@@ -74,7 +74,7 @@ export default class PartyPlaylistClient extends BindingClass {
 
     async removeSongFromPlaylist(songArtist, songTitle, playlistId, errorCallback) {
         try {
-            const response = await this.client.delete(`playlist/${playlistId}/songs`, {
+            const response = await this.client.put(`playlist/${playlistId}/songs`, {
                 songArtist: songArtist,
                 songTitle: songTitle,
                 playlistId: playlistId
