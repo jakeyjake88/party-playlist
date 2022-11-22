@@ -6,7 +6,7 @@ export default class PartyPlaylistClient extends BindingClass {
     constructor(props = {}) {
         super();
         const methodsToBind = ['clientLoaded', 'getIdentity', 'getPlaylist', 
-        'addSongToPlaylist', 'getSong', 'createPlaylist', 'createGuest', 'removeSongFromPlaylist'];
+        'addSongToPlaylist', 'getSong', 'createPlaylist', 'createGuest', 'removeSongFromPlaylist', 'getGuestList'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
 
@@ -103,6 +103,23 @@ export default class PartyPlaylistClient extends BindingClass {
             this.handleError(error, errorCallback)
         }
     }
+
+        /**
+         * Gets a guest list.
+         *
+         * @param playlistId The playlist Id associated with the guest list.
+         * @param errorCallback (Optional) A function to execute if the call fails.
+         * @returns The guest list that has been retrieved.
+         */
+        async getGuestList(playlistId, errorCallback) {
+            try {
+                const response = await this.client.get(`playlist/${playlistId}`);
+                console.log("Response: ", response);
+                return response.data.guestList;
+            } catch (error) {
+                this.handleError(error, errorCallback)
+            }
+        }
 
     handleError(error, errorCallback) {
         console.error(error);
