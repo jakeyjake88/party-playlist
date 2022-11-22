@@ -19,6 +19,7 @@ public class Playlist {
     private String playlistId;
     private String playlistName;
     private List<PlaylistEntry> songs;
+    private String host;
 
     @DynamoDBHashKey(attributeName = "playlistId")
     public String getPlaylistId() {
@@ -46,6 +47,11 @@ public class Playlist {
     public void setSongs(List<PlaylistEntry> songs) {
         this.songs = songs;
     }
+
+    @DynamoDBAttribute(attributeName = "host")
+    public String getHost() { return host; }
+
+    public void setHost(String host) { this.host = host; }
 
     @Override
     public boolean equals(Object o) {
