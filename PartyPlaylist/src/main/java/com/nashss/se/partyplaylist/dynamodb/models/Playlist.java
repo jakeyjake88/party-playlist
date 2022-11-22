@@ -49,9 +49,13 @@ public class Playlist {
     }
 
     @DynamoDBAttribute(attributeName = "host")
-    public String getHost() { return host; }
+    public String getHost() {
+        return host;
+    }
 
-    public void setHost(String host) { this.host = host; }
+    public void setHost(String host) {
+        this.host = host;
+    }
 
     @Override
     public boolean equals(Object o) {
