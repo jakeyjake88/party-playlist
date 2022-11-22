@@ -1,6 +1,6 @@
 package com.nashss.se.partyplaylist.converters;
 
-import com.nashss.se.partyplaylist.dynamodb.models.Song;
+import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
 import com.google.gson.Gson;
@@ -25,6 +25,6 @@ public class PlaylistEntryListConverter implements DynamoDBTypeConverter<String,
     @Override
     public List unconvert(String dynamoDbRepresentation) {
         // need to provide the type parameter of the list to convert correctly
-        return GSON.fromJson(dynamoDbRepresentation, new TypeToken<ArrayList<Song>>() { } .getType());
+        return GSON.fromJson(dynamoDbRepresentation, new TypeToken<ArrayList<PlaylistEntry>>() { } .getType());
     }
 }

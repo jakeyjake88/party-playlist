@@ -25,7 +25,7 @@ class Playlist extends BindingClass {
     }
 
     /**
-     * Method to run when the add song playlist submit button is pressed. Call the MusicPlaylistService to add a song to the
+     * Method to run when the add song playlist submit button is pressed. Call the PartyPlaylist to add a song to the
      * playlist.
      */
     async addSong() {

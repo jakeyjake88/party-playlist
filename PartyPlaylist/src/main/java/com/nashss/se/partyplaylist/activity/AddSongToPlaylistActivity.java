@@ -15,6 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+
 import javax.inject.Inject;
 
 
@@ -63,6 +64,7 @@ public class AddSongToPlaylistActivity {
         String songTitle = addSongToPlaylistRequest.getSongTitle();
         String songArtist = addSongToPlaylistRequest.getSongArtist();
 
+
         Playlist playlist = playlistDao.getPlaylist(addSongToPlaylistRequest.getPlaylistId());
         Song songToAdd = songDAO.getSong(songTitle, songArtist);
 
@@ -83,5 +85,4 @@ public class AddSongToPlaylistActivity {
                 .withSongList(playlistEntryModels)
                 .build();
     }
-
 }
