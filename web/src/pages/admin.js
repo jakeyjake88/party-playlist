@@ -15,6 +15,16 @@ class CreateGuest extends BindingClass {
     }
 
     /**
+     * Once the client is loaded, get the guest list for the playlist.
+     */
+    async clientLoaded() {
+        var playlistId = "01";
+        const guestList = await this.client.getGuestList(playlistId);
+        this.dataStore.set('guestList', guestList);
+        this.displayGuestList(guestList);
+    }
+
+    /**
      * Add the header to the page and load the PartyPlaylistClient.
      */
     mount() {
@@ -23,10 +33,8 @@ class CreateGuest extends BindingClass {
         document.getElementById('remove-song-admin').addEventListener('click', this.removeSong);
         this.header.addHeaderToPage();
         this.header.loadData();
-        const guestList = await this.client.getGuestList(playlistId);
-        this.dataStore.set('guestList', guestList);
-        this.displayGuestList(guestList);
         this.client = new PartyPlaylistClient();
+        this.clientLoaded();
     }
 
     /**
@@ -40,11 +48,11 @@ class CreateGuest extends BindingClass {
 
         const guest = await this.client.createGuest(firstName, lastName);
         this.dataStore.set('user', guest);
+        var playlistId = "01";
         const guestList = await this.client.getGuestList(playlistId);
         this.dataStore.set('guestList', guestList);
         this.displayGuestList(guestList);
         document.getElementById('addGuestButton').innerText = 'Add Guest';
-        document.getElementById("guest-form").reset();
     }
 
     /**

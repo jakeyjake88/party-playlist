@@ -14,7 +14,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.openMocks;
 
-public class AddGuestToPartyActivityTest {
+/*public class AddGuestToPartyActivityTest {
 
     @Mock
     private UserDAO userDAO;
@@ -25,7 +25,7 @@ public class AddGuestToPartyActivityTest {
     void setUp() {
         openMocks(this);
         addGuestToPartyActivity = new AddGuestToPartyActivity(userDAO);
-    }
+    }*/
 
 /*    @Test
     public void handleRequest_addGuest_createsAndSavesGuest() {
@@ -47,4 +47,4 @@ public class AddGuestToPartyActivityTest {
         assertNotNull(result.getGuestList());
         assertEquals(firstName, result.getGuestList().get(0).getFirstName());
     }*/
-}
+/*}*/
