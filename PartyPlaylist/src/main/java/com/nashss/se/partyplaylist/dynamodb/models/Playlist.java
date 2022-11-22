@@ -1,12 +1,12 @@
 package com.nashss.se.partyplaylist.dynamodb.models;
 
 import com.nashss.se.partyplaylist.converters.PlaylistEntryListConverter;
+import com.nashss.se.partyplaylist.converters.UserListConverter;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
-import com.nashss.se.partyplaylist.converters.UserListConverter;
 
 import java.util.List;
 import java.util.Objects;

@@ -8,11 +8,11 @@ public class GetGuestListResult {
 
     private final List<UserModel> guestList;
 
-    GetGuestListResult(List<UserModel> guestList) {
+    private GetGuestListResult(List<UserModel> guestList) {
         this.guestList = guestList;
     }
 
-    List<UserModel> getGuestList() {
+    public List<UserModel> getGuestList() {
         return guestList;
     }
 
