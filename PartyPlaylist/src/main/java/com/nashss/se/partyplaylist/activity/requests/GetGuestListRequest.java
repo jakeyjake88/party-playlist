@@ -30,8 +30,8 @@ public class GetGuestListRequest {
      */
 
     //CHECKSTYLE:OFF:Builder
-    public static AddGuestToPartyRequest.Builder builder() {
-        return new AddGuestToPartyRequest.Builder();
+    public static Builder builder() {
+        return new Builder();
     }
 
     /**

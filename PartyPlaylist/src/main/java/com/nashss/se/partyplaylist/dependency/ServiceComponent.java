@@ -1,10 +1,5 @@
 package com.nashss.se.partyplaylist.dependency;
-import com.nashss.se.partyplaylist.activity.AddGuestToPartyActivity;
-import com.nashss.se.partyplaylist.activity.AddSongToPlaylistActivity;
-import com.nashss.se.partyplaylist.activity.CreatePlaylistActivity;
-import com.nashss.se.partyplaylist.activity.GetGuestActivity;
-import com.nashss.se.partyplaylist.activity.GetPlaylistActivity;
-import com.nashss.se.partyplaylist.activity.RemoveSongFromPlaylistActivity;
+import com.nashss.se.partyplaylist.activity.*;
 
 import dagger.Component;
 
@@ -57,4 +52,9 @@ public interface ServiceComponent {
      */
     GetGuestActivity provideGetGuestActivity();
 
+    /**
+     * Provides the relevant activity.
+     * @return GetGuestListActivity
+     */
+    GetGuestListActivity provideGetGuestListActivity();
 }
