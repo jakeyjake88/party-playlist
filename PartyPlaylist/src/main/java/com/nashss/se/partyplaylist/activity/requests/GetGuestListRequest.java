@@ -35,7 +35,7 @@ public class GetGuestListRequest {
     }
 
     /**
-     * Builder for AddGuestToPartyRequest.
+     * Builder for GetGuestListRequest.
      */
     @JsonPOJOBuilder
     public static class Builder {
@@ -60,7 +60,5 @@ public class GetGuestListRequest {
         public GetGuestListRequest build() {
             return new GetGuestListRequest(playlistId);
         }
-
-
     }
 }
