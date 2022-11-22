@@ -23,6 +23,9 @@ class CreateGuest extends BindingClass {
         document.getElementById('remove-song-admin').addEventListener('click', this.removeSong);
         this.header.addHeaderToPage();
         this.header.loadData();
+        const guestList = await this.client.getGuestList(playlistId);
+        this.dataStore.set('guestList', guestList);
+        this.displayGuestList(guestList);
         this.client = new PartyPlaylistClient();
     }
 
@@ -39,15 +42,20 @@ class CreateGuest extends BindingClass {
         this.dataStore.set('user', guest);
         const guestList = await this.client.getGuestList(playlistId);
         this.dataStore.set('guestList', guestList);
-
+        this.displayGuestList(guestList);
         document.getElementById('addGuestButton').innerText = 'Add Guest';
-        var guestListDisplay = document.getElementById('guestList');
+        document.getElementById("guest-form").reset();
+    }
 
+    /**
+     * Method to run to display guest list. Call the PartyPlaylist to display guest list.
+     */
+    async displayGuestList(guestList) {
+        var guestListDisplay = document.getElementById('guestList');
+        guestListDisplay.innerHTML = "";
         for (var i=0; i < guestList.length; i++) {
             guestListDisplay.innerHTML += "<li>" + guestList[i] + "</li>";
         }
-
-        document.getElementById("guest-form").reset();
     }
 
     /**

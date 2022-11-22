@@ -49,7 +49,8 @@ public class GetGuestListRequest {
          * @return this
          */
         public Builder withPlaylistId(String playlistId) {
-            this.playlistId = playlistId;
+            // TODO replace with actual value
+            this.playlistId = "01";
             return this;
         }
 
