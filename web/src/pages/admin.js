@@ -42,7 +42,12 @@ class CreateGuest extends BindingClass {
 
         document.getElementById('addGuestButton').innerText = 'Add Guest';
         var guestListDisplay = document.getElementById('guestList');
-        guestList.innerHTML += "<li>" + guest.firstName + " " + guest.lastName + "</li>";
+
+        for (var i=0; i < guestList.length; i++) {
+            guestListDisplay.innerHTML += "<li>" + guestList[i] + "</li>";
+        }
+
+        document.getElementById("guest-form").reset();
     }
 
     /**
