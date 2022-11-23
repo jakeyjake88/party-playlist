@@ -62,7 +62,8 @@ class CreateGuest extends BindingClass {
         var guestListDisplay = document.getElementById('guestList');
         guestListDisplay.innerHTML = "";
         for (var i=0; i < guestList.length; i++) {
-            guestListDisplay.innerHTML += "<li>" + guestList[i] + "</li>";
+            var guestToDisplay = guestList[i].firstName + " " + guestList[i].lastName;
+            guestListDisplay.innerHTML += "<li>" + guestToDisplay + "</li>";
         }
     }
 
