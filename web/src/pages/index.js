@@ -44,8 +44,42 @@ class CreatePlaylist extends BindingClass {
 
 }
 
+class GetPlaylist extends BindingClass {
+    constructor(){
+        super();
+        this.bindClassMethods(['mount', 'submit', 'redirectToPlaylist'], this);
+        this.pDataStore = new DataStore();
+        this.pDataStore.addChangeListener(this.redirectToPlaylist);
+        this.pHeader = new Header(this.pDataStore);
+    }
+
+    async submit() {
+        document.getElementById('playlist-login').innerText = 'Logging in...';
+        const partyPlaylist = await this.client.getPlaylist('01');
+        this.pDataStore.set('playlist', partyPlaylist);
+        document.getElementById('addGuestButton').innerText = 'Logged in';
+    }
+
+    mount() {
+        document.getElementById('addGuestButton').addEventListener('click', this.submit);
+        this.pHeader.addHeaderToPage();
+        this.pHeader.loadData();
+        this.client = new PartyPlaylistClient();
+    }
+
+    redirectToPlaylist() {
+        const playlist = this.pDataStore.get('playlist');
+        if (playlist != null) {
+            window.location.href = `/playlist.html`;
+        }
+    }
+
+}
+
     const main = async () => {
         const createPlaylist = new CreatePlaylist();
         createPlaylist.mount();
+        const getPlaylist = new GetPlaylist();
+        getPlaylist.mount();
     }
     window.addEventListener('DOMContentLoaded', main);
