@@ -13,7 +13,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
+import static org.mockito.MockitoAnnotations.openMocks;
 
 class GetGuestListActivityTest {
     @Mock
@@ -23,7 +23,7 @@ class GetGuestListActivityTest {
 
     @BeforeEach
     public void setUp() {
-        initMocks(this);
+        openMocks(this);
         getGuestListActivity = new GetGuestListActivity(playlistDao);
     }
 
