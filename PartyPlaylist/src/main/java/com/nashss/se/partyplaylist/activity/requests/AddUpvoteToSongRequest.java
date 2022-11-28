@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 @JsonDeserialize(builder = AddUpvoteToSongRequest.Builder.class)
 public class AddUpvoteToSongRequest {
+
     private final String playlistId;
     private final String songTitle;
     private final String songArtist;
@@ -13,18 +14,25 @@ public class AddUpvoteToSongRequest {
         this.playlistId = playlistId;
         this.songTitle = songTitle;
         this.songArtist = songArtist;
+
     }
 
-    public String getPlaylistId() { return playlistId; }
+    public String getPlaylistId() {
+        return playlistId;
+    }
 
-    public String getSongTitle() { return songTitle; }
+    public String getSongTitle() {
+        return songTitle;
+    }
 
-    public String getSongArtist() { return songArtist; }
+    public String getSongArtist() {
+        return songArtist;
+    }
 
     @Override
     public String toString() {
-        return "AddUpvoteToSongRequest{" +
-                "playlistId='" + playlistId +'\'' +
+        return "AddSongToPlaylistRequest{" +
+                "playlistId='" + playlistId + '\'' +
                 ", songTitle='" + songTitle + '\'' +
                 ", songArtist='" + songArtist + '\'' +
                 '}';

@@ -317,6 +317,26 @@ Resources:
             Path: /playlist/{playlistId}/songs
             Method: post
 
+  AddUpvoteToSongLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessDynamoDBTablesRole.Arn
+      CodeUri: PartyPlaylist
+      Handler: com.nashss.se.partyplaylist.lambda.AddUpvoteToSongLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /playlist/{playlistId}/songs/{songId}
+            Method: put
+
   #-----------------------------------------------------------------
 
   UsersTable:

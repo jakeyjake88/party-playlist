@@ -1,6 +1,5 @@
 package com.nashss.se.partyplaylist.activity.results;
 
-import com.nashss.se.partyplaylist.activity.requests.AddUpvoteToSongRequest;
 import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
 
 public class AddUpvoteToSongResult {
@@ -10,7 +9,9 @@ public class AddUpvoteToSongResult {
         this.song = song;
     }
 
-    public PlaylistEntry getSong() { return song; }
+    public PlaylistEntry getSong() {
+        return song;
+    }
 
     @Override
     public String toString() {
