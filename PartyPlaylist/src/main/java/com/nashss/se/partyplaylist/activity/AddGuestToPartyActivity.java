@@ -22,7 +22,7 @@ public class AddGuestToPartyActivity {
     private final UserDAO userDAO;
 
     /**
-     * AddGuestToPartyAcitivty Constructor.
+     * AddGuestToPartyActivity Constructor.
      *
      * @param userDao to initialize the userDAO;
      */
