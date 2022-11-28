@@ -1,12 +1,14 @@
 package com.nashss.se.partyplaylist.activity;
+
 import com.nashss.se.partyplaylist.activity.requests.CreatePlaylistRequest;
 import com.nashss.se.partyplaylist.activity.results.CreatePlaylistResult;
 
 import com.nashss.se.partyplaylist.converters.ModelConverter;
 import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
-
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.models.PlaylistModel;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 import java.util.ArrayList;
 import javax.inject.Inject;
@@ -17,6 +19,8 @@ import javax.inject.Inject;
  * This API allows the customer to create a new playlist with no songs.
  */
 public class CreatePlaylistActivity {
+
+    private DynamoDBMapper mapper;
     private final PlaylistDao playlistDao;
 
     /**
@@ -44,6 +48,8 @@ public class CreatePlaylistActivity {
      */
     public CreatePlaylistResult handleRequest(final CreatePlaylistRequest createPlaylistRequest) {
 
+
+
         Playlist newPlaylist = new Playlist();
 
         newPlaylist.setPlaylistId(createPlaylistRequest.getPlaylistId());
@@ -56,5 +62,7 @@ public class CreatePlaylistActivity {
         return CreatePlaylistResult.builder()
                 .withPlaylist(playlistModel)
                 .build();
+
     }
+
 }

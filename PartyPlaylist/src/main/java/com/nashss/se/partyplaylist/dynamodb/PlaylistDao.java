@@ -44,6 +44,22 @@ public class PlaylistDao {
     }
 
     /**
+     * Returns the {@link Playlist} corresponding to the specified id.
+     *
+     * @param playlistName the Playlist Name
+     * @return the stored Playlist, or null if none was found.
+     */
+    public Playlist getPlaylistName(String playlistName) {
+        Playlist playlist = this.dynamoDBMapper.load(Playlist.class, playlistName);
+
+        if (playlist == null) {
+            throw new PlaylistNotFoundException("Could not find playlist with id " + playlistName);
+        }
+
+        return playlist;
+    }
+
+    /**
      * Returns a saved/updated {@link Playlist} in Database.
      *
      * @param playlist to be saved/updated

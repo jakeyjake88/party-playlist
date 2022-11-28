@@ -27,23 +27,42 @@ public class CreatePlaylistActivityTest {
         createPlaylistActivity = new CreatePlaylistActivity(playlistDao);
     }
 
-    @Test
-    public void handleRequest_createPlaylist_createAndSavePlaylist() {
-        //GIVEN
-        String expectedName = "PlaylistName";
-
-        CreatePlaylistRequest request = CreatePlaylistRequest.builder()
-                .withPlaylistName(expectedName)
-                .build();
-
-        //WHEN
-        CreatePlaylistResult result = createPlaylistActivity.handleRequest(request);
-
-        //THEN
-        verify(playlistDao).savePlaylist(any(Playlist.class));
-
-        assertNotNull(result.getPlaylist().getPlaylistID());
-        assertEquals(expectedName, result.getPlaylist().getPlaylistName());
-    }
+//    @Test
+//    public void handleRequest_createPlaylist_createAndSavePlaylist() {
+//        //GIVEN
+//        String expectedName = "PlaylistName";
+//
+//        CreatePlaylistRequest request = CreatePlaylistRequest.builder()
+//                .withPlaylistName(expectedName)
+//                .build();
+//
+//        //WHEN
+//        CreatePlaylistResult result = createPlaylistActivity.handleRequest(request);
+//
+//        //THEN
+//        verify(playlistDao).savePlaylist(any(Playlist.class));
+//
+//        assertNotNull(result.getPlaylist().getPlaylistID());
+//        assertEquals(expectedName, result.getPlaylist().getPlaylistName());
+//    }
+//
+//    @Test
+//    public void handleRequest_createExistingPlaylist_throwsPlaylistExistsException() {
+//        //GIVEN
+//        String expectedName = "PlaylistName";
+//
+//        CreatePlaylistRequest request = CreatePlaylistRequest.builder()
+//                .withPlaylistName(expectedName)
+//                .build();
+//
+//        //WHEN
+//        CreatePlaylistResult result = createPlaylistActivity.handleRequest(request);
+//
+//        //THEN
+//        verify(playlistDao).savePlaylist(any(Playlist.class));
+//
+//        assertNotNull(result.getPlaylist().getPlaylistID());
+//        assertEquals(expectedName, result.getPlaylist().getPlaylistName());
+//    }
 
 }
