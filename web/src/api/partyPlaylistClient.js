@@ -68,6 +68,8 @@ export default class PartyPlaylistClient extends BindingClass {
             });
             return response.data.songList;
         } catch (error) {
+            let err = document.getElementById("err");
+            err.innerHTML = "Song not found! Try again.";
             this.handleError(error, errorCallback);
         }
     }
