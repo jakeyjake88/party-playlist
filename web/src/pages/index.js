@@ -29,7 +29,8 @@ class CreatePlaylist extends BindingClass {
         const host = await this.client.createHost(hostFirstName, hostLastName);
         this.dataStore.set('user', host);
 
-        const playlist = await this.client.createPlaylist(playlistName);
+        const playlistHost = hostFirstName +'\xa0'+ hostLastName;
+        const playlist = await this.client.createPlaylist(playlistName, playlistHost);
         this.dataStore.set('playlist', playlist);
         document.getElementById('createPlaylist').innerText = 'Created';
     }

@@ -18,8 +18,9 @@ public class Playlist {
 
     private String playlistId;
     private String playlistName;
-    private List<PlaylistEntry> songs;
     private String host;
+    private List<PlaylistEntry> songs;
+
 
     @DynamoDBHashKey(attributeName = "playlistId")
     public String getPlaylistId() {
@@ -38,6 +39,14 @@ public class Playlist {
     public void setPlaylistName(String playlistName) {
         this.playlistName = playlistName;
     }
+    @DynamoDBAttribute(attributeName = "host")
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
     @DynamoDBTypeConverted(converter = PlaylistEntryListConverter.class)
     @DynamoDBAttribute(attributeName = "songs")
     public List<PlaylistEntry> getSongs() {
@@ -48,14 +57,6 @@ public class Playlist {
         this.songs = songs;
     }
 
-    @DynamoDBAttribute(attributeName = "host")
-    public String getHost() {
-        return host;
-    }
-
-    public void setHost(String host) {
-        this.host = host;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -68,12 +69,13 @@ public class Playlist {
         Playlist playlist = (Playlist) o;
         return Objects.equals(playlistId, playlist.playlistId) &&
                 Objects.equals(playlistName, playlist.playlistName) &&
-                Objects.equals(songs, playlist.songs);
+                Objects.equals(songs, playlist.songs) &&
+                Objects.equals(host, playlist.host);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playlistId, playlistName, songs);
+        return Objects.hash(playlistId, playlistName, songs, host);
     }
 
     @Override
@@ -81,7 +83,8 @@ public class Playlist {
         return "Playlist{" +
                 "playlistId='" + playlistId + '\'' +
                 ", playlistName='" + playlistName + '\'' +
-                ", songs=" + songs +
+                ", songs='" + songs + '\'' +
+                ", host='" + host +
                 '}';
     }
 }

@@ -13,11 +13,13 @@ public class CreatePlaylistRequest {
 
     private final String playlistId;
     private final String playlistName;
+    private final String host;
 
-    private CreatePlaylistRequest(String playlistName) {
+    private CreatePlaylistRequest(String playlistName, String host) {
         // TODO replace with actual value
         this.playlistId = "01";
         this.playlistName = playlistName;
+        this.host = host;
     }
     public String getPlaylistId() {
         return playlistId;
@@ -27,11 +29,16 @@ public class CreatePlaylistRequest {
         return playlistName;
     }
 
+    public String getHost() {
+        return host;
+    }
+
     @Override
     public String toString() {
         return "CreatePlaylistRequest{" +
                 "playlistId='" + playlistId + '\'' +
                 ", name='" + playlistName + '\'' +
+                ", host='" + host +
                 '}';
     }
 
@@ -44,13 +51,20 @@ public class CreatePlaylistRequest {
     public static class Builder {
         private String playlistName;
 
+        private String host;
+
         public Builder withPlaylistName(String playlistName) {
             this.playlistName = playlistName;
             return this;
         }
 
+        public Builder withHost(String host) {
+            this.host = host;
+            return this;
+        }
+
         public CreatePlaylistRequest build() {
-            return new CreatePlaylistRequest(playlistName);
+            return new CreatePlaylistRequest(playlistName, host);
         }
     }
 }

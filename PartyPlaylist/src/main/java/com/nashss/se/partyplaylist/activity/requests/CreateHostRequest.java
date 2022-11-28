@@ -57,11 +57,11 @@ public class CreateHostRequest {
     @Override
     public String toString() {
         return "CreateHostRequest{" +
-                "firstName='" + firstName +
-                ", lastName='" + lastName +
-                ", isAdmin=" + isAdmin +
-                ", songsAdded=" + songsAdded +
-                ", songsUpvoted=" + songsUpvoted +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", isAdmin='" + isAdmin + '\'' +
+                ", songsAdded='" + songsAdded + '\'' +
+                ", songsUpvoted='" + songsUpvoted + '\'' +
                 '}';
     }
 
