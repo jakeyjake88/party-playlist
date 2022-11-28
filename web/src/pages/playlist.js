@@ -9,19 +9,38 @@ import DataStore from "../util/DataStore";
 class Playlist extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'addSong'], this);
+        this.bindClassMethods(['clientLoaded', 'mount', 'addSong', 'addPlaylistToPage'], this);
         this.dataStore = new DataStore();
+        this.dataStore.addChangeListener(this.addPlaylistToPage);
         this.header = new Header(this.dataStore);
     }
 
-    /**
-     * Add the header to the page and load the MusicPlaylistClient.
-     */
+    async clientLoaded() {
+        const playlist = await this.client.getPlaylist('01');
+        this.dataStore.set('playlist', playlist);
+    }
+
     mount() {
         document.getElementById('add-song').addEventListener('click', this.addSong);
         this.header.addHeaderToPage();
         this.header.loadData();
         this.client = new PartyPlaylistClient();
+        this.clientLoaded();
+    }
+
+    addPlaylistToPage() {
+        const playlist = this.dataStore.get('playlist');
+        if (playlist == null) {
+            return;
+        }
+
+        document.getElementById('playlist-display').innerText = playlist.playlistName;
+        let songHtml = '';
+        let song;
+        for (song of playlist.songs) {
+            songHtml += '<div class="songs">' + '<b>' + song.songTitle + '</b>' +  ' ' + song.songArtist + '</div>';
+        }
+        document.getElementById('songs').innerHTML = songHtml;
     }
 
     /**
@@ -39,6 +58,7 @@ class Playlist extends BindingClass {
 
         document.getElementById('add-song').innerText = 'Add Song';
         document.getElementById("add-song-form").reset();
+        this.clientLoaded();
     }
 }
 
