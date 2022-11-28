@@ -2,13 +2,17 @@ package com.nashss.se.partyplaylist.activity;
 import com.nashss.se.partyplaylist.activity.requests.AddGuestToPartyRequest;
 import com.nashss.se.partyplaylist.activity.results.AddGuestToPartyResult;
 import com.nashss.se.partyplaylist.converters.ModelConverter;
+import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
 import com.nashss.se.partyplaylist.dynamodb.UserDAO;
+import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.dynamodb.models.User;
 import com.nashss.se.partyplaylist.models.UserModel;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.inject.Inject;
 
 /**
@@ -20,15 +24,18 @@ public class AddGuestToPartyActivity {
 
     private final Logger log = LogManager.getLogger();
     private final UserDAO userDAO;
+    private final PlaylistDao playlistDao;
 
     /**
      * AddGuestToPartyActivity Constructor.
      *
      * @param userDao to initialize the userDAO;
+     * @param playlistDao to initialize the playlistDao
      */
     @Inject
-    public AddGuestToPartyActivity(UserDAO userDao) {
+    public AddGuestToPartyActivity(UserDAO userDao, PlaylistDao playlistDao) {
         this.userDAO = userDao;
+        this.playlistDao = playlistDao;
     }
 
 
@@ -58,6 +65,19 @@ public class AddGuestToPartyActivity {
         newGuest.setSongsUpvoted(addGuestToPartyRequest.getSongsUpvoted());
         userDAO.addGuestToParty(newGuest);
         log.info("Created a new guest object to the table");
+
+        Playlist playlist = playlistDao.getPlaylist(addGuestToPartyRequest.getPlaylistId());
+        Set<String> guestList = playlist.getGuests();
+
+        String newGuestName = newGuest.getLastName() + ", " + newGuest.getFirstName();
+
+        if (guestList == null) {
+            guestList = new HashSet<>();
+        }
+
+        guestList.add(newGuestName);
+        playlist.setGuests(guestList);
+        playlistDao.savePlaylist(playlist);
 
         UserModel userModel = new ModelConverter().toUserModel(newGuest);
 
