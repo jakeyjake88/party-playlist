@@ -21,7 +21,7 @@ public class GetGuestListLambda extends LambdaActivityRunner<GetGuestListRequest
         return super.runActivity(
             () -> input.fromPath(path ->
                     GetGuestListRequest.builder()
-/*                            .withPlaylistId(path.get("playlistId"))*/
+                            /*.withPlaylistId(path.get("playlistId"))*/
                             // TODO replace with actual value
                             .withPlaylistId("01")
                             .build()),

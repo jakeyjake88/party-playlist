@@ -2,6 +2,7 @@ package com.nashss.se.partyplaylist.activity;
 
 import com.nashss.se.partyplaylist.activity.requests.AddGuestToPartyRequest;
 import com.nashss.se.partyplaylist.activity.results.AddGuestToPartyResult;
+import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
 import com.nashss.se.partyplaylist.dynamodb.UserDAO;
 import com.nashss.se.partyplaylist.dynamodb.models.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,23 +19,23 @@ import static org.mockito.MockitoAnnotations.openMocks;
 
     @Mock
     private UserDAO userDAO;
+    @Mock
+    private PlaylistDao playlistDao;
 
     private AddGuestToPartyActivity addGuestToPartyActivity;
 
     @BeforeEach
     void setUp() {
         openMocks(this);
-        addGuestToPartyActivity = new AddGuestToPartyActivity(userDAO);
-    }*/
+        addGuestToPartyActivity = new AddGuestToPartyActivity(userDAO, playlistDao);
+    }
 
-/*    @Test
+    @Test
     public void handleRequest_addGuest_createsAndSavesGuest() {
         String firstName = "Walter";
         String lastName = "White";
-        String userId = "46920";
 
         AddGuestToPartyRequest request = AddGuestToPartyRequest.builder()
-                .withUserId(userId)
                 .withFirstName(firstName)
                 .withLastName(lastName).build();
 
@@ -46,5 +47,5 @@ import static org.mockito.MockitoAnnotations.openMocks;
 
         assertNotNull(result.getGuestList());
         assertEquals(firstName, result.getGuestList().get(0).getFirstName());
-    }*/
-/*}*/
+    }
+}*/

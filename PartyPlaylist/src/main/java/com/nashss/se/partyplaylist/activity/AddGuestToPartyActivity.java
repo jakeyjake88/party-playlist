@@ -11,7 +11,8 @@ import com.nashss.se.partyplaylist.models.UserModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.inject.Inject;
 
 /**
@@ -66,8 +67,15 @@ public class AddGuestToPartyActivity {
         log.info("Created a new guest object to the table");
 
         Playlist playlist = playlistDao.getPlaylist(addGuestToPartyRequest.getPlaylistId());
-        List<User> guestList = playlist.getGuests();
-        guestList.add(newGuest);
+        Set<String> guestList = playlist.getGuests();
+
+        String newGuestName = newGuest.getLastName() + ", " + newGuest.getFirstName();
+
+        if (guestList == null) {
+            guestList = new HashSet<>();
+        }
+
+        guestList.add(newGuestName);
         playlist.setGuests(guestList);
         playlistDao.savePlaylist(playlist);
 

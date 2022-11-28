@@ -1,18 +1,16 @@
 package com.nashss.se.partyplaylist.activity.results;
 
-import com.nashss.se.partyplaylist.models.UserModel;
-
-import java.util.List;
+import java.util.Set;
 
 public class GetGuestListResult {
 
-    private final List<UserModel> guestList;
+    private final Set<String> guestList;
 
-    private GetGuestListResult(List<UserModel> guestList) {
+    private GetGuestListResult(Set<String> guestList) {
         this.guestList = guestList;
     }
 
-    public List<UserModel> getGuestList() {
+    public Set<String> getGuestList() {
         return guestList;
     }
 
@@ -29,9 +27,9 @@ public class GetGuestListResult {
     }
 
     public static class Builder {
-        private List<UserModel> guestList;
+        private Set<String> guestList;
 
-        public Builder withGuestList(List<UserModel> guestList) {
+        public Builder withGuestList(Set<String> guestList) {
             this.guestList = guestList;
             return this;
         }

@@ -53,17 +53,20 @@ class CreateGuest extends BindingClass {
         this.dataStore.set('guestList', guestList);
         this.displayGuestList(guestList);
         document.getElementById('addGuestButton').innerText = 'Add Guest';
+        document.getElementById("add-guest-form").reset();
     }
 
     /**
      * Method to run to display guest list. Call the PartyPlaylist to display guest list.
      */
     async displayGuestList(guestList) {
-        var guestListDisplay = document.getElementById('guestList');
+        var guestListDisplay = document.getElementById('guestListDiv');
         guestListDisplay.innerHTML = "";
-        for (var i=0; i < guestList.length; i++) {
-            var guestToDisplay = guestList[i].firstName + " " + guestList[i].lastName;
-            guestListDisplay.innerHTML += "<li>" + guestToDisplay + "</li>";
+        if (guestList != null) {
+            for (var i=0; i < guestList.length; i++) {
+                var guestToDisplay = guestList[i];
+                guestListDisplay.innerHTML += "<li>" + guestToDisplay + "</li>";
+            }
         }
     }
 

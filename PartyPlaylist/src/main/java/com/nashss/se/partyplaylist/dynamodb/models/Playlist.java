@@ -1,7 +1,6 @@
 package com.nashss.se.partyplaylist.dynamodb.models;
 
 import com.nashss.se.partyplaylist.converters.PlaylistEntryListConverter;
-import com.nashss.se.partyplaylist.converters.UserListConverter;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
@@ -10,6 +9,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Represents a Playlist in the playlist table.
@@ -20,7 +20,7 @@ public class Playlist {
     private String playlistId;
     private String playlistName;
     private List<PlaylistEntry> songs;
-    private List<User> guests;
+    private Set<String> guests;
 
     @DynamoDBHashKey(attributeName = "playlistId")
     public String getPlaylistId() {
@@ -49,13 +49,12 @@ public class Playlist {
         this.songs = songs;
     }
 
-    @DynamoDBTypeConverted(converter = UserListConverter.class)
     @DynamoDBAttribute(attributeName = "guests")
-    public List<User> getGuests() {
+    public Set<String> getGuests() {
         return guests;
     }
 
-    public void setGuests(List<User> guests) {
+    public void setGuests(Set<String> guests) {
         this.guests = guests;
     }
 

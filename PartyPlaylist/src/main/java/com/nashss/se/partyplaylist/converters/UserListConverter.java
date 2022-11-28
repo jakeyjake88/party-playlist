@@ -13,17 +13,17 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserListConverter implements DynamoDBTypeConverter<String, List> {
+public class UserListConverter implements DynamoDBTypeConverter<String, List<User>> {
     private static final Gson GSON = new Gson();
     private final Logger log = LogManager.getLogger();
 
     @Override
-    public String convert(List listToBeConverted) {
+    public String convert(List<User> listToBeConverted) {
         return GSON.toJson(listToBeConverted);
     }
 
     @Override
-    public List unconvert(String dynamoDbRepresentation) {
+    public List<User> unconvert(String dynamoDbRepresentation) {
         // need to provide the type parameter of the list to convert correctly
         return GSON.fromJson(dynamoDbRepresentation, new TypeToken<ArrayList<User>>() { } .getType());
     }

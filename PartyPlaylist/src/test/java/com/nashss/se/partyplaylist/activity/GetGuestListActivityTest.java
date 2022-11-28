@@ -4,15 +4,14 @@ import com.nashss.se.partyplaylist.activity.requests.GetGuestListRequest;
 import com.nashss.se.partyplaylist.activity.results.GetGuestListResult;
 import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
-import com.nashss.se.partyplaylist.dynamodb.models.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -32,11 +31,9 @@ class GetGuestListActivityTest {
     public void handleRequest_savedGuestListFound_returnsGuestListModelInResult() {
         // GIVEN
         String expectedId = "expectedId";
-        User user = new User();
-        user.setFirstName("expectedFirstName");
-        user.setLastName("expectedLastName");
-        List<User> guestList = new ArrayList<>();
-        guestList.add(user);
+        String expectedName = "expectedName";
+        Set<String> guestList = new HashSet<>();
+        guestList.add(expectedName);
 
         Playlist playlist = new Playlist();
         playlist.setPlaylistId(expectedId);
@@ -52,7 +49,6 @@ class GetGuestListActivityTest {
         GetGuestListResult result = getGuestListActivity.handleRequest(request);
 
         // THEN
-        assertEquals(user.getFirstName(), result.getGuestList().get(0).getFirstName());
-        assertEquals(user.getLastName(), result.getGuestList().get(0).getLastName());
+        assertTrue(result.getGuestList().contains(expectedName));
     }
 }
