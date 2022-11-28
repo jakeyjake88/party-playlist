@@ -6,7 +6,7 @@ export default class PartyPlaylistClient extends BindingClass {
     constructor(props = {}) {
         super();
         const methodsToBind = ['clientLoaded', 'getIdentity', 'getPlaylist', 
-        'addSongToPlaylist', 'getSong', 'createPlaylist', 'createGuest', 'removeSongFromPlaylist'];
+        'addSongToPlaylist', 'getSong', 'createPlaylist', 'createHost', 'createGuest', 'removeSongFromPlaylist'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
 
@@ -48,10 +48,11 @@ export default class PartyPlaylistClient extends BindingClass {
         }
     }
 
-    async createPlaylist(playlistName, errorCallback) {
+    async createPlaylist(playlistName, host, errorCallback) {
         try {
             const response = await this.client.post(`playlist`, {
-                playlistName: playlistName
+                playlistName: playlistName,
+                host: host
             });
             return response.data.playlist;
             } catch (error) {
@@ -86,6 +87,20 @@ export default class PartyPlaylistClient extends BindingClass {
             this.handleError(error, errorCallback);
         }
     }
+
+   async createHost(firstName, lastName, errorCallback) {
+        try {
+            const response = await this.client.post(`users`, {
+                firstName: firstName,
+                lastName: lastName
+            });
+        console.log("Response: ", response);
+        return response.data.host;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+   }
+
     /**
      * Create a new guest.
      * @param firstName The first name of the guest to create.

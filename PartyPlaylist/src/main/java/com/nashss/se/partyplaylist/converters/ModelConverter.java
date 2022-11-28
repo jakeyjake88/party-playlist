@@ -22,6 +22,7 @@ public class ModelConverter {
                 .withPlaylistId(playlist.getPlaylistId())
                 .withPlaylistName(playlist.getPlaylistName())
                 .withSongs(playlist.getSongs())
+                .withHost(playlist.getHost())
                 .build();
     }
 
