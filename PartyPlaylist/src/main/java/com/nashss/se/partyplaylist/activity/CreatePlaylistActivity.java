@@ -51,6 +51,7 @@ public class CreatePlaylistActivity {
         newPlaylist.setPlaylistName(createPlaylistRequest.getPlaylistName());
         newPlaylist.setSongs(new ArrayList<>());
         newPlaylist.setGuests(null);
+        newPlaylist.setHost(createPlaylistRequest.getHost());
 
         playlistDao.savePlaylist(newPlaylist);
 

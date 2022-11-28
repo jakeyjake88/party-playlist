@@ -9,11 +9,13 @@ public class PlaylistModel {
     private final String playlistId;
     private final String playlistName;
     private final List<PlaylistEntry> songs;
+    private final String host;
 
-    private PlaylistModel(String playlistID, String playlistName, List<PlaylistEntry> songs) {
+    private PlaylistModel(String playlistID, String playlistName, List<PlaylistEntry> songs, String host) {
         this.playlistId = playlistID;
         this.playlistName = playlistName;
         this.songs = songs;
+        this.host = host;
     }
 
     public String getPlaylistID() {
@@ -28,6 +30,10 @@ public class PlaylistModel {
         return songs;
     }
 
+    public String getHost() {
+        return host;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -40,12 +46,13 @@ public class PlaylistModel {
 
         return Objects.equals(playlistId, that.playlistId) &&
                 Objects.equals(playlistName, that.playlistName) &&
-                Objects.equals(songs, that.songs);
+                Objects.equals(songs, that.songs) &&
+                Objects.equals(host, that.host);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playlistId, playlistName, songs);
+        return Objects.hash(playlistId, playlistName, songs, host);
     }
 
     //CHECKSTYLE:OFF:Builder
@@ -58,6 +65,7 @@ public class PlaylistModel {
         private String playlistId;
         private String playlistName;
         private List<PlaylistEntry> songs;
+        private String host;
 
         public Builder withPlaylistId(String playlistId) {
             this.playlistId = playlistId;
@@ -74,8 +82,13 @@ public class PlaylistModel {
             return this;
         }
 
+        public Builder withHost(String host) {
+            this.host = host;
+            return this;
+        }
+
         public PlaylistModel build() {
-            return new PlaylistModel(playlistId, playlistName, songs);
+            return new PlaylistModel(playlistId, playlistName, songs, host);
         }
     }
 }

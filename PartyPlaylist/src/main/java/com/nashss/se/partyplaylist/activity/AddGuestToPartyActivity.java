@@ -27,7 +27,7 @@ public class AddGuestToPartyActivity {
     private final PlaylistDao playlistDao;
 
     /**
-     * AddGuestToPartyAcitivty Constructor.
+     * AddGuestToPartyActivity Constructor.
      *
      * @param userDao to initialize the userDAO;
      * @param playlistDao to initialize the playlistDao

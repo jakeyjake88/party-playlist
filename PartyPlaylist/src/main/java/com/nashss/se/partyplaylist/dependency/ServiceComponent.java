@@ -2,6 +2,7 @@ package com.nashss.se.partyplaylist.dependency;
 
 import com.nashss.se.partyplaylist.activity.AddGuestToPartyActivity;
 import com.nashss.se.partyplaylist.activity.AddSongToPlaylistActivity;
+import com.nashss.se.partyplaylist.activity.CreateHostActivity;
 import com.nashss.se.partyplaylist.activity.CreatePlaylistActivity;
 import com.nashss.se.partyplaylist.activity.GetGuestActivity;
 import com.nashss.se.partyplaylist.activity.GetGuestListActivity;
@@ -64,4 +65,11 @@ public interface ServiceComponent {
      * @return GetGuestListActivity
      */
     GetGuestListActivity provideGetGuestListActivity();
+
+    /**
+     * Provides the relevant activity.
+     * @return CreateHostActivity
+     */
+    CreateHostActivity provideCreateHostActivity();
+
 }

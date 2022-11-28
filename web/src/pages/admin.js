@@ -6,7 +6,7 @@ import DataStore from '../util/DataStore';
 /**
  * Logic needed for the create guest page of the website.
  */
-class CreateGuest extends BindingClass {
+class Admin extends BindingClass {
     constructor() {
         super();
         this.bindClassMethods(['mount', 'submit', 'addSong', 'removeSong'], this);
@@ -109,8 +109,8 @@ class CreateGuest extends BindingClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const createGuest = new CreateGuest();
-    createGuest.mount();
+    const admin = new Admin();
+    admin.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);
