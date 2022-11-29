@@ -30,10 +30,12 @@ public class CreatePlaylistActivityTest {
 //    @Test
 //    public void handleRequest_createPlaylist_createAndSavePlaylist() {
 //        //GIVEN
-//        String expectedName = "PlaylistName";
+//        String playlistName = "PlaylistName";
+//        String hostName = "HostName";
 //
 //        CreatePlaylistRequest request = CreatePlaylistRequest.builder()
-//                .withPlaylistName(expectedName)
+//                .withPlaylistName(playlistName)
+//                .withHost(hostName)
 //                .build();
 //
 //        //WHEN
@@ -43,7 +45,7 @@ public class CreatePlaylistActivityTest {
 //        verify(playlistDao).savePlaylist(any(Playlist.class));
 //
 //        assertNotNull(result.getPlaylist().getPlaylistID());
-//        assertEquals(expectedName, result.getPlaylist().getPlaylistName());
+//        assertEquals(playlistName, result.getPlaylist().getPlaylistName());
 //    }
 //
 //    @Test

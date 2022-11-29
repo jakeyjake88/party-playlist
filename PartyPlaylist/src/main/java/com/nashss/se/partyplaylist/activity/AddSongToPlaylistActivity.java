@@ -64,7 +64,6 @@ public class AddSongToPlaylistActivity {
         String songTitle = addSongToPlaylistRequest.getSongTitle();
         String songArtist = addSongToPlaylistRequest.getSongArtist();
 
-
         Playlist playlist = playlistDao.getPlaylist(addSongToPlaylistRequest.getPlaylistId());
         Song songToAdd = songDAO.getSong(songTitle, songArtist);
 
