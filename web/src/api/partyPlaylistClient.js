@@ -5,8 +5,8 @@ import BindingClass from "../util/bindingClass";
 export default class PartyPlaylistClient extends BindingClass {
     constructor(props = {}) {
         super();
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'getPlaylist', 
-        'addSongToPlaylist', 'getSong', 'createPlaylist', 'createGuest', 'removeSongFromPlaylist'];
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'getPlaylist',
+        'addSongToPlaylist', 'getSong', 'createPlaylist', 'createGuest', 'removeSongFromPlaylist', 'getGuestList', 'createHost', 'removeSongFromPlaylist'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
 
@@ -48,10 +48,11 @@ export default class PartyPlaylistClient extends BindingClass {
         }
     }
 
-    async createPlaylist(playlistName, errorCallback) {
+    async createPlaylist(playlistName, host, errorCallback) {
         try {
             const response = await this.client.post(`playlist`, {
-                playlistName: playlistName
+                playlistName: playlistName,
+                host: host
             });
             return response.data.playlist;
             } catch (error) {
@@ -68,6 +69,8 @@ export default class PartyPlaylistClient extends BindingClass {
             });
             return response.data.songList;
         } catch (error) {
+            let err = document.getElementById("err");
+            err.innerHTML = "Song not found! Try again.";
             this.handleError(error, errorCallback);
         }
     }
@@ -84,6 +87,20 @@ export default class PartyPlaylistClient extends BindingClass {
             this.handleError(error, errorCallback);
         }
     }
+
+   async createHost(firstName, lastName, errorCallback) {
+        try {
+            const response = await this.client.post(`users`, {
+                firstName: firstName,
+                lastName: lastName
+            });
+        console.log("Response: ", response);
+        return response.data.host;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+   }
+
     /**
      * Create a new guest.
      * @param firstName The first name of the guest to create.
@@ -103,6 +120,23 @@ export default class PartyPlaylistClient extends BindingClass {
             this.handleError(error, errorCallback)
         }
     }
+
+        /**
+         * Gets a guest list.
+         *
+         * @param playlistId The playlist Id associated with the guest list.
+         * @param errorCallback (Optional) A function to execute if the call fails.
+         * @returns The guest list that has been retrieved.
+         */
+        async getGuestList(playlistId, errorCallback) {
+            try {
+                const response = await this.client.get(`playlist/${playlistId}`);
+                console.log("Response: ", response);
+                return response.data.guestList;
+            } catch (error) {
+                this.handleError(error, errorCallback)
+            }
+        }
 
     handleError(error, errorCallback) {
         console.error(error);

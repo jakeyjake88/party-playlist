@@ -6,12 +6,22 @@ import DataStore from '../util/DataStore';
 /**
  * Logic needed for the create guest page of the website.
  */
-class CreateGuest extends BindingClass {
+class Admin extends BindingClass {
     constructor() {
         super();
         this.bindClassMethods(['mount', 'submit', 'addSong', 'removeSong'], this);
         this.dataStore = new DataStore();
         this.header = new Header(this.dataStore);
+    }
+
+    /**
+     * Once the client is loaded, get the guest list for the playlist.
+     */
+    async clientLoaded() {
+        var playlistId = "01";
+        const guestList = await this.client.getGuestList(playlistId);
+        this.dataStore.set('guestList', guestList);
+        this.displayGuestList(guestList);
     }
 
     /**
@@ -24,6 +34,7 @@ class CreateGuest extends BindingClass {
         this.header.addHeaderToPage();
         this.header.loadData();
         this.client = new PartyPlaylistClient();
+        this.clientLoaded();
     }
 
     /**
@@ -37,9 +48,26 @@ class CreateGuest extends BindingClass {
 
         const guest = await this.client.createGuest(firstName, lastName);
         this.dataStore.set('user', guest);
+        var playlistId = "01";
+        const guestList = await this.client.getGuestList(playlistId);
+        this.dataStore.set('guestList', guestList);
+        this.displayGuestList(guestList);
         document.getElementById('addGuestButton').innerText = 'Add Guest';
-        var guestList = document.getElementById('guestList');
-        guestList.innerHTML += "<li>" + guest.firstName + " " + guest.lastName + "</li>";
+        document.getElementById("add-guest-form").reset();
+    }
+
+    /**
+     * Method to run to display guest list. Call the PartyPlaylist to display guest list.
+     */
+    async displayGuestList(guestList) {
+        var guestListDisplay = document.getElementById('guestListDiv');
+        guestListDisplay.innerHTML = "";
+        if (guestList != null) {
+            for (var i=0; i < guestList.length; i++) {
+                var guestToDisplay = guestList[i];
+                guestListDisplay.innerHTML += "<li>" + guestToDisplay + "</li>";
+            }
+        }
     }
 
     /**
@@ -81,8 +109,8 @@ class CreateGuest extends BindingClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const createGuest = new CreateGuest();
-    createGuest.mount();
+    const admin = new Admin();
+    admin.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);
