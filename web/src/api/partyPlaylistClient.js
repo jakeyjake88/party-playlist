@@ -130,7 +130,7 @@ export default class PartyPlaylistClient extends BindingClass {
          */
         async getGuestList(playlistId, errorCallback) {
             try {
-                const response = await this.client.get(`playlist/${playlistId}`);
+                const response = await this.client.get(`guests/${playlistId}`);
                 console.log("Response: ", response);
                 return response.data.guestList;
             } catch (error) {
