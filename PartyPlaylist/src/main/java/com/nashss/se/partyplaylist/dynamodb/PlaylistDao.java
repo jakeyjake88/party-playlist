@@ -70,4 +70,16 @@ public class PlaylistDao {
         this.dynamoDBMapper.save(playlist);
         return playlist;
     }
+
+    /**
+     * Returns the host associated with the {@link Playlist} in Database.
+     *
+     * @param id of the playlist
+     * @return the current host
+     */
+    public String getHost(String id) {
+        Playlist playlist = this.dynamoDBMapper.load(Playlist.class, id);
+
+        return playlist.getHost();
+    }
 }
