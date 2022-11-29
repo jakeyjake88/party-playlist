@@ -9,6 +9,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Represents a Playlist in the playlist table.
@@ -20,6 +21,7 @@ public class Playlist {
     private String playlistName;
     private String host;
     private List<PlaylistEntry> songs;
+    private Set<String> guests;
 
 
     @DynamoDBHashKey(attributeName = "playlistId")
@@ -57,6 +59,14 @@ public class Playlist {
         this.songs = songs;
     }
 
+    @DynamoDBAttribute(attributeName = "guests")
+    public Set<String> getGuests() {
+        return guests;
+    }
+
+    public void setGuests(Set<String> guests) {
+        this.guests = guests;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -81,9 +91,10 @@ public class Playlist {
     @Override
     public String toString() {
         return "Playlist{" +
-                "playlistId='" + playlistId + '\'' +
-                ", playlistName='" + playlistName + '\'' +
-                ", songs='" + songs + '\'' +
+                "playlistId='" + playlistId +
+                ", playlistName='" + playlistName +
+                ", songs=" + songs +
+                ", guests=" + guests +
                 ", host='" + host +
                 '}';
     }

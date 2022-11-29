@@ -1,37 +1,53 @@
 package com.nashss.se.partyplaylist.activity;
 
+import com.nashss.se.partyplaylist.activity.requests.AddGuestToPartyRequest;
 import com.nashss.se.partyplaylist.activity.results.AddGuestToPartyResult;
+import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
 import com.nashss.se.partyplaylist.dynamodb.UserDAO;
+
+import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
+import com.nashss.se.partyplaylist.dynamodb.models.User;
+
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
 
 public class AddGuestToPartyActivityTest {
 
     @Mock
     private UserDAO userDAO;
+    @Mock
+    private PlaylistDao playlistDao;
 
     private AddGuestToPartyActivity addGuestToPartyActivity;
 
     @BeforeEach
     void setUp() {
         openMocks(this);
-        addGuestToPartyActivity = new AddGuestToPartyActivity(userDAO);
+        addGuestToPartyActivity = new AddGuestToPartyActivity(userDAO, playlistDao);
     }
 
-/*    @Test
-    public void handleRequest_addGuest_createsAndSavesGuest() {
+    @Test
+    public void handleRequest_addGuest_createsAndSavesGuestInUserDao() {
+        String playlistId = "01";
         String firstName = "Walter";
         String lastName = "White";
-        String userId = "46920";
+
+        Playlist playlist = new Playlist();
+        playlist.setPlaylistId(playlistId);
+
+        when(playlistDao.getPlaylist(playlistId)).thenReturn(playlist);
 
         AddGuestToPartyRequest request = AddGuestToPartyRequest.builder()
-                .withUserId(userId)
                 .withFirstName(firstName)
                 .withLastName(lastName).build();
 
@@ -41,7 +57,31 @@ public class AddGuestToPartyActivityTest {
         //THEN
         verify(userDAO).addGuestToParty(any(User.class));
 
-        assertNotNull(result.getGuestList());
-        assertEquals(firstName, result.getGuestList().get(0).getFirstName());
-    }*/
+        assertEquals(firstName, result.getGuest().getFirstName());
+        assertEquals(lastName, result.getGuest().getLastName());
+    }
+
+    @Test
+    public void handleRequest_addGuest_createsAndSavesGuestInPlaylistDao() {
+        String playlistId = "01";
+        String firstName = "Walter";
+        String lastName = "White";
+        Set<String> guestList = new HashSet<>();
+
+        Playlist playlist = new Playlist();
+        playlist.setPlaylistId(playlistId);
+        playlist.setGuests(guestList);
+
+        when(playlistDao.getPlaylist(playlistId)).thenReturn(playlist);
+
+        AddGuestToPartyRequest request = AddGuestToPartyRequest.builder()
+                .withFirstName(firstName)
+                .withLastName(lastName).build();
+
+        //WHEN
+        AddGuestToPartyResult result = addGuestToPartyActivity.handleRequest(request);
+
+        //THEN
+        verify(playlistDao).savePlaylist(any(Playlist.class));
+    }
 }

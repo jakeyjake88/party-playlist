@@ -23,6 +23,8 @@ public class User {
     private List<Song> songsAdded;
     private List<Song> songsUpvoted;
 
+    private List<String> playlistIds;
+
     @DynamoDBHashKey(attributeName = "firstName")
     public String getFirstName() {
         return firstName;
@@ -68,6 +70,14 @@ public class User {
 
     public void setSongsUpvoted(List<Song> songsUpvoted) {
         this.songsUpvoted = songsUpvoted;
+    }
+
+    public List<String> getPlaylistIds() {
+        return playlistIds;
+    }
+
+    public void setPlaylistIds(List<String> playlistIds) {
+        this.playlistIds = playlistIds;
     }
 
     @Override

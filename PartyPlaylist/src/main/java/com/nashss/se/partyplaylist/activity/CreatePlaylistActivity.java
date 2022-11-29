@@ -11,6 +11,7 @@ import com.nashss.se.partyplaylist.models.PlaylistModel;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 import java.util.ArrayList;
+
 import javax.inject.Inject;
 
 /**
@@ -55,6 +56,7 @@ public class CreatePlaylistActivity {
         newPlaylist.setPlaylistId(createPlaylistRequest.getPlaylistId());
         newPlaylist.setPlaylistName(createPlaylistRequest.getPlaylistName());
         newPlaylist.setSongs(new ArrayList<>());
+        newPlaylist.setGuests(null);
         newPlaylist.setHost(createPlaylistRequest.getHost());
 
         playlistDao.savePlaylist(newPlaylist);
