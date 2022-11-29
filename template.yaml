@@ -193,8 +193,8 @@ Resources:
         PartyPlaylist:
           Type: Api
           Properties:
-            Path: /users
-            Method: put
+            Path: /users/{playlistId}
+            Method: post
 
 #  GetGuestLambda:
 #    Type: AWS::Serverless::Function
@@ -233,7 +233,7 @@ Resources:
         PartyPlaylist:
           Type: Api
           Properties:
-            Path: /playlist/{playlistId}
+            Path: /guests/{playlistId}
             Method: get
 
   GetPlaylistLambda:
@@ -255,7 +255,7 @@ Resources:
           Properties:
             Path: /playlist/{playlistId}
             Method: get
-#
+
 #  GetPlaylistSongsLambda:
 #    Type: AWS::Serverless::Function
 #    Properties:
@@ -315,7 +315,7 @@ Resources:
 #          Properties:
 #            Path: /playlists/{id}
 #            Method: put
-#
+
   RemoveSongFromPlaylistLambda:
     Type: AWS::Serverless::Function
     Properties:

@@ -110,7 +110,8 @@ export default class PartyPlaylistClient extends BindingClass {
      */
     async createGuest(firstName, lastName, errorCallback) {
         try {
-            const response = await this.client.post(`users`, {
+            const playlistId = "01";
+            const response = await this.client.post(`users/${playlistId}`, {
                 firstName: firstName,
                 lastName: lastName
             });
@@ -130,7 +131,7 @@ export default class PartyPlaylistClient extends BindingClass {
          */
         async getGuestList(playlistId, errorCallback) {
             try {
-                const response = await this.client.get(`playlist/${playlistId}`);
+                const response = await this.client.get(`guests/${playlistId}`);
                 console.log("Response: ", response);
                 return response.data.guestList;
             } catch (error) {
