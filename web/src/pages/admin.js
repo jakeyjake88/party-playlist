@@ -15,6 +15,16 @@ class Admin extends BindingClass {
     }
 
     /**
+     * Once the client is loaded, get the guest list for the playlist.
+     */
+    async clientLoaded() {
+        var playlistId = "01";
+        const guestList = await this.client.getGuestList(playlistId);
+        this.dataStore.set('guestList', guestList);
+        this.displayGuestList(guestList);
+    }
+
+    /**
      * Add the header to the page and load the PartyPlaylistClient.
      */
     mount() {
@@ -24,6 +34,7 @@ class Admin extends BindingClass {
         this.header.addHeaderToPage();
         this.header.loadData();
         this.client = new PartyPlaylistClient();
+        this.clientLoaded();
     }
 
     /**
@@ -37,9 +48,26 @@ class Admin extends BindingClass {
 
         const guest = await this.client.createGuest(firstName, lastName);
         this.dataStore.set('user', guest);
+        var playlistId = "01";
+        const guestList = await this.client.getGuestList(playlistId);
+        this.dataStore.set('guestList', guestList);
+        this.displayGuestList(guestList);
         document.getElementById('addGuestButton').innerText = 'Add Guest';
-        var guestList = document.getElementById('guestList');
-        guestList.innerHTML += "<li>" + guest.firstName + " " + guest.lastName + "</li>";
+        document.getElementById("add-guest-form").reset();
+    }
+
+    /**
+     * Method to run to display guest list. Call the PartyPlaylist to display guest list.
+     */
+    async displayGuestList(guestList) {
+        var guestListDisplay = document.getElementById('guestListDiv');
+        guestListDisplay.innerHTML = "";
+        if (guestList != null) {
+            for (var i=0; i < guestList.length; i++) {
+                var guestToDisplay = guestList[i];
+                guestListDisplay.innerHTML += "<li>" + guestToDisplay + "</li>";
+            }
+        }
     }
 
     /**

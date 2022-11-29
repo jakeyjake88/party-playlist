@@ -193,35 +193,15 @@ Resources:
         PartyPlaylist:
           Type: Api
           Properties:
-            Path: /users
-            Method: put
+            Path: /users/{playlistId}
+            Method: post
 
-  GetGuestLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessDynamoDBTablesRole.Arn
-      CodeUri: PartyPlaylist
-      Handler: com.nashss.se.partyplaylist.lambda.GetGuestLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        PartyPlaylist:
-          Type: Api
-          Properties:
-            Path: /users/{userId}
-            Method: get
-
-#  GetPlaylistLambda:
+#  GetGuestLambda:
 #    Type: AWS::Serverless::Function
 #    Properties:
 #      Role: !GetAtt AccessDynamoDBTablesRole.Arn
 #      CodeUri: PartyPlaylist
-#      Handler: com.nashss.se.partyplaylist.lambda.GetPlaylistLambda::handleRequest
+#      Handler: com.nashss.se.partyplaylist.lambda.GetGuestLambda::handleRequest
 #      Runtime: java11
 #      Architectures:
 #        - x86_64
@@ -233,9 +213,49 @@ Resources:
 #        PartyPlaylist:
 #          Type: Api
 #          Properties:
-#            Path: /playlist/{playlistId}
+#            Path: /users/{userId}
 #            Method: get
-#
+
+  GetGuestListLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessDynamoDBTablesRole.Arn
+      CodeUri: PartyPlaylist
+      Handler: com.nashss.se.partyplaylist.lambda.GetGuestListLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        PartyPlaylist:
+          Type: Api
+          Properties:
+            Path: /guests/{playlistId}
+            Method: get
+
+  GetPlaylistLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessDynamoDBTablesRole.Arn
+      CodeUri: PartyPlaylist
+      Handler: com.nashss.se.partyplaylist.lambda.GetPlaylistLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        PartyPlaylist:
+          Type: Api
+          Properties:
+            Path: /playlist/{playlistId}
+            Method: get
+
 #  GetPlaylistSongsLambda:
 #    Type: AWS::Serverless::Function
 #    Properties:
@@ -295,7 +315,7 @@ Resources:
 #          Properties:
 #            Path: /playlists/{id}
 #            Method: put
-#
+
   RemoveSongFromPlaylistLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -335,6 +355,26 @@ Resources:
           Properties:
             Path: /playlist/{playlistId}/songs
             Method: post
+
+  AddUpvoteToSongLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessDynamoDBTablesRole.Arn
+      CodeUri: PartyPlaylist
+      Handler: com.nashss.se.partyplaylist.lambda.AddUpvoteToSongLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /playlist/{playlistId}/songs/{songId}
+            Method: put
 
   #-----------------------------------------------------------------
 

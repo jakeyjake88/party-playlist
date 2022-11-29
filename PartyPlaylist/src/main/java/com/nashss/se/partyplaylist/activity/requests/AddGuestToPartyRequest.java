@@ -20,6 +20,8 @@ public class AddGuestToPartyRequest {
 
     private List<Song> songsUpvoted;
 
+    private String playlistId;
+
 
     private AddGuestToPartyRequest(String firstName, String lastName) {
         this.firstName = firstName;
@@ -27,31 +29,32 @@ public class AddGuestToPartyRequest {
         this.isAdmin = false;
         this.songsAdded = new ArrayList<>();
         this.songsUpvoted  = new ArrayList<>();
+        // TODO replace with actual value
+        this.playlistId = "01";
     }
 
     public String getFirstName() {
-
         return firstName;
     }
 
     public String getLastName() {
-
         return lastName;
     }
 
     public Boolean isAdmin() {
-
         return isAdmin;
     }
 
     public List<Song> getSongsAdded() {
-
         return songsAdded;
     }
 
     public List<Song> getSongsUpvoted() {
-
         return songsUpvoted;
+    }
+
+    public String getPlaylistId() {
+        return playlistId;
     }
 
     @Override
@@ -62,6 +65,7 @@ public class AddGuestToPartyRequest {
                 ", isAdmin=" + isAdmin +
                 ", songsAdded=" + songsAdded +
                 ", songsUpvoted=" + songsUpvoted +
+                ", playlistId='" + playlistId +
                 '}';
     }
 
