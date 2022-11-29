@@ -88,6 +88,7 @@ class Admin extends BindingClass {
 
         document.getElementById('add-song-admin').innerText = 'Add Song';
         document.getElementById("add-song-form-admin").reset();
+        this.clientLoaded();
     }
 
     /**
@@ -105,6 +106,7 @@ class Admin extends BindingClass {
 
         document.getElementById('remove-song-admin').innerText = 'Remove Song';
         document.getElementById("add-song-form-admin").reset();
+        this.clientLoaded();
     }
 
     addPlaylistToPage() {
