@@ -8,8 +8,9 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-@JsonDeserialize(builder = AddGuestToPartyRequest.Builder.class)
-public class AddGuestToPartyRequest {
+@JsonDeserialize(builder = CreateHostRequest.Builder.class)
+public class CreateHostRequest {
+
     private final String firstName;
 
     private final String lastName;
@@ -20,68 +21,63 @@ public class AddGuestToPartyRequest {
 
     private List<Song> songsUpvoted;
 
-    private String playlistId;
-
-
-    private AddGuestToPartyRequest(String firstName, String lastName) {
+    private CreateHostRequest(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.isAdmin = false;
+        this.isAdmin = true;
         this.songsAdded = new ArrayList<>();
         this.songsUpvoted  = new ArrayList<>();
-        // TODO replace with actual value
-        this.playlistId = "01";
     }
 
     public String getFirstName() {
+
         return firstName;
     }
 
     public String getLastName() {
+
         return lastName;
     }
 
     public Boolean isAdmin() {
+
         return isAdmin;
     }
 
     public List<Song> getSongsAdded() {
+
         return songsAdded;
     }
 
     public List<Song> getSongsUpvoted() {
-        return songsUpvoted;
-    }
 
-    public String getPlaylistId() {
-        return playlistId;
+        return songsUpvoted;
     }
 
     @Override
     public String toString() {
-        return "AddGuestToPartyRequest{" +
-                "firstName='" + firstName +
-                ", lastName='" + lastName +
-                ", isAdmin=" + isAdmin +
-                ", songsAdded=" + songsAdded +
-                ", songsUpvoted=" + songsUpvoted +
-                ", playlistId='" + playlistId +
+        return "CreateHostRequest{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", isAdmin='" + isAdmin + '\'' +
+                ", songsAdded='" + songsAdded + '\'' +
+                ", songsUpvoted='" + songsUpvoted + '\'' +
                 '}';
     }
 
     /**
-     * Creates a new builder for AddGuestToPartyRequest.
+     * Creates a new builder for CreateHostRequest.
      *
      * @return Builder
      */
 
     //CHECKSTYLE:OFF:Builder
-    public static Builder builder() {
-        return new Builder();
+    public static CreateHostRequest.Builder builder() {
+        return new CreateHostRequest.Builder();
     }
 
     /**
-     * Builder for AddGuestToPartyRequest.
+     * Builder for CreateHostRequest.
      */
     @JsonPOJOBuilder
     public static class Builder {
@@ -91,37 +87,35 @@ public class AddGuestToPartyRequest {
         private String lastName;
 
         /**
-         * With firstName parameter for AddGuestToPartyRequest builder.
+         * With firstName parameter for CreateHostRequest builder.
          * @param firstName the users first name
          * @return this
          */
-        public Builder withFirstName(String firstName) {
+        public CreateHostRequest.Builder withFirstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
 
         /**
-         * With lastName parameter for AddGuestToPartyRequest builder.
+         * With lastName parameter for CreateHostRequest builder.
          * @param lastName the users last name
          * @return this
          */
-        public Builder withLastName(String lastName) {
+        public CreateHostRequest.Builder withLastName(String lastName) {
             this.lastName = lastName;
             return this;
         }
 
         /**
-         * Build AddGuestToPartyRequest.
-         * @return AddGuestToPartyRequest
+         * Build CreateHostRequest.
+         * @return CreateHostRequest
          */
-        public AddGuestToPartyRequest build() {
-            return new AddGuestToPartyRequest(firstName, lastName);
+        public CreateHostRequest build() {
+            return new CreateHostRequest(firstName, lastName);
         }
 
-
     }
+
+
+
 }
-
-
-
-
