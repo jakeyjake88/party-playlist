@@ -9,8 +9,9 @@ import DataStore from '../util/DataStore';
 class Admin extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'submit', 'addSong', 'removeSong'], this);
+        this.bindClassMethods(['mount', 'submit', 'addSong', 'removeSong', 'addPlaylistToPage'], this);
         this.dataStore = new DataStore();
+        this.dataStore.addChangeListener(this.addPlaylistToPage);
         this.header = new Header(this.dataStore);
     }
 
@@ -21,6 +22,8 @@ class Admin extends BindingClass {
         var playlistId = "01";
         const guestList = await this.client.getGuestList(playlistId);
         this.dataStore.set('guestList', guestList);
+        const playlist = await this.client.getPlaylist('01');
+        this.dataStore.set('playlist', playlist);
         this.displayGuestList(guestList);
     }
 
@@ -103,7 +106,21 @@ class Admin extends BindingClass {
         document.getElementById('remove-song-admin').innerText = 'Remove Song';
         document.getElementById("add-song-form-admin").reset();
     }
- }
+
+    addPlaylistToPage() {
+        const playlist = this.dataStore.get('playlist');
+        if (playlist == null) {
+            return;
+        }
+
+        let songHtml = '';
+        let song;
+        for (song of playlist.songs) {
+            songHtml += '<div class="songs">' + '<b>' + song.songTitle + '</b>' +  ' ' + song.songArtist + '</div>';
+        }
+        document.getElementById('songs').innerHTML = songHtml;
+    }
+}
 
 /**
  * Main method to run when the page contents have loaded.
