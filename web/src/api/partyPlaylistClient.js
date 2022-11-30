@@ -5,8 +5,8 @@ import BindingClass from "../util/bindingClass";
 export default class PartyPlaylistClient extends BindingClass {
     constructor(props = {}) {
         super();
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'getPlaylist', 'getHost',
-        'addSongToPlaylist', 'getSong', 'createPlaylist', 'createGuest', 'removeSongFromPlaylist', 'getGuestList', 'createHost', 'removeSongFromPlaylist'];
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'getPlaylist', 'getHost'
+        'addSongToPlaylist', 'getSong', 'createPlaylist', 'createGuest', 'removeSongFromPlaylist', 'getGuestList', 'createHost', 'removeSongFromPlaylist', 'addUpvoteToSong'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
 
@@ -61,6 +61,22 @@ export default class PartyPlaylistClient extends BindingClass {
                 this.handleError(error, errorCallback);
             }
         }
+
+
+    async addUpvoteToSong(songId, playlistId, songTitle, songArtist, errorCallback) {
+                try {
+                    const response = await this.client.put(`playlist/${playlistId}/songs/${songId}`, {
+                       playlistId: playlistId,
+                       songId: songId,
+                       songTitle: songTitle,
+                       songArtist: songArtist
+                    });
+                    console.log("Response: ", response);
+                    return response.data.Song;
+                } catch (error) {
+                    this.handleError(error, errorCallback);
+                }
+            }
     
     async addSongToPlaylist(songArtist, songTitle, playlistId, errorCallback) {
         try {

@@ -6,7 +6,7 @@ import com.nashss.se.partyplaylist.activity.results.AddUpvoteToSongResult;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-public class AddUpvoteToSongLamda extends LambdaActivityRunner<AddUpvoteToSongRequest, AddUpvoteToSongResult>
+public class AddUpvoteToSongLambda extends LambdaActivityRunner<AddUpvoteToSongRequest, AddUpvoteToSongResult>
     implements RequestHandler<LambdaRequest<AddUpvoteToSongRequest>, LambdaResponse> {
 
     @Override
