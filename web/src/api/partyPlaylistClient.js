@@ -151,7 +151,7 @@ export default class PartyPlaylistClient extends BindingClass {
      */
     async getHost(playlistName, hostName, errorCallback) {
         try {
-            const response = await this.client.get(`playlist/${playlistName}/host/${hostName}`);
+            const response = await this.client.get(`host/${hostName}/playlists/${playlistName}`);
             console.log("Response: ", response);
             return response.data.playlistId;
         } catch (error) {
@@ -161,8 +161,8 @@ export default class PartyPlaylistClient extends BindingClass {
 
     handleError(error, errorCallback) {
         console.error(error);
-        if (error.response.data.message !== undefined) {
-            console.error(error.response.data.message)
+        if (error.response.data.error_message !== undefined) {
+            console.error(error.response.data.error_message)
         }
         if (errorCallback) {
             errorCallback(error);

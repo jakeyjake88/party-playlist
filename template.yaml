@@ -233,7 +233,7 @@ Resources:
         PartyPlaylist:
           Type: Api
           Properties:
-            Path: /playlist/{playlistName}/host/{hostName}
+            Path: /host/{hostName}/playlists/{playlistName}
             Method: get
 
   GetGuestListLambda:
@@ -392,6 +392,10 @@ Resources:
           KeySchema:
             - AttributeName: "playlistName"
               KeyType: "HASH"
+          Projection:
+            ProjectionType: "INCLUDE"
+            NonKeyAttributes:
+              - "host"
 
   SongsTable:
     Type: AWS::DynamoDB::Table

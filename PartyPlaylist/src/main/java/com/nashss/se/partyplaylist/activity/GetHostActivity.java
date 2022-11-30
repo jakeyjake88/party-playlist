@@ -54,7 +54,7 @@ public class GetHostActivity {
 
         if (!playlist.getHost().equals(hostName)) {
             throw new HostNotFoundException(
-                    String.format("Cannot found host associated with '%s'", playlistName));
+                    String.format("Cannot find host associated with '%s'. Please try again.", playlistName));
         }
 
         return GetHostResult.builder()

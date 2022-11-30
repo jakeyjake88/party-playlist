@@ -67,6 +67,11 @@ public class PlaylistDao {
 
         PaginatedQueryList<Playlist> playlist = dynamoDBMapper.query(Playlist.class, queryExpression);
 
+        if (playlist.isEmpty()) {
+            throw new PlaylistNotFoundException(
+                    String.format("Could not find playlist '%s'. Please try again.", playlistName));
+        }
+
         return playlist.get(0);
     }
 
