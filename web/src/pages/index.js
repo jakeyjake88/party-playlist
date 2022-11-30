@@ -38,13 +38,12 @@ class CreatePlaylist extends BindingClass {
 
     async hostLogin() {
         document.getElementById('adminLoginButton').innerText = 'Logging In...';
-        const playlistName = document.getElementById('adminPlaylistName');
-        const hostName = document.getElementById('hostName');
+        const playlistName = document.getElementById('adminPlaylistName').value;
+        const hostName = document.getElementById('hostName').value;
 
-        const playlistId = await this.client.getHost;
+        const playlistId = await this.client.getHost(playlistName, hostName);
         
         document.getElementById('adminLoginButton').innerHTML = 'Logged In';
-        window.location.href = `/admin.html/${playlistId}`
     }
 
     redirectToAdmin() {
