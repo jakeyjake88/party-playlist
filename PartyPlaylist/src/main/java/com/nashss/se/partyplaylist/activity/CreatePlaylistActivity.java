@@ -1,12 +1,17 @@
 package com.nashss.se.partyplaylist.activity;
+
 import com.nashss.se.partyplaylist.activity.requests.CreatePlaylistRequest;
 import com.nashss.se.partyplaylist.activity.results.CreatePlaylistResult;
 
 import com.nashss.se.partyplaylist.converters.ModelConverter;
 import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
-
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
+import com.nashss.se.partyplaylist.exceptions.PlaylistAlreadyExistsException;
 import com.nashss.se.partyplaylist.models.PlaylistModel;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
@@ -18,6 +23,10 @@ import javax.inject.Inject;
  * This API allows the customer to create a new playlist with no songs.
  */
 public class CreatePlaylistActivity {
+
+    private final Logger log = LogManager.getLogger();
+
+    private DynamoDBMapper mapper;
     private final PlaylistDao playlistDao;
 
     /**
@@ -44,6 +53,15 @@ public class CreatePlaylistActivity {
      * @return createPlaylistResult result object containing the API defined {@link PlaylistModel}
      */
     public CreatePlaylistResult handleRequest(final CreatePlaylistRequest createPlaylistRequest) {
+        log.info("Received CreatePlaylistRequest {} ", createPlaylistRequest);
+
+        Playlist playlist = playlistDao.getPlaylist(createPlaylistRequest.getPlaylistId());
+
+
+        if (playlist.getPlaylistName().equals(createPlaylistRequest.getPlaylistName())) {
+            throw new PlaylistAlreadyExistsException("Playlist name [" + createPlaylistRequest.getPlaylistName() +
+                    "] already exists.");
+        }
 
         Playlist newPlaylist = new Playlist();
 
@@ -59,5 +77,7 @@ public class CreatePlaylistActivity {
         return CreatePlaylistResult.builder()
                 .withPlaylist(playlistModel)
                 .build();
+
     }
+
 }
