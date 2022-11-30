@@ -9,12 +9,13 @@ public class AddUpvoteToSongRequest {
     private final String playlistId;
     private final String songTitle;
     private final String songArtist;
+    private final String songId;
 
-    private AddUpvoteToSongRequest(String playlistId, String songTitle, String songArtist) {
+    private AddUpvoteToSongRequest(String playlistId, String songTitle, String songArtist, String songId) {
         this.playlistId = playlistId;
         this.songTitle = songTitle;
         this.songArtist = songArtist;
-
+        this.songId = songId;
     }
 
     public String getPlaylistId() {
@@ -35,6 +36,7 @@ public class AddUpvoteToSongRequest {
                 "playlistId='" + playlistId + '\'' +
                 ", songTitle='" + songTitle + '\'' +
                 ", songArtist='" + songArtist + '\'' +
+                ", songArtist='" + songId + '\'' +
                 '}';
     }
 
@@ -46,6 +48,7 @@ public class AddUpvoteToSongRequest {
         private String playlistId;
         private String songTitle;
         private String songArtist;
+        private String songId;
 
         public AddUpvoteToSongRequest.Builder withPlaylistId(String playlistId) {
             this.playlistId = playlistId;
@@ -62,8 +65,13 @@ public class AddUpvoteToSongRequest {
             return this;
         }
 
+        public AddUpvoteToSongRequest.Builder withSongId(String songId) {
+            this.songId = songId;
+            return this;
+        }
+
         public AddUpvoteToSongRequest build() {
-            return new AddUpvoteToSongRequest(playlistId, songTitle, songArtist);
+            return new AddUpvoteToSongRequest(playlistId, songTitle, songArtist, songId);
         }
     }
 }

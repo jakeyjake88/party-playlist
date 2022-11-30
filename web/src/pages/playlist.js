@@ -33,19 +33,33 @@ class Playlist extends BindingClass {
     }
 
     addPlaylistToPage() {
-        const playlist = this.dataStore.get('playlist');
-        if (playlist == null) {
-            return;
-        }
+            const playlist = this.dataStore.get('playlist');
+            if (playlist == null) {
+                return;
+            }
 
-        document.getElementById('playlist-display').innerText = playlist.playlistName;
-        let songHtml = '';
-        let song;
-        for (song of playlist.songs) {
-            songHtml += '<div class="songs">' + '<b>' + song.songTitle + '</b>' +  ' ' + song.songArtist + '</div>';
+            document.getElementById('playlist-display').innerText = playlist.playlistName;
+            let songHtml = '';
+            let song;
+            for (song of playlist.songs) {
+                songHtml += '<div class="songs">' + '<b>' + song.songTitle + '</b>' +  ' ' + song.songArtist + '</div>'
+                + '<span class="sprite vote" id="' + song.songId + '">' + '</span>' + song.upvotes;
+            }
+            document.getElementById('songs').innerHTML = songHtml;
+            for (const btn of document.querySelectorAll('.vote')) {
+                btn.addEventListener('click', event => {
+                    for (song of playlist.songs) {
+                        this.clientLoaded();
+                        if (song.songId == event.target.id) {
+                            this.client.addUpvoteToSong(event.target.id, '01', song.songTitle, song.songArtist);
+                            console.log(event.target.id);
+                            event.currentTarget.classList.toggle('on');
+                            this.clientLoaded();
+                        }
+                    }
+                    });
+                }
         }
-        document.getElementById('songs').innerHTML = songHtml;
-    }
 
     /**
      * Method to run when the add song playlist submit button is pressed. Call the PartyPlaylist to add a song to the
