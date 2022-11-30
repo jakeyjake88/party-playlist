@@ -8,6 +8,7 @@ import com.nashss.se.partyplaylist.dynamodb.SongDAO;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
 import com.nashss.se.partyplaylist.dynamodb.models.Song;
+import com.nashss.se.partyplaylist.exceptions.ArtistLimitException;
 import com.nashss.se.partyplaylist.exceptions.SongNotFoundException;
 import com.nashss.se.partyplaylist.models.PlaylistEntryModel;
 
@@ -26,7 +27,7 @@ import javax.inject.Inject;
  */
 
 public class AddSongToPlaylistActivity {
-
+    private static final Integer SAME_ARTIST_LIMIT = 3;
     private final Logger log = LogManager.getLogger();
     private final PlaylistDao playlistDao;
     private final SongDAO songDAO;
@@ -74,7 +75,15 @@ public class AddSongToPlaylistActivity {
 
         List<PlaylistEntry> playlistSongs = playlist.getSongs();
         PlaylistEntry playlistEntry = new PlaylistEntry(songToAdd);
-        playlistSongs.add(playlistEntry);
+
+        Integer artistCount = getArtistCount(playlistSongs, playlistEntry);
+
+        if ( artistCount < SAME_ARTIST_LIMIT) {
+            playlistSongs.add(playlistEntry);
+        } else {
+            throw new ArtistLimitException("This artist has reached the limit for this playlist at this time.");
+        }
+
         playlist.setSongs(playlistSongs);
 
         playlist = playlistDao.savePlaylist(playlist);
@@ -83,5 +92,23 @@ public class AddSongToPlaylistActivity {
         return AddSongToPlaylistResult.builder()
                 .withSongList(playlistEntryModels)
                 .build();
+    }
+
+    /**
+     * This method will count the total number of times an artist appears in a playlist.
+     *
+     * @param entryList the current playlist list of playlist entries
+     * @param entryToAdd the song to add in Playlist Entry form
+     * @return Integer of the number of times the artist to add shows up in the current playlist
+     */
+
+    private Integer getArtistCount(List<PlaylistEntry> entryList, PlaylistEntry entryToAdd) {
+        int count = 0;
+        for (PlaylistEntry entry : entryList) {
+            if (entry.getSongArtist().equals(entryToAdd.getSongArtist())) {
+                count++;
+            }
+        }
+        return count;
     }
 }
