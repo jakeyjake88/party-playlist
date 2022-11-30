@@ -1,17 +1,22 @@
 package com.nashss.se.partyplaylist.dynamodb;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.exceptions.PlaylistNotFoundException;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 import javax.inject.Inject;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Accesses data for a playlist using {@link Playlist} to represent the model in DynamoDB.
  */
 public class PlaylistDao {
-
+    public static final String PLAYLIST_NAME_INDEX = "PlaylistNameIndex";
     private final DynamoDBMapper dynamoDBMapper;
 
     /**
@@ -41,6 +46,20 @@ public class PlaylistDao {
         }
 
         return playlist;
+    }
+
+    public Playlist getPlaylistWithPlaylistName(String playlistName) {
+        Map<String, AttributeValue> valueMap = new HashMap<>();
+        valueMap.put(":playlistName", new AttributeValue().withS(playlistName));
+        DynamoDBQueryExpression<Playlist> queryExpression = new DynamoDBQueryExpression<Playlist>()
+                .withIndexName(PLAYLIST_NAME_INDEX)
+                .withConsistentRead(false)
+                .withKeyConditionExpression("playlistName = :playlistName")
+                .withExpressionAttributeValues(valueMap);
+
+        PaginatedQueryList<Playlist> playlist = dynamoDBMapper.query(Playlist.class, queryExpression);
+
+        return playlist.get(0);
     }
 
     /**

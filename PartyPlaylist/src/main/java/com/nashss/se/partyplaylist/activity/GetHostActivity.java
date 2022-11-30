@@ -3,6 +3,8 @@ package com.nashss.se.partyplaylist.activity;
 import com.nashss.se.partyplaylist.activity.requests.GetHostRequest;
 import com.nashss.se.partyplaylist.activity.results.GetHostResult;
 import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
+import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
+import com.nashss.se.partyplaylist.exceptions.HostNotFoundException;
 import com.nashss.se.partyplaylist.models.UserModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,6 +51,15 @@ public class GetHostActivity {
         String playlistName = getHostRequest.getPlaylistName();
         String hostName = firstName + " " + lastName;
 
+        Playlist playlist = playlistDao.getPlaylistWithPlaylistName(playlistName);
 
+        if (!playlist.getHost().equals(hostName)) {
+            throw new HostNotFoundException(
+                    String.format("Cannot found host associated with '%s'", playlistName));
+        }
+
+        return GetHostResult.builder()
+                .withPlaylistId(playlist.getPlaylistId())
+                .build();
     }
 }
