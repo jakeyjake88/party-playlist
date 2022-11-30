@@ -16,6 +16,7 @@ public class SongDAOTest {
 
     @Mock
     private DynamoDBMapper dynamoDBMapper;
+    @Mock
     private SongDAO songDAO;
 
     @BeforeEach
@@ -29,12 +30,12 @@ public class SongDAOTest {
         String songArtist = "Nickelback";
         String songTitle = "Photograph";
 
-        when(dynamoDBMapper.load(Song.class, songArtist, songTitle)).thenReturn(new Song());
+        when(dynamoDBMapper.load(Song.class, songTitle, songArtist)).thenReturn(new Song());
 
        Song song = songDAO.getSong(songArtist, songTitle);
 
        assertNotNull(song);
-       verify(dynamoDBMapper).load(Song.class, songArtist, songTitle);
+       verify(dynamoDBMapper).load(Song.class, songTitle, songArtist);
 
     }
 

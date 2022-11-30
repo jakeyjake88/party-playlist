@@ -31,7 +31,7 @@ public class AddGuestToPartyActivityTest {
     private AddGuestToPartyActivity addGuestToPartyActivity;
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         openMocks(this);
         addGuestToPartyActivity = new AddGuestToPartyActivity(userDAO, playlistDao);
     }
