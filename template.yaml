@@ -400,13 +400,18 @@ Resources:
       AttributeDefinitions:
         - AttributeName: "playlistId"
           AttributeType: "S"
+        - AttributeName: "playlistName"
+          AttributeType: "S"
       KeySchema:
         - AttributeName: "playlistId"
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "playlists"
       GlobalSecondaryIndexes:
-        - IndexName: "PlaylistName"
+        - IndexName: "PlaylistNameIndex"
+          KeySchema:
+            - AttributeName: "playlistName"
+              KeyType: "HASH"
 
   SongsTable:
     Type: AWS::DynamoDB::Table
