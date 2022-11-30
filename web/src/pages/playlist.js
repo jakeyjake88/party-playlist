@@ -9,15 +9,19 @@ import DataStore from "../util/DataStore";
 class Playlist extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['clientLoaded', 'mount', 'addSong', 'addPlaylistToPage'], this);
+        this.bindClassMethods(['clientLoaded', 'mount', 'addSong', 'addPlaylistToPage', 'displayGuestList'], this);
         this.dataStore = new DataStore();
         this.dataStore.addChangeListener(this.addPlaylistToPage);
         this.header = new Header(this.dataStore);
     }
 
     async clientLoaded() {
-        const playlist = await this.client.getPlaylist('01');
+        var playlistId = "01";
+        const playlist = await this.client.getPlaylist(playlistId);
         this.dataStore.set('playlist', playlist);
+        const guestList = await this.client.getGuestList(playlistId);
+        this.dataStore.set('guestList', guestList);
+        this.displayGuestList(guestList);
     }
 
     mount() {
@@ -60,7 +64,23 @@ class Playlist extends BindingClass {
         document.getElementById("add-song-form").reset();
         this.clientLoaded();
     }
+
+    /**
+     * Method to run to display guest list. Call the PartyPlaylist to display guest list.
+     */
+    async displayGuestList(guestList) {
+        var guestListDisplay = document.getElementById('guestListDiv');
+        guestListDisplay.innerHTML = "";
+        if (guestList != null) {
+            for (var i=0; i < guestList.length; i++) {
+                var guestToDisplay = guestList[i];
+                guestListDisplay.innerHTML += "<li>" + guestToDisplay + "</li>";
+            }
+        }
+    }
 }
+
+
 
 /**
  * Main method to run when the page contents have loaded.
