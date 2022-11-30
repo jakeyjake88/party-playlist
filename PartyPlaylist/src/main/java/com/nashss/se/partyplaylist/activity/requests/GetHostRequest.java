@@ -5,22 +5,16 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 @JsonDeserialize(builder = GetHostRequest.Builder.class)
 public class GetHostRequest {
-    private final String firstName;
-    private final String lastName;
+    private final String hostName;
     private final String playlistName;
 
-    private GetHostRequest(String firstName, String lastName, String playlistName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    private GetHostRequest(String hostName, String playlistName) {
+        this.hostName = hostName;
         this.playlistName = playlistName;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    public String getHostName() {
+        return hostName;
     }
 
     public String getPlaylistName() {
@@ -30,8 +24,7 @@ public class GetHostRequest {
     @Override
     public String toString() {
         return "GetHostRequest{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                "hostName='" + hostName + '\'' +
                 ", playlistName='" + playlistName + '\'' +
                 '}';
     }
@@ -52,17 +45,11 @@ public class GetHostRequest {
      */
     @JsonPOJOBuilder
     public static class Builder {
-        private String firstName;
-        private String lastName;
+        private String hostName;
         private String playlistName;
 
-        public Builder withFirstName(String firstName) {
-            this.firstName = firstName;
-            return this;
-        }
-
-        public Builder withLastName(String lastName) {
-            this.lastName = lastName;
+        public Builder withHostName(String hostName) {
+            this.hostName = hostName;
             return this;
         }
 
@@ -72,7 +59,7 @@ public class GetHostRequest {
         }
 
         public GetHostRequest build() {
-            return new GetHostRequest(firstName, lastName, playlistName);
+            return new GetHostRequest(hostName, playlistName);
         }
 
     }

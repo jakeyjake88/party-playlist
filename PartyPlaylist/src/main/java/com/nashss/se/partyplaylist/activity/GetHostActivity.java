@@ -46,10 +46,8 @@ public class GetHostActivity {
     public GetHostResult handleRequest(final GetHostRequest getHostRequest) {
         log.info("Received GetHostRequest {}", getHostRequest);
 
-        String firstName = getHostRequest.getFirstName();
-        String lastName = getHostRequest.getLastName();
         String playlistName = getHostRequest.getPlaylistName();
-        String hostName = firstName + " " + lastName;
+        String hostName = getHostRequest.getHostName();
 
         Playlist playlist = playlistDao.getPlaylistWithPlaylistName(playlistName);
 
