@@ -78,7 +78,7 @@ public class AddSongToPlaylistActivity {
 
         Integer artistCount = getArtistCount(playlistSongs, playlistEntry);
 
-        if ( artistCount < SAME_ARTIST_LIMIT) {
+        if (artistCount < SAME_ARTIST_LIMIT) {
             playlistSongs.add(playlistEntry);
         } else {
             throw new ArtistLimitException("This artist has reached the limit for this playlist at this time.");
