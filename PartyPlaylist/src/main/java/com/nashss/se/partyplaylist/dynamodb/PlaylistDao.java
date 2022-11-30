@@ -64,6 +64,10 @@ public class PlaylistDao {
     public String getHost(String id) {
         Playlist playlist = this.dynamoDBMapper.load(Playlist.class, id);
 
+        if (playlist == null) {
+            throw new PlaylistNotFoundException(String.format("Playlist associated with id: %s does not exist", id));
+        }
+
         return playlist.getHost();
     }
 }
