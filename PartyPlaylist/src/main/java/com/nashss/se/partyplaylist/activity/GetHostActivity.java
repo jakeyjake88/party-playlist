@@ -1,5 +1,7 @@
 package com.nashss.se.partyplaylist.activity;
 
+import com.nashss.se.partyplaylist.activity.requests.GetHostRequest;
+import com.nashss.se.partyplaylist.activity.results.GetHostResult;
 import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
 import com.nashss.se.partyplaylist.models.UserModel;
 import org.apache.logging.log4j.LogManager;
@@ -40,6 +42,13 @@ public class GetHostActivity {
      * @return getHostResult result object containing the API defined {@link UserModel }
      */
     public GetHostResult handleRequest(final GetHostRequest getHostRequest) {
+        log.info("Received GetHostRequest {}", getHostRequest);
+
+        String firstName = getHostRequest.getFirstName();
+        String lastName = getHostRequest.getLastName();
+        String playlistName = getHostRequest.getPlaylistName();
+        String hostName = firstName + " " + lastName;
+
 
     }
 }

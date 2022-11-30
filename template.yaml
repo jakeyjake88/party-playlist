@@ -405,6 +405,8 @@ Resources:
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "playlists"
+      GlobalSecondaryIndexes:
+        - IndexName: "PlaylistName"
 
   SongsTable:
     Type: AWS::DynamoDB::Table
