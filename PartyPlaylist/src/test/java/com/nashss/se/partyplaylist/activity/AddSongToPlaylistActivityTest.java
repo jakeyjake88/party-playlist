@@ -1,15 +1,14 @@
 package com.nashss.se.partyplaylist.activity;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.nashss.se.partyplaylist.activity.requests.AddSongToPlaylistRequest;
 import com.nashss.se.partyplaylist.activity.results.AddSongToPlaylistResult;
+import com.nashss.se.partyplaylist.exceptions.ArtistLimitException;
 import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
 import com.nashss.se.partyplaylist.dynamodb.SongDAO;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
 import com.nashss.se.partyplaylist.dynamodb.models.Song;
 
-import com.nashss.se.partyplaylist.exceptions.ArtistLimitException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
