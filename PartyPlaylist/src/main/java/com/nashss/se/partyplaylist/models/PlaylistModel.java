@@ -1,8 +1,11 @@
 package com.nashss.se.partyplaylist.models;
+
 import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
 
 import java.util.List;
+
 import java.util.Objects;
+import java.util.Set;
 
 public class PlaylistModel {
 
@@ -11,11 +14,15 @@ public class PlaylistModel {
     private final List<PlaylistEntry> songs;
     private final String host;
 
-    private PlaylistModel(String playlistID, String playlistName, List<PlaylistEntry> songs, String host) {
+    private final Set<String> guestList;
+
+    private PlaylistModel(String playlistID, String playlistName, List<PlaylistEntry> songs,
+                          String host, Set<String> guestList) {
         this.playlistId = playlistID;
         this.playlistName = playlistName;
         this.songs = songs;
         this.host = host;
+        this.guestList = guestList;
     }
 
     public String getPlaylistID() {
@@ -34,6 +41,9 @@ public class PlaylistModel {
         return host;
     }
 
+    public Set<String> getGuests() {
+        return guestList;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -67,6 +77,8 @@ public class PlaylistModel {
         private List<PlaylistEntry> songs;
         private String host;
 
+        private Set<String> guestList;
+
         public Builder withPlaylistId(String playlistId) {
             this.playlistId = playlistId;
             return this;
@@ -87,8 +99,13 @@ public class PlaylistModel {
             return this;
         }
 
+        public Builder withGuestList(Set<String> guestList) {
+            this.guestList = guestList;
+            return this;
+        }
+
         public PlaylistModel build() {
-            return new PlaylistModel(playlistId, playlistName, songs, host);
+            return new PlaylistModel(playlistId, playlistName, songs, host, guestList);
         }
     }
 }

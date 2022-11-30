@@ -56,6 +56,8 @@ export default class PartyPlaylistClient extends BindingClass {
             });
             return response.data.playlist;
             } catch (error) {
+                let err = document.getElementById("err");
+                err.innerHTML = "Playlist name already exists! Please try again with a different name.";
                 this.handleError(error, errorCallback);
             }
         }
@@ -110,7 +112,8 @@ export default class PartyPlaylistClient extends BindingClass {
      */
     async createGuest(firstName, lastName, errorCallback) {
         try {
-            const response = await this.client.post(`users`, {
+            const playlistId = "01";
+            const response = await this.client.post(`users/${playlistId}`, {
                 firstName: firstName,
                 lastName: lastName
             });

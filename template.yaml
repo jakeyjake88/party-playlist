@@ -193,8 +193,8 @@ Resources:
         PartyPlaylist:
           Type: Api
           Properties:
-            Path: /users
-            Method: put
+            Path: /users/{playlistId}
+            Method: post
 
 #  GetGuestLambda:
 #    Type: AWS::Serverless::Function
