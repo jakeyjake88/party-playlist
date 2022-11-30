@@ -5,7 +5,7 @@ import BindingClass from "../util/bindingClass";
 export default class PartyPlaylistClient extends BindingClass {
     constructor(props = {}) {
         super();
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'getPlaylist', 'getHost'
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'getPlaylist', 'getHost',
         'addSongToPlaylist', 'getSong', 'createPlaylist', 'createGuest', 'removeSongFromPlaylist', 'getGuestList', 'createHost', 'removeSongFromPlaylist', 'addUpvoteToSong'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
