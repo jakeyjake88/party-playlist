@@ -1,11 +1,13 @@
 {
-  "playlists": [
+  "songs": [
     {
       "PutRequest": {
         "Item": {
-          "playlistId": { "S": "O7SFa" },
-          "playlistName": { "S": "NSS Songs" },
-          "songs": { "SS": [ "banjo", "triangle", "saw" ]
+          "id": { "S": "01" },
+          "songArtist": { "S": "The Lonely Island" },
+          "songTitle": { "S": "I'm On A Boat" },
+          "genre": {"S": "Pop" },
+          "songLength": { "N": "156"
           }
         }
       }
@@ -13,9 +15,107 @@
     {
       "PutRequest": {
         "Item": {
-          "playlistId": { "S": "O78S13d" },
-          "playlistName": { "S": "This Is a Test" },
-          "songs": { "SS": [ "Beatles", "Great", "Test" ]
+          "id": { "S": "02" },
+          "songArtist": { "S": "Smash Mouth" },
+          "songTitle": { "S": "All Star" },
+          "genre": {"S": "Alternative" },
+          "songLength": { "N": "200"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "03" },
+          "songArtist": { "S": "Rick Astley" },
+          "songTitle": { "S": "Never Gonna Give You Up" },
+          "genre": {"S": "Pop" },
+          "songLength": { "N": "213"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "04" },
+          "songArtist": { "S": "Kenny Loggins" },
+          "songTitle": { "S": "Danger Zone" },
+          "genre": {"S": "Yacht Rock" },
+          "songLength": { "N": "215"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "05" },
+          "songArtist": { "S": "Michael McDonald" },
+          "songTitle": { "S": "I Keep Forgettin' (Every Time You're Near)" },
+          "genre": {"S": "Yacht Rock" },
+          "songLength": { "N": "222"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "06" },
+          "songArtist": { "S": "Christopher Cross" },
+          "songTitle": { "S": "Sailing" },
+          "genre": {"S": "Adult Contemporary" },
+          "songLength": { "N": "256"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "07" },
+          "songArtist": { "S": "Styx" },
+          "songTitle": { "S": "Come Sail Away" },
+          "genre": {"S": "AOR" },
+          "songLength": { "N": "367"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "08" },
+          "songArtist": { "S": "Limp Bizkit" },
+          "songTitle": { "S": "Nookie" },
+          "genre": {"S": "Nu Metal" },
+          "songLength": { "N": "289"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "09" },
+          "songArtist": { "S": "Nickelback" },
+          "songTitle": { "S": "Photograph" },
+          "genre": {"S": "Hard Rock" },
+          "songLength": { "N": "238"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "10" },
+          "songArtist": { "S": "Sisqo" },
+          "songTitle": { "S": "Thong Song" },
+          "genre": {"S": "Hip-hop" },
+          "songLength": { "N": "233"
           }
         }
       }
