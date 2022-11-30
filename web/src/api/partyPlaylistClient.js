@@ -5,7 +5,7 @@ import BindingClass from "../util/bindingClass";
 export default class PartyPlaylistClient extends BindingClass {
     constructor(props = {}) {
         super();
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'getPlaylist',
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'getPlaylist', 'getHost',
         'addSongToPlaylist', 'getSong', 'createPlaylist', 'createGuest', 'removeSongFromPlaylist', 'getGuestList', 'createHost', 'removeSongFromPlaylist', 'addUpvoteToSong'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
@@ -140,27 +140,45 @@ export default class PartyPlaylistClient extends BindingClass {
         }
     }
 
-        /**
-         * Gets a guest list.
-         *
-         * @param playlistId The playlist Id associated with the guest list.
-         * @param errorCallback (Optional) A function to execute if the call fails.
-         * @returns The guest list that has been retrieved.
-         */
-        async getGuestList(playlistId, errorCallback) {
-            try {
-                const response = await this.client.get(`guests/${playlistId}`);
-                console.log("Response: ", response);
-                return response.data.guestList;
-            } catch (error) {
-                this.handleError(error, errorCallback)
-            }
+    /**
+     * Gets a guest list.
+     *
+     * @param playlistId The playlist Id associated with the guest list.
+     * @param errorCallback (Optional) A function to execute if the call fails.
+     * @returns The guest list that has been retrieved.
+     */
+    async getGuestList(playlistId, errorCallback) {
+        try {
+            const response = await this.client.get(`guests/${playlistId}`);
+            console.log("Response: ", response);
+            return response.data.guestList;
+        } catch (error) {
+            this.handleError(error, errorCallback)
         }
+    }
+
+            /**
+     * Gets playlist associated with a host.
+     *
+     * @param playlistName The playlist name.
+     * @param hostName The host associated with the playlist.
+     * @param errorCallback (Optional) A function to execute if the call fails.
+     * @returns The playlistId that has been retrieved.
+     */
+    async getHost(playlistName, hostName, errorCallback) {
+        try {
+            const response = await this.client.get(`host/${hostName}/playlists/${playlistName}`);
+            console.log("Response: ", response);
+            return response.data.playlistId;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
 
     handleError(error, errorCallback) {
         console.error(error);
-        if (error.response.data.message !== undefined) {
-            console.error(error.response.data.message)
+        if (error.response.data.error_message !== undefined) {
+            console.error(error.response.data.error_message)
         }
         if (errorCallback) {
             errorCallback(error);

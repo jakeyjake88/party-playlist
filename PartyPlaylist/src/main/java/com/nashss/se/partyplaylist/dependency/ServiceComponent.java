@@ -7,6 +7,7 @@ import com.nashss.se.partyplaylist.activity.CreateHostActivity;
 import com.nashss.se.partyplaylist.activity.CreatePlaylistActivity;
 import com.nashss.se.partyplaylist.activity.GetGuestActivity;
 import com.nashss.se.partyplaylist.activity.GetGuestListActivity;
+import com.nashss.se.partyplaylist.activity.GetHostActivity;
 import com.nashss.se.partyplaylist.activity.GetPlaylistActivity;
 import com.nashss.se.partyplaylist.activity.RemoveSongFromPlaylistActivity;
 
@@ -79,4 +80,9 @@ public interface ServiceComponent {
      */
     CreateHostActivity provideCreateHostActivity();
 
+    /**
+     * Provides the relevant activity.
+     * @return GetHostActivity
+     */
+    GetHostActivity provideGetHostActivity();
 }
