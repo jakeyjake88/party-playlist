@@ -1,6 +1,15 @@
 package com.nashss.se.partyplaylist.dependency;
 
-import com.nashss.se.partyplaylist.activity.*;
+import com.nashss.se.partyplaylist.activity.AddGuestToPartyActivity;
+import com.nashss.se.partyplaylist.activity.AddSongToPlaylistActivity;
+import com.nashss.se.partyplaylist.activity.AddUpvoteToSongActivity;
+import com.nashss.se.partyplaylist.activity.CreateHostActivity;
+import com.nashss.se.partyplaylist.activity.CreatePlaylistActivity;
+import com.nashss.se.partyplaylist.activity.GetGuestActivity;
+import com.nashss.se.partyplaylist.activity.GetGuestListActivity;
+import com.nashss.se.partyplaylist.activity.GetHostActivity;
+import com.nashss.se.partyplaylist.activity.GetPlaylistActivity;
+import com.nashss.se.partyplaylist.activity.RemoveSongFromPlaylistActivity;
 
 import dagger.Component;
 

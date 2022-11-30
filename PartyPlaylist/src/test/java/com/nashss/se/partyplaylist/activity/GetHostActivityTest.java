@@ -29,9 +29,7 @@ class GetHostActivityTest {
         //GIVEN
         String expectedId = "expectedId";
         String expectedPlaylistName = "expectedPlaylistName";
-        String expectedFirstName = "expectedFirstName";
-        String expectedLastName = "expectedLastName";
-        String expectedHostName = expectedFirstName + " " + expectedLastName;
+        String expectedHostName = "expectedHostName";
 
         Playlist playlist = new Playlist();
         playlist.setPlaylistId(expectedId);
@@ -41,8 +39,7 @@ class GetHostActivityTest {
 
         GetHostRequest request = GetHostRequest.builder()
                 .withPlaylistName(expectedPlaylistName)
-                .withFirstName(expectedFirstName)
-                .withLastName(expectedLastName)
+                .withHostName(expectedHostName)
                 .build();
 
         // WHEN

@@ -1,16 +1,17 @@
 package com.nashss.se.partyplaylist.dynamodb;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
-import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.exceptions.PlaylistNotFoundException;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
-import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.inject.Inject;
 
 /**
  * Accesses data for a playlist using {@link Playlist} to represent the model in DynamoDB.
@@ -47,6 +48,13 @@ public class PlaylistDao {
 
         return playlist;
     }
+
+    /**
+     * Returns the {@link Playlist} corresponding to the specified playlistName.
+     *
+     * @param playlistName the Playlist Name
+     * @return the stored Playlist, or null if none was found.
+     */
 
     public Playlist getPlaylistWithPlaylistName(String playlistName) {
         Map<String, AttributeValue> valueMap = new HashMap<>();
