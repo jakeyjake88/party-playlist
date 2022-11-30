@@ -6,7 +6,7 @@ import PartyPlaylistClient from '../api/partyPlaylistClient';
 class CreatePlaylist extends BindingClass {
     constructor(){
         super();
-        this.bindClassMethods(['mount', 'submit', 'redirectToAdmin'], this);
+        this.bindClassMethods(['mount', 'submit', 'redirectToAdmin', 'hostLogin'], this);
         this.dataStore = new DataStore();
         this.dataStore.addChangeListener(this.redirectToAdmin);
         this.header = new Header(this.dataStore);
@@ -15,6 +15,7 @@ class CreatePlaylist extends BindingClass {
 
     mount() {
         document.getElementById('createPlaylist').addEventListener('click', this.submit);
+        document.getElementById('adminLoginButton').addEventListener('click', this.hostLogin);
         this.header.addHeaderToPage();
         this.header.loadData();
         this.client = new PartyPlaylistClient();
@@ -33,6 +34,17 @@ class CreatePlaylist extends BindingClass {
         const playlist = await this.client.createPlaylist(playlistName, playlistHost);
         this.dataStore.set('playlist', playlist);
         document.getElementById('createPlaylist').innerText = 'Created';
+    }
+
+    async hostLogin() {
+        document.getElementById('adminLoginButton').innerText = 'Logging In...';
+        const playlistName = document.getElementById('adminPlaylistName');
+        const hostName = document.getElementById('hostName');
+
+        const playlistId = await this.client.getHost;
+        
+        document.getElementById('adminLoginButton').innerHTML = 'Logged In';
+        window.location.href = `/admin.html/${playlistId}`
     }
 
     redirectToAdmin() {
@@ -57,11 +69,11 @@ class GetPlaylist extends BindingClass {
         document.getElementById('playlist-login').innerText = 'Logging in...';
         const partyPlaylist = await this.client.getPlaylist('01');
         this.pDataStore.set('playlist', partyPlaylist);
-        document.getElementById('addGuestButton').innerText = 'Logged in';
+        document.getElementById('guestLoginButton').innerText = 'Logged in';
     }
 
     mount() {
-        document.getElementById('addGuestButton').addEventListener('click', this.submit);
+        document.getElementById('guestLoginButton').addEventListener('click', this.submit);
         this.pHeader.addHeaderToPage();
         this.pHeader.loadData();
         this.client = new PartyPlaylistClient();
