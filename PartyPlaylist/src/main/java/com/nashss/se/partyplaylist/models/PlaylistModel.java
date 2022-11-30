@@ -1,7 +1,9 @@
 package com.nashss.se.partyplaylist.models;
+
 import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
 
 import java.util.List;
+
 import java.util.Objects;
 import java.util.Set;
 
