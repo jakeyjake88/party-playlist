@@ -54,25 +54,25 @@ public class GetHostRequest {
     public static class Builder {
         private String firstName;
         private String lastName;
-        private String playlistId;
+        private String playlistName;
 
-        public GetHostRequest.Builder withFirstName(String firstName) {
+        public Builder withFirstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
 
-        public GetHostRequest.Builder withLastName(String lastName) {
+        public Builder withLastName(String lastName) {
             this.lastName = lastName;
             return this;
         }
 
-        public GetHostRequest.Builder withPlaylistId(String playlistId) {
-            this.playlistId = playlistId;
+        public Builder withPlaylistName(String playlistName) {
+            this.playlistName = playlistName;
             return this;
         }
 
         public GetHostRequest build() {
-            return new GetHostRequest(firstName, lastName, playlistId);
+            return new GetHostRequest(firstName, lastName, playlistName);
         }
 
     }
