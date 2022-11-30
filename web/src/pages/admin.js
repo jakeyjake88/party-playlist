@@ -19,10 +19,11 @@ class Admin extends BindingClass {
      * Once the client is loaded, get the guest list for the playlist.
      */
     async clientLoaded() {
-        var playlistId = "01";
+        const urlParams = new URLSearchParams(window.location.search);
+        const playlistId = urlParams.get('playlistId');
         const guestList = await this.client.getGuestList(playlistId);
         this.dataStore.set('guestList', guestList);
-        const playlist = await this.client.getPlaylist('01');
+        const playlist = await this.client.getPlaylist(playlistId);
         this.dataStore.set('playlist', playlist);
         this.displayGuestList(guestList);
     }

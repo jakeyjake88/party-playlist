@@ -58,7 +58,7 @@ public class CreatePlaylistActivity {
         Playlist playlist = playlistDao.getPlaylist(createPlaylistRequest.getPlaylistId());
 
 
-        if (playlist.getPlaylistName().equals(createPlaylistRequest.getPlaylistName())) {
+        if (playlist != null && playlist.getPlaylistName().equals(createPlaylistRequest.getPlaylistName())) {
             throw new PlaylistAlreadyExistsException("Playlist name [" + createPlaylistRequest.getPlaylistName() +
                     "] already exists.");
         }
