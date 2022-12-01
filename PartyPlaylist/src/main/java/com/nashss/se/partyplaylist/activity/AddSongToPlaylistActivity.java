@@ -9,6 +9,7 @@ import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
 import com.nashss.se.partyplaylist.dynamodb.models.Song;
 import com.nashss.se.partyplaylist.exceptions.ArtistLimitException;
+import com.nashss.se.partyplaylist.exceptions.SongAlreadyOnPlaylistException;
 import com.nashss.se.partyplaylist.exceptions.SongNotFoundException;
 import com.nashss.se.partyplaylist.models.PlaylistEntryModel;
 
@@ -77,11 +78,18 @@ public class AddSongToPlaylistActivity {
         PlaylistEntry playlistEntry = new PlaylistEntry(songToAdd);
 
         Integer artistCount = getArtistCount(playlistSongs, playlistEntry);
+        Boolean isSongOnList = isSongOnList(playlistSongs, playlistEntry);
 
         if (artistCount < SAME_ARTIST_LIMIT) {
             playlistSongs.add(playlistEntry);
         } else {
             throw new ArtistLimitException("This artist has reached the limit for this playlist at this time.");
+        }
+
+        if (!isSongOnList) {
+            playlistSongs.add(playlistEntry);
+        } else {
+            throw new SongAlreadyOnPlaylistException("This song is already on this playlist");
         }
 
         playlist.setSongs(playlistSongs);
@@ -110,5 +118,22 @@ public class AddSongToPlaylistActivity {
             }
         }
         return count;
+    }
+
+    /**
+     * This method will check to see if the Playlist Entry already exists on the playlist.
+     * @param entryList the current playlist of playlist entries
+     * @param entryToCheck the song to check if it already exists on the playlist
+     * @return Boolean of whether the song already exists
+     */
+    private Boolean isSongOnList(List<PlaylistEntry> entryList, PlaylistEntry entryToCheck) {
+        for (PlaylistEntry entry : entryList) {
+            if (entry.getSongArtist().equals(entryToCheck.getSongArtist()) &&
+                    entry.getSongTitle().equals(entryToCheck.getSongTitle())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
