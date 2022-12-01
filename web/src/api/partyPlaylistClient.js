@@ -56,8 +56,8 @@ export default class PartyPlaylistClient extends BindingClass {
             });
             return response.data.playlist;
             } catch (error) {
-                let err = document.getElementById("err");
-                err.innerHTML = "Playlist name already exists! Please try again with a different name.";
+                // let err = document.getElementById("err");
+                // err.innerHTML = "Playlist name already exists! Please try again with a different name.";
                 this.handleError(error, errorCallback);
             }
         }
