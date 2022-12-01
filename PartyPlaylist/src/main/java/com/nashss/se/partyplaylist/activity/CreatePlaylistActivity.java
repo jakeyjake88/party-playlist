@@ -59,7 +59,7 @@ public class CreatePlaylistActivity {
 
         if (playlist != null) {
             throw new PlaylistAlreadyExistsException(
-                    String.format("'%s' already exists. Please choose another name",
+                    String.format("'%s' already exists. Please choose another name.",
                             createPlaylistRequest.getPlaylistName()));
         }
 
