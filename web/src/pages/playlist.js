@@ -18,8 +18,8 @@ class Playlist extends BindingClass {
     async clientLoaded() {
         const urlParams = new URLSearchParams(window.location.search);
         const playlistId = urlParams.get('playlistId');
-        this.dataStore.set('playlistId', playlist);
-        const playlist = await this.client.getPlaylistBy(playlistId);
+        this.dataStore.set('playlistId', playlistId);
+        const playlist = await this.client.getPlaylistById(playlistId);
         this.dataStore.set('playlist', playlist);
         const guestList = await this.client.getGuestList(playlistId);
         this.dataStore.set('guestList', guestList);
@@ -71,9 +71,13 @@ class Playlist extends BindingClass {
         document.getElementById('add-song').innerText = 'Adding...';
         const artistName = document.getElementById('song-artist').value;
         const artistTitle = document.getElementById('song-title').value;
-        const playlistId = this.dataStore.get('playlistId');
+        const urlParams = new URLSearchParams(window.location.search);
+        const playlistId = urlParams.get('playlistId');
 
-        const playlist = await this.client.addSongToPlaylist(artistName, artistTitle, playlistId);
+        const playlist = await this.client.addSongToPlaylist(artistName, artistTitle, playlistId, (error)=> {
+            document.getElementById("add-song").innerHTML = "Add Song"
+            document.getElementById("addSongError").innerHTML = error.response.data.error_message
+        });
         this.dataStore.set('songs', playlist);
 
         document.getElementById('add-song').innerText = 'Add Song';

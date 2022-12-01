@@ -32,7 +32,7 @@ export default class PartyPlaylistClient extends BindingClass {
 
     async getPlaylistByName(playlistName, errorCallback) {
         try {
-            const response = await this.client.get(`partyPlaylist/${playlistName}`);
+            const response = await this.client.get(`partyPlaylistName/${playlistName}`);
             return response.data.playlist;
         } catch (error) {
             this.handleError(error, errorCallback);
@@ -41,7 +41,7 @@ export default class PartyPlaylistClient extends BindingClass {
 
     async getPlaylistById(playlistId, errorCallback) {
         try {
-            const response = await this.client.get(`partyPlaylist/${playlistId}`);
+            const response = await this.client.get(`partyPlaylistId/${playlistId}`);
             return response.data.playlist;
         } catch (error) {
             this.handleError(error, errorCallback);
@@ -96,8 +96,6 @@ export default class PartyPlaylistClient extends BindingClass {
             });
             return response.data.songList;
         } catch (error) {
-            let err = document.getElementById("err");
-            err.innerHTML = "Song not found! Try again.";
             this.handleError(error, errorCallback);
         }
     }

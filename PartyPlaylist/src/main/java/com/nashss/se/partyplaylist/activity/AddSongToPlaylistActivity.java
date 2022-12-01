@@ -70,7 +70,7 @@ public class AddSongToPlaylistActivity {
 
         if (songToAdd == null) {
             throw new SongNotFoundException(
-                    String.format("'%s' by '%s' cannot be found", songTitle, songArtist));
+                    String.format("'%s' by '%s' cannot be found. Please try another song", songTitle, songArtist));
         }
 
         List<PlaylistEntry> playlistSongs = playlist.getSongs();

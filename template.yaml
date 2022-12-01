@@ -273,7 +273,7 @@ Resources:
         PartyPlaylist:
           Type: Api
           Properties:
-            Path: /partyPlaylist/{playlistName}
+            Path: /partyPlaylistName/{playlistName}
             Method: get
 
   GetPlaylistByIdLambda:
@@ -293,7 +293,7 @@ Resources:
         PartyPlaylist:
           Type: Api
           Properties:
-            Path: /partyPlaylist/{playlistId}
+            Path: /partyPlaylistId/{playlistId}
             Method: get
 
   CreatePlaylistLambda:

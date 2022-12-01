@@ -1,9 +1,10 @@
 package com.nashss.se.partyplaylist.lambda;
 
-import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.nashss.se.partyplaylist.activity.requests.GetPlaylistByIdRequest;
 import com.nashss.se.partyplaylist.activity.results.GetPlaylistByIdResult;
+
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 public class GetPlaylistByIdLambda extends LambdaActivityRunner<GetPlaylistByIdRequest, GetPlaylistByIdResult>
         implements RequestHandler<LambdaRequest<GetPlaylistByIdRequest>, LambdaResponse> {
