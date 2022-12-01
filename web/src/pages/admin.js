@@ -21,6 +21,7 @@ class Admin extends BindingClass {
     async clientLoaded() {
         const urlParams = new URLSearchParams(window.location.search);
         const playlistId = urlParams.get('playlistId');
+        this.dataStore.set('playlistId', playlistId);
         const guestList = await this.client.getGuestList(playlistId);
         this.dataStore.set('guestList', guestList);
         const playlist = await this.client.getPlaylist(playlistId);
@@ -52,7 +53,7 @@ class Admin extends BindingClass {
 
         const guest = await this.client.createGuest(firstName, lastName);
         this.dataStore.set('user', guest);
-        var playlistId = "01";
+        const playlistId = this.dataStore.get('playlistId');
         const guestList = await this.client.getGuestList(playlistId);
         this.dataStore.set('guestList', guestList);
         this.displayGuestList(guestList);
@@ -82,7 +83,7 @@ class Admin extends BindingClass {
         document.getElementById('add-song-admin').innerText = 'Adding...';
         const artistName = document.getElementById('song-artist').value;
         const artistTitle = document.getElementById('song-title').value;
-        const playlistId = '01';
+        const playlistId = this.dataStore.get('playlistId');
 
         const playlist = await this.client.addSongToPlaylist(artistName, artistTitle, playlistId);
         this.dataStore.set('songs', playlist);
@@ -100,7 +101,7 @@ class Admin extends BindingClass {
         document.getElementById('remove-song-admin').innerText = 'Removing...';
         const artistName = document.getElementById('song-artist').value;
         const artistTitle = document.getElementById('song-title').value;
-        const playlistId = '01';
+        const playlistId = this.dataStore.get('playlistId');
 
         const playlist = await this.client.removeSongFromPlaylist(artistName, artistTitle, playlistId);
         this.dataStore.set('songs', playlist);

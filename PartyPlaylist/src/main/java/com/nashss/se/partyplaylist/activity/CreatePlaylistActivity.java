@@ -6,7 +6,6 @@ import com.nashss.se.partyplaylist.activity.results.CreatePlaylistResult;
 import com.nashss.se.partyplaylist.converters.ModelConverter;
 import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
-import com.nashss.se.partyplaylist.exceptions.PlaylistAlreadyExistsException;
 import com.nashss.se.partyplaylist.models.PlaylistModel;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
@@ -55,13 +54,13 @@ public class CreatePlaylistActivity {
     public CreatePlaylistResult handleRequest(final CreatePlaylistRequest createPlaylistRequest) {
         log.info("Received CreatePlaylistRequest {} ", createPlaylistRequest);
 
-        Playlist playlist = playlistDao.getPlaylist(createPlaylistRequest.getPlaylistId());
+        /*Playlist playlist = playlistDao.getPlaylist(createPlaylistRequest.getPlaylistId());*/
 
 
-        if (playlist != null && playlist.getPlaylistName().equals(createPlaylistRequest.getPlaylistName())) {
+        /*if (playlist != null && playlist.getPlaylistName().equals(createPlaylistRequest.getPlaylistName())) {
             throw new PlaylistAlreadyExistsException("Playlist name [" + createPlaylistRequest.getPlaylistName() +
                     "] already exists.");
-        }
+        }*/
 
         Playlist newPlaylist = new Playlist();
 
