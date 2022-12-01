@@ -1,7 +1,7 @@
 package com.nashss.se.partyplaylist.activity;
 
-import com.nashss.se.partyplaylist.activity.requests.GetPlaylistRequest;
-import com.nashss.se.partyplaylist.activity.results.GetPlaylistResult;
+import com.nashss.se.partyplaylist.activity.requests.GetPlaylistByNameRequest;
+import com.nashss.se.partyplaylist.activity.results.GetPlaylistByNameResult;
 
 import com.nashss.se.partyplaylist.converters.ModelConverter;
 
@@ -21,7 +21,7 @@ import javax.inject.Singleton;
  */
 
 @Singleton
-public class GetPlaylistActivity {
+public class GetPlaylistByNameActivity {
 
     private final Logger log = LogManager.getLogger();
     private final PlaylistDao playlistDao;
@@ -33,7 +33,7 @@ public class GetPlaylistActivity {
      */
 
     @Inject
-    public GetPlaylistActivity(PlaylistDao playlistDao) {
+    public GetPlaylistByNameActivity(PlaylistDao playlistDao) {
         this.playlistDao = playlistDao;
     }
 
@@ -44,17 +44,17 @@ public class GetPlaylistActivity {
      * <p>
      * If the playlist does not exist, this should throw a PlaylistNotFoundException.
      *
-     * @param getPlaylistRequest request object containing the playlist ID
+     * @param getPlaylistByNameRequest request object containing the playlist name
      * @return getPlaylistResult result object containing the API defined {@link PlaylistModel}
      */
-    public GetPlaylistResult handleRequest(final GetPlaylistRequest getPlaylistRequest) {
-        log.info("Received GetPlaylistRequest {}", getPlaylistRequest);
+    public GetPlaylistByNameResult handleRequest(final GetPlaylistByNameRequest getPlaylistByNameRequest) {
+        log.info("Received GetPlaylistRequest {}", getPlaylistByNameRequest);
 
-        String requestedId = getPlaylistRequest.getId();
-        Playlist playlist = playlistDao.getPlaylist(requestedId);
+        String playlistName = getPlaylistByNameRequest.getPlaylistName();
+        Playlist playlist = playlistDao.getPlaylistWithPlaylistName(playlistName);
 
         PlaylistModel playlistModel = new ModelConverter().toPlaylistModel(playlist);
 
-        return GetPlaylistResult.builder().withPlaylist(playlistModel).build();
+        return GetPlaylistByNameResult.builder().withPlaylist(playlistModel).build();
     }
 }

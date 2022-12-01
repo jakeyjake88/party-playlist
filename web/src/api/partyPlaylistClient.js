@@ -5,7 +5,7 @@ import BindingClass from "../util/bindingClass";
 export default class PartyPlaylistClient extends BindingClass {
     constructor(props = {}) {
         super();
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'getPlaylist', 'getHost',
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'getPlaylistByName', 'getPlaylistById', 'getHost',
         'addSongToPlaylist', 'getSong', 'createPlaylist', 'createGuest', 'removeSongFromPlaylist', 'getGuestList', 'createHost', 'removeSongFromPlaylist', 'addUpvoteToSong'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
@@ -30,9 +30,18 @@ export default class PartyPlaylistClient extends BindingClass {
         }
     }
 
-    async getPlaylist(id, errorCallback) {
+    async getPlaylistByName(playlistName, errorCallback) {
         try {
-            const response = await this.client.get(`playlist/${id}`);
+            const response = await this.client.get(`partyPlaylist/${playlistName}`);
+            return response.data.playlist;
+        } catch (error) {
+            this.handleError(error, errorCallback);
+        }
+    }
+
+    async getPlaylistById(playlistId, errorCallback) {
+        try {
+            const response = await this.client.get(`partyPlaylist/${playlistId}`);
             return response.data.playlist;
         } catch (error) {
             this.handleError(error, errorCallback);

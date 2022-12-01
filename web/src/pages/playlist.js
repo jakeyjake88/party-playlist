@@ -16,8 +16,10 @@ class Playlist extends BindingClass {
     }
 
     async clientLoaded() {
-        var playlistId = "01";
-        const playlist = await this.client.getPlaylist(playlistId);
+        const urlParams = new URLSearchParams(window.location.search);
+        const playlistId = urlParams.get('playlistId');
+        this.dataStore.set('playlistId', playlist);
+        const playlist = await this.client.getPlaylistBy(playlistId);
         this.dataStore.set('playlist', playlist);
         const guestList = await this.client.getGuestList(playlistId);
         this.dataStore.set('guestList', guestList);
@@ -69,7 +71,7 @@ class Playlist extends BindingClass {
         document.getElementById('add-song').innerText = 'Adding...';
         const artistName = document.getElementById('song-artist').value;
         const artistTitle = document.getElementById('song-title').value;
-        const playlistId = '01';
+        const playlistId = this.dataStore.get('playlistId');
 
         const playlist = await this.client.addSongToPlaylist(artistName, artistTitle, playlistId);
         this.dataStore.set('songs', playlist);
