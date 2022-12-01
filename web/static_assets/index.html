@@ -8,7 +8,7 @@
 <header class="header" id="header"><h1>Welcome to Party Playlist!</h1></header>
 
 <div class="flex-container">
-    <div class="login-form">
+    <div class="guest-login-form">
         <h2>Login To Your Party's Playlist</h2>
         <form class="card-content" id="playlist-login">
             <p class="form-field">
@@ -16,7 +16,23 @@
                 <input type="text" required class="validated-field" id="partyPlaylistName" placeholder="Playlist Name" autofocus>
             </p>
         </form>
-        <button type="button" id="addGuestButton">Login</button>
+        <button type="button" id="guestLoginButton">Login</button>
+    </div>
+
+    <div class="admin-login-form">
+        <h2>Login To Your Host Page</h2>
+        <form class="card-content" id="admin-login">
+            <p class="form-field">
+                <label>Playlist Name</label>
+                <input type="text" required class="validated-field" id="adminPlaylistName" placeholder="Playlist Name" autofocus>
+            </p>
+            <p class="form-field">
+                <label>Host Name</label>
+                <input type="text" required class="validated-field" id="hostName" placeholder="Host Name" autofocus>
+            </p>
+        </form>
+        <button type="button" id="adminLoginButton">Login</button>
+        <h3 id="hostError"></h3>
     </div>
 
     <div class="create-playlist">

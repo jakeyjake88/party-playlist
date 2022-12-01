@@ -53,5 +53,4 @@ public class GetGuestActivity {
         UserModel userModel = new ModelConverter().toUserModel(guest);
         return GetGuestResult.builder().withGuest(userModel).build();
     }
-
 }

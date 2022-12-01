@@ -4,6 +4,7 @@ import com.nashss.se.partyplaylist.converters.PlaylistEntryListConverter;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 
@@ -16,7 +17,7 @@ import java.util.Set;
  */
 @DynamoDBTable(tableName = "playlists")
 public class Playlist {
-
+    public static final String PLAYLIST_NAME_INDEX = "PlaylistNameIndex";
     private String playlistId;
     private String playlistName;
     private String host;
@@ -33,7 +34,7 @@ public class Playlist {
         this.playlistId = playlistId;
     }
 
-    @DynamoDBAttribute(attributeName = "playlistName")
+    @DynamoDBIndexHashKey(globalSecondaryIndexName = PLAYLIST_NAME_INDEX, attributeName = "playlistName")
     public String getPlaylistName() {
         return playlistName;
     }
