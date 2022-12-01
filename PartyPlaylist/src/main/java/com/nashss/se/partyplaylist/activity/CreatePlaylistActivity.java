@@ -9,6 +9,8 @@ import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.exceptions.PlaylistAlreadyExistsException;
 import com.nashss.se.partyplaylist.models.PlaylistModel;
 
+import com.nashss.se.projectresources.music.playlist.servic.util.MusicPlaylistServiceUtils;
+
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,8 +27,6 @@ import javax.inject.Inject;
 public class CreatePlaylistActivity {
 
     private final Logger log = LogManager.getLogger();
-
-    private DynamoDBMapper mapper;
     private final PlaylistDao playlistDao;
 
     /**
@@ -65,7 +65,7 @@ public class CreatePlaylistActivity {
 
         Playlist newPlaylist = new Playlist();
 
-        newPlaylist.setPlaylistId(createPlaylistRequest.getPlaylistId());
+        newPlaylist.setPlaylistId(MusicPlaylistServiceUtils.generatePlaylistId());
         newPlaylist.setPlaylistName(createPlaylistRequest.getPlaylistName());
         newPlaylist.setSongs(new ArrayList<>());
         newPlaylist.setGuests(null);

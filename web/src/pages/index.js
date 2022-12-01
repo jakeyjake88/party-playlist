@@ -36,7 +36,7 @@ class CreatePlaylist extends BindingClass {
             document.getElementById('sameNameError').innerHTML = error.response.data.error_message
         });
         this.dataStore.set('playlist', playlist);
-        document.getElementById('createPlaylist').innerText = 'Created';
+        this.redirectToAdmin(playlist.playlistId);
     }
 
     async hostLogin() {
@@ -50,15 +50,12 @@ class CreatePlaylist extends BindingClass {
         });
 
         if (playlistId != null) {
-            window.location.href = `/admin.html?playlistId=${playlistId}`;
+            this.redirectToAdmin(playlistId)
         }
     }
 
-    redirectToAdmin() {
-        const playlist = this.dataStore.get('playlist');
-        if (playlist != null) {
-            window.location.href = `/admin.html`;
-        }
+    async redirectToAdmin(playlistId) {
+        window.location.href = `/admin.html?playlistId=${playlistId}`;
     }
 
 }
