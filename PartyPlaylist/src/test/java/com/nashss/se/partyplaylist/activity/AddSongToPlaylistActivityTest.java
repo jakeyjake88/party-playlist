@@ -9,6 +9,7 @@ import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
 import com.nashss.se.partyplaylist.dynamodb.models.PlaylistEntry;
 import com.nashss.se.partyplaylist.dynamodb.models.Song;
 
+import com.nashss.se.partyplaylist.exceptions.SongAlreadyOnPlaylistException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -126,6 +127,45 @@ public class AddSongToPlaylistActivityTest {
                 .build();
 
         assertThrows(ArtistLimitException.class, ()-> addSongToPlaylistActivity.handleRequest(request));
+
+    }
+
+    @Test
+    public void isSongOnList_playlistWithSongAlreadyOnList_throwsSongAlreadyOnPlaylistException() {
+        String songArtist = "Nickelback";
+        String songTitle1 = "Photograph";
+        String songTitle2 = "Photograph";
+        String id = "01";
+
+
+        Song song1 = new Song();
+        song1.setSongArtist(songArtist);
+        song1.setSongTitle(songTitle1);
+
+        Song song2 = new Song();
+        song2.setSongArtist(songArtist);
+        song2.setSongTitle(songTitle2);
+
+        PlaylistEntry pe1 = new PlaylistEntry(song1);
+        PlaylistEntry pe2 = new PlaylistEntry(song2);
+
+        List<PlaylistEntry> peList = new ArrayList<>(List.of(pe1));
+
+        Playlist playlist = new Playlist();
+        playlist.setPlaylistId(id);
+        playlist.setSongs(peList);
+
+        when(playlistDao.getPlaylist(id)).thenReturn(playlist);
+        when(songDAO.getSong(songTitle2, songArtist)).thenReturn(song2);
+
+
+        AddSongToPlaylistRequest request = AddSongToPlaylistRequest.builder()
+                .withPlaylistId(playlist.getPlaylistId())
+                .withSongTitle(pe2.getSongTitle())
+                .withSongArtist(pe2.getSongArtist())
+                .build();
+
+        assertThrows(SongAlreadyOnPlaylistException.class, ()-> addSongToPlaylistActivity.handleRequest(request));
 
     }
 }
