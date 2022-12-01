@@ -126,12 +126,12 @@ export default class PartyPlaylistClient extends BindingClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The guest that has been created.
      */
-    async createGuest(firstName, lastName, errorCallback) {
+    async createGuest(firstName, lastName, playlistId, errorCallback) {
         try {
-            const playlistId = "01";
             const response = await this.client.post(`users/${playlistId}`, {
                 firstName: firstName,
-                lastName: lastName
+                lastName: lastName,
+                playlistId: playlistId
             });
             console.log("Response: ", response);
             return response.data.guest;

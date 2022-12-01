@@ -8,7 +8,7 @@ class CreatePlaylist extends BindingClass {
         super();
         this.bindClassMethods(['mount', 'submit', 'redirectToAdmin', 'hostLogin'], this);
         this.dataStore = new DataStore();
-        this.dataStore.addChangeListener(this.redirectToAdmin);
+        // this.dataStore.addChangeListener(this.redirectToAdmin);
         this.header = new Header(this.dataStore);
     }
 
@@ -36,7 +36,9 @@ class CreatePlaylist extends BindingClass {
             document.getElementById('sameNameError').innerHTML = error.response.data.error_message
         });
         this.dataStore.set('playlist', playlist);
-        this.redirectToAdmin(playlist.playlistId);
+        if (playlist != null) {
+            this.redirectToAdmin(playlist.playlistID);
+        }
     }
 
     async hostLogin() {
@@ -57,7 +59,6 @@ class CreatePlaylist extends BindingClass {
     async redirectToAdmin(playlistId) {
         window.location.href = `/admin.html?playlistId=${playlistId}`;
     }
-
 }
 
 class GetPlaylist extends BindingClass {
