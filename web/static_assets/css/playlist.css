@@ -1,0 +1,176 @@
+h1 {
+    align-self: center;
+}
+
+h2 {
+    align-self: center;
+    font-size: 50px;
+}
+
+
+
+.main-frame {
+    max-width: 1599px;
+    margin: 0 auto;
+}
+
+
+
+  .header {
+    padding: 30px;
+    text-align: center;
+  }
+
+  .header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+
+
+
+
+
+.vote {
+  width: 80px;
+  position:absolute;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  background: url(https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png);
+  background-position: 0 0;
+  animation: fave-like-btn-svg 1s steps(28);
+  cursor: pointer;
+}
+
+
+.vote:hover {
+  background-position: -2800px 0;
+  transition: background 1s steps(28);
+}
+
+@keyframes vote {
+  0% {
+    background-position: 2800px 0;
+  }
+  100% {
+    background-position: -2800px 0;
+  }
+}
+
+
+.song-wrapper {
+    display: block;
+}
+
+.vote-wrapper {}
+
+
+.col-title {
+}
+
+
+
+
+
+.col-background {
+        border-radius: 6px;
+        font-family: 'Montserrat', sans-serif;
+        position: relative;
+
+        margin: auto;
+        padding: 60px 60px;
+        background: linear-gradient(-45deg, #92371b, #5f0729, #0d4a61, #0a6852);
+        background-size: 400% 400%;
+          animation: gradient 13s ease infinite;
+
+}
+
+
+
+
+
+
+body {
+    background-color: #d3d3d3;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-size: 14px;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .btn {
+  background-color: #1161ed;
+  color: white;
+  width: 100%;
+  padding: 10px 20px;
+  display: block;
+  height: 39px;
+  border-radius: 20px;
+  margin-top: 30px;
+  transition: all 0.5s ease-in-out;
+  border: none;
+  text-transform: uppercase;
+}
+
+.btn:hover{
+    background: #4082f5;
+  box-shadow: 0px 4px 35px -5px #4082f5;
+  cursor: pointer;
+}
+
+input {
+    display: inline-block;
+    padding-top: 20px;
+    font-size: 14px;
+    color:black;
+    font-weight:bold;
+  }
+
+  .text {
+    border: none;
+    color: black;
+    width: 89%;
+    padding: 10px 20px;
+    display: block;
+    height: 10px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0);
+    overflow: hidden;
+    margin-top: 15px;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .text:focus {
+    outline: 0;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0);
+  }
+
+  .text:focus + span {
+    opacity: 0.6;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    font-weight:bold;
+  }
+

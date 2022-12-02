@@ -32,9 +32,9 @@ export default class Header extends BindingClass {
     /**
      * Add the header to the page.
      */
-    addHeaderToPage() {
-        document.getElementById('header').innerHTML = "<h1>Your Party, Your Playlist</h1>";
-    }
+//    addHeaderToPage() {
+//        document.getElementById('header').innerHTML = "<h1>Your Party, Your Playlist</h1>";
+//    }
 
     /**
      * When the datastore has been updated, update the username in the header.

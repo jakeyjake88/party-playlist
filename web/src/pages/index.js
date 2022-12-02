@@ -61,7 +61,10 @@ class CreatePlaylist extends BindingClass {
         document.getElementById('guestLoginButton').innerText = 'Logging in...';
         console.log(document.getElementById('playlistName'));
         const playlistName = document.getElementById('playlistName').value;
-        const partyPlaylist = await this.client.getPlaylistByName(playlistName);
+        const partyPlaylist = await this.client.getPlaylistByName(playlistName, (error)=> {
+            document.getElementById("guestLogin").innerHTML = "Login"
+            document.getElementById("songNotFoundError").innerHTML = error.response.data.error_message
+        });
         this.dataStore.set('partyPlaylist', partyPlaylist);
         this.redirectToPlaylist();
         document.getElementById('guestLoginButton').innerText = 'Logged in';

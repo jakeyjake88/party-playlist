@@ -44,8 +44,18 @@ class Playlist extends BindingClass {
             let songHtml = '';
             let song;
             for (song of playlist.songs) {
-                songHtml += '<div class="songs">' + '<b>' + song.songTitle + '</b>' +  ' ' + song.songArtist + '</div>'
-                + '<span class="sprite vote" id="' + song.songId + '">' + '</span>' + song.upvotes;
+                songHtml +=
+                '<div class="playlist-item">'
+                    + '<div class="song-wrapper">'
+                        + '<span class="song-name">' + song.songTitle + '</span>'
+                        + '<span class="song-artist">' + song.songArtist + '</span>'
+                    +  '</div>'
+
+                    + '<div class="vote-wrapper">'
+                        + '<div class="vote" id="' + song.songId + '"></div>'
+                        + '<div class="vote-count">' + song.upvotes + '</div>'
+                    + '</div>'
+                +  '</div>';
             }
             document.getElementById('songs').innerHTML = songHtml;
             for (const btn of document.querySelectorAll('.vote')) {
