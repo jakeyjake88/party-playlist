@@ -1,13 +1,10 @@
 package com.nashss.se.partyplaylist.activity;
 
-import com.nashss.se.partyplaylist.activity.requests.GetPlaylistRequest;
-import com.nashss.se.partyplaylist.activity.results.GetPlaylistResult;
-
+import com.nashss.se.partyplaylist.activity.requests.GetPlaylistByIdRequest;
+import com.nashss.se.partyplaylist.activity.results.GetPlaylistByIdResult;
 import com.nashss.se.partyplaylist.converters.ModelConverter;
-
 import com.nashss.se.partyplaylist.dynamodb.PlaylistDao;
 import com.nashss.se.partyplaylist.dynamodb.models.Playlist;
-
 import com.nashss.se.partyplaylist.models.PlaylistModel;
 
 import org.apache.logging.log4j.LogManager;
@@ -21,7 +18,7 @@ import javax.inject.Singleton;
  */
 
 @Singleton
-public class GetPlaylistActivity {
+public class GetPlaylistByIdActivity {
 
     private final Logger log = LogManager.getLogger();
     private final PlaylistDao playlistDao;
@@ -33,7 +30,7 @@ public class GetPlaylistActivity {
      */
 
     @Inject
-    public GetPlaylistActivity(PlaylistDao playlistDao) {
+    public GetPlaylistByIdActivity(PlaylistDao playlistDao) {
         this.playlistDao = playlistDao;
     }
 
@@ -44,17 +41,17 @@ public class GetPlaylistActivity {
      * <p>
      * If the playlist does not exist, this should throw a PlaylistNotFoundException.
      *
-     * @param getPlaylistRequest request object containing the playlist ID
+     * @param getPlaylistByIdRequest request object containing the playlist Id
      * @return getPlaylistResult result object containing the API defined {@link PlaylistModel}
      */
-    public GetPlaylistResult handleRequest(final GetPlaylistRequest getPlaylistRequest) {
-        log.info("Received GetPlaylistRequest {}", getPlaylistRequest);
+    public GetPlaylistByIdResult handleRequest(final GetPlaylistByIdRequest getPlaylistByIdRequest) {
+        log.info("Received GetPlaylistRequest {}", getPlaylistByIdRequest);
 
-        String requestedId = getPlaylistRequest.getId();
-        Playlist playlist = playlistDao.getPlaylist(requestedId);
+        String playlistId = getPlaylistByIdRequest.getPlaylistId();
+        Playlist playlist = playlistDao.getPlaylist(playlistId);
 
         PlaylistModel playlistModel = new ModelConverter().toPlaylistModel(playlist);
 
-        return GetPlaylistResult.builder().withPlaylist(playlistModel).build();
+        return GetPlaylistByIdResult.builder().withPlaylist(playlistModel).build();
     }
 }

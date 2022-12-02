@@ -11,18 +11,12 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 @JsonDeserialize(builder = CreatePlaylistRequest.Builder.class)
 public class CreatePlaylistRequest {
 
-    private final String playlistId;
     private final String playlistName;
     private final String host;
 
     private CreatePlaylistRequest(String playlistName, String host) {
-        // TODO replace with actual value
-        this.playlistId = "01";
         this.playlistName = playlistName;
         this.host = host;
-    }
-    public String getPlaylistId() {
-        return playlistId;
     }
 
     public String getPlaylistName() {
@@ -36,7 +30,6 @@ public class CreatePlaylistRequest {
     @Override
     public String toString() {
         return "CreatePlaylistRequest{" +
-                "playlistId='" + playlistId + '\'' +
                 ", name='" + playlistName + '\'' +
                 ", host='" + host +
                 '}';

@@ -20,17 +20,16 @@ public class AddGuestToPartyRequest {
 
     private List<Song> songsUpvoted;
 
-    private String playlistId;
+    private final String playlistId;
 
 
-    private AddGuestToPartyRequest(String firstName, String lastName) {
+    private AddGuestToPartyRequest(String firstName, String lastName, String playlistId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.isAdmin = false;
         this.songsAdded = new ArrayList<>();
         this.songsUpvoted  = new ArrayList<>();
-        // TODO replace with actual value
-        this.playlistId = "01";
+        this.playlistId = playlistId;
     }
 
     public String getFirstName() {
@@ -90,6 +89,8 @@ public class AddGuestToPartyRequest {
 
         private String lastName;
 
+        private String playlistId;
+
         /**
          * With firstName parameter for AddGuestToPartyRequest builder.
          * @param firstName the users first name
@@ -110,12 +111,17 @@ public class AddGuestToPartyRequest {
             return this;
         }
 
+        public Builder withPlaylistId(String playlistId) {
+            this.playlistId = playlistId;
+            return this;
+        }
+
         /**
          * Build AddGuestToPartyRequest.
          * @return AddGuestToPartyRequest
          */
         public AddGuestToPartyRequest build() {
-            return new AddGuestToPartyRequest(firstName, lastName);
+            return new AddGuestToPartyRequest(firstName, lastName, playlistId);
         }
 
 

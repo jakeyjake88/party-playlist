@@ -24,7 +24,7 @@ class Admin extends BindingClass {
         this.dataStore.set('playlistId', playlistId);
         const guestList = await this.client.getGuestList(playlistId);
         this.dataStore.set('guestList', guestList);
-        const playlist = await this.client.getPlaylist(playlistId);
+        const playlist = await this.client.getPlaylistById(playlistId);
         this.dataStore.set('playlist', playlist);
         this.displayGuestList(guestList);
     }
@@ -51,9 +51,9 @@ class Admin extends BindingClass {
         const firstName = document.getElementById('firstName').value;
         const lastName = document.getElementById('lastName').value;
 
-        const guest = await this.client.createGuest(firstName, lastName);
-        this.dataStore.set('user', guest);
         const playlistId = this.dataStore.get('playlistId');
+        const guest = await this.client.createGuest(firstName, lastName, playlistId);
+        this.dataStore.set('user', guest);
         const guestList = await this.client.getGuestList(playlistId);
         this.dataStore.set('guestList', guestList);
         this.displayGuestList(guestList);
