@@ -80,16 +80,24 @@ public class AddSongToPlaylistActivity {
         Integer artistCount = getArtistCount(playlistSongs, playlistEntry);
         Boolean isSongOnList = isSongOnList(playlistSongs, playlistEntry);
 
-        if (artistCount < SAME_ARTIST_LIMIT) {
+        /*if (artistCount < SAME_ARTIST_LIMIT) {
             playlistSongs.add(playlistEntry);
         } else {
             throw new ArtistLimitException("This artist has reached the limit for this playlist at this time.");
-        }
+        }*/
 
-        if (!isSongOnList) {
+        /*if (!isSongOnList) {
             playlistSongs.add(playlistEntry);
         } else {
             throw new SongAlreadyOnPlaylistException("This song is already on this playlist");
+        }*/
+        
+        if (isSongOnList) {
+            throw new SongAlreadyOnPlaylistException("This song is already on this playlist");
+        } else if (artistCount >= SAME_ARTIST_LIMIT) {
+            throw new ArtistLimitException("This artist has reached the limit for this playlist at this time.");
+        } else {
+            playlistSongs.add(playlistEntry);
         }
 
         playlist.setSongs(playlistSongs);

@@ -49,10 +49,13 @@ public class GetHostActivity {
 
         String playlistName = getHostRequest.getPlaylistName();
         String hostName = getHostRequest.getHostName();
+        String hostNameWithoutSpace = hostName.replaceAll("\\s+","");
 
         Playlist playlist = playlistDao.getPlaylistWithPlaylistName(playlistName);
 
-        if (!playlist.getHost().equals(hostName)) {
+        String playlistHostNameWithoutSpace = playlist.getHost().replaceAll("\\s+","");
+
+        if (!hostNameWithoutSpace.equalsIgnoreCase(playlistHostNameWithoutSpace)) {
             throw new HostNotFoundException(
                     String.format("Cannot find host associated with '%s'. Please try again.", playlistName));
         }

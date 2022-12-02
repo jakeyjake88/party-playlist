@@ -8,7 +8,7 @@ import DataStore from "../util/DataStore";
 export default class Header extends BindingClass {
     constructor(dataStore = new DataStore()) {
         super();
-        const methodsToBind = ['clientLoaded', 'loadData', 'addHeaderToPage', 'updateUsernameInHeader'];
+        const methodsToBind = ['clientLoaded', 'loadData', 'addHeaderToPage'];
         this.bindClassMethods(methodsToBind, this);
         this.dataStore = dataStore;
         this.dataStore.set('username', '');
@@ -32,14 +32,7 @@ export default class Header extends BindingClass {
     /**
      * Add the header to the page.
      */
-    addHeaderToPage() {
-        document.getElementById('header').innerHTML = "<h1>Your Party, Your Playlist</h1>";
-    }
-
-    /**
-     * When the datastore has been updated, update the username in the header.
-     */
-    updateUsernameInHeader() {
-        document.getElementById('user').innerText = this.dataStore.get('username');
-    }
+   addHeaderToPage() {
+       document.getElementById('header').innerHTML = "<h1>Your Party, Your Playlist</h1>";
+   }
 }
