@@ -127,6 +127,20 @@ Resources:
                       - !Ref 'AWS::Region'
                       - ':'
                       - !Ref 'AWS::AccountId'
+                      - ':table/playlists'
+        - PolicyName: 'AccessPlaylistsIndex'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: dynamodb:*
+                Resource:
+                  Fn::Join:
+                    - ''
+                    - - 'arn:aws:dynamodb:'
+                      - !Ref 'AWS::Region'
+                      - ':'
+                      - !Ref 'AWS::AccountId'
                       - ':table/playlists/*'
         - PolicyName: 'AccessUsersTable'
           PolicyDocument:
