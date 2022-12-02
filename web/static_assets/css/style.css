@@ -5,6 +5,13 @@ body {
     width: 100%;
 }
 
+a {
+  text-decoration: none;
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+}
+
 h1 {
     align-self: center;
 }
