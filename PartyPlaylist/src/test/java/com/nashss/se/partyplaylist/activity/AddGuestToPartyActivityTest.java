@@ -49,7 +49,9 @@ public class AddGuestToPartyActivityTest {
 
         AddGuestToPartyRequest request = AddGuestToPartyRequest.builder()
                 .withFirstName(firstName)
-                .withLastName(lastName).build();
+                .withLastName(lastName)
+                .withPlaylistId(playlistId)
+                .build();
 
         //WHEN
         AddGuestToPartyResult result = addGuestToPartyActivity.handleRequest(request);
@@ -76,7 +78,9 @@ public class AddGuestToPartyActivityTest {
 
         AddGuestToPartyRequest request = AddGuestToPartyRequest.builder()
                 .withFirstName(firstName)
-                .withLastName(lastName).build();
+                .withLastName(lastName)
+                .withPlaylistId(playlistId)
+                .build();
 
         //WHEN
         AddGuestToPartyResult result = addGuestToPartyActivity.handleRequest(request);

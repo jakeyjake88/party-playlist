@@ -2,11 +2,11 @@ package com.nashss.se.partyplaylist.activity.results;
 
 import com.nashss.se.partyplaylist.models.PlaylistModel;
 
-public class GetPlaylistResult {
+public class GetPlaylistByNameResult {
 
     private final PlaylistModel playlist;
 
-    private GetPlaylistResult(PlaylistModel playlist) {
+    private GetPlaylistByNameResult(PlaylistModel playlist) {
         this.playlist = playlist;
     }
 
@@ -16,7 +16,7 @@ public class GetPlaylistResult {
 
     @Override
     public String toString() {
-        return "GetPlaylistResult{" + "playlist=" + playlist + '}';
+        return "GetPlaylistByNameResult{" + "playlist=" + playlist + '}';
     }
 
     //CHECKSTYLE:OFF:Builder
@@ -33,8 +33,8 @@ public class GetPlaylistResult {
             return this;
         }
 
-       public GetPlaylistResult build() {
-            return new GetPlaylistResult(playlist);
+       public GetPlaylistByNameResult build() {
+            return new GetPlaylistByNameResult(playlist);
        }
     }
 }

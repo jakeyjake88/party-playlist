@@ -5,7 +5,7 @@ import BindingClass from "../util/bindingClass";
 export default class PartyPlaylistClient extends BindingClass {
     constructor(props = {}) {
         super();
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'getPlaylist', 'getHost',
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'getPlaylistByName', 'getPlaylistById', 'getHost',
         'addSongToPlaylist', 'getSong', 'createPlaylist', 'createGuest', 'removeSongFromPlaylist', 'getGuestList', 'createHost', 'removeSongFromPlaylist', 'addUpvoteToSong'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
@@ -30,9 +30,18 @@ export default class PartyPlaylistClient extends BindingClass {
         }
     }
 
-    async getPlaylist(id, errorCallback) {
+    async getPlaylistByName(playlistName, errorCallback) {
         try {
-            const response = await this.client.get(`playlist/${id}`);
+            const response = await this.client.get(`partyPlaylistName/${playlistName}`);
+            return response.data.playlist;
+        } catch (error) {
+            this.handleError(error, errorCallback);
+        }
+    }
+
+    async getPlaylistById(playlistId, errorCallback) {
+        try {
+            const response = await this.client.get(`partyPlaylistId/${playlistId}`);
             return response.data.playlist;
         } catch (error) {
             this.handleError(error, errorCallback);
@@ -87,8 +96,6 @@ export default class PartyPlaylistClient extends BindingClass {
             });
             return response.data.songList;
         } catch (error) {
-            let err = document.getElementById("err");
-            err.innerHTML = "Song not found! Try again.";
             this.handleError(error, errorCallback);
         }
     }
@@ -126,12 +133,12 @@ export default class PartyPlaylistClient extends BindingClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The guest that has been created.
      */
-    async createGuest(firstName, lastName, errorCallback) {
+    async createGuest(firstName, lastName, playlistId, errorCallback) {
         try {
-            const playlistId = "01";
             const response = await this.client.post(`users/${playlistId}`, {
                 firstName: firstName,
-                lastName: lastName
+                lastName: lastName,
+                playlistId: playlistId
             });
             console.log("Response: ", response);
             return response.data.guest;

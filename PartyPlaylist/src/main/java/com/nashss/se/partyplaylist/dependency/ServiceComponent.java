@@ -8,7 +8,8 @@ import com.nashss.se.partyplaylist.activity.CreatePlaylistActivity;
 import com.nashss.se.partyplaylist.activity.GetGuestActivity;
 import com.nashss.se.partyplaylist.activity.GetGuestListActivity;
 import com.nashss.se.partyplaylist.activity.GetHostActivity;
-import com.nashss.se.partyplaylist.activity.GetPlaylistActivity;
+import com.nashss.se.partyplaylist.activity.GetPlaylistByIdActivity;
+import com.nashss.se.partyplaylist.activity.GetPlaylistByNameActivity;
 import com.nashss.se.partyplaylist.activity.RemoveSongFromPlaylistActivity;
 
 import dagger.Component;
@@ -54,7 +55,7 @@ public interface ServiceComponent {
      * Provides the relevant activity.
      * @return GetPlaylistActivity
      */
-    GetPlaylistActivity provideGetPlaylistActivity();
+    GetPlaylistByNameActivity provideGetPlaylistByNameActivity();
 
     /**
      * Provides the relevant activity.
@@ -85,4 +86,11 @@ public interface ServiceComponent {
      * @return GetHostActivity
      */
     GetHostActivity provideGetHostActivity();
+
+    /**
+     * Provides the relevant activity.
+     * @return GetPlaylistByIdActivity
+     */
+
+    GetPlaylistByIdActivity provideGetPlaylistByIdActivity();
 }
