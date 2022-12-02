@@ -47,7 +47,7 @@ class Playlist extends BindingClass {
                 songHtml +=
                 '<div class="playlist-item">'
                     + '<div class="song-wrapper">'
-                        + '<span class="song-name">' + song.songTitle + '</span>'
+                        + '<span class="song-name">' + song.songTitle + '</span>' + ' '
                         + '<span class="song-artist">' + song.songArtist + '</span>'
                     +  '</div>'
 

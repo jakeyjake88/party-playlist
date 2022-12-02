@@ -8,7 +8,6 @@ class CreatePlaylist extends BindingClass {
         super();
         this.bindClassMethods(['mount', 'createPlaylist', 'redirectToAdmin', 'hostLogin', 'guestLogin', 'redirectToPlaylist'], this);
         this.dataStore = new DataStore();
-        // this.dataStore.addChangeListener(this.redirectToAdmin);
         this.header = new Header(this.dataStore);
     }
 
@@ -31,7 +30,7 @@ class CreatePlaylist extends BindingClass {
         const host = await this.client.createHost(hostFirstName, hostLastName);
         this.dataStore.set('user', host);
 
-        const playlistHost = hostFirstName +'\xa0'+ hostLastName;
+        const playlistHost = hostFirstName + ' ' + hostLastName;
         const playlist = await this.client.createPlaylist(playlistName, playlistHost, (error)=> {
             document.getElementById('createPlaylist').innerHTML = "Create Playlist"
             document.getElementById('sameNameError').innerHTML = error.response.data.error_message
