@@ -47,13 +47,14 @@ class Playlist extends BindingClass {
                 songHtml +=
                 '<div class="playlist-item">'
                     + '<div class="song-wrapper">'
+                    + '<div class="vote-count">' + song.upvotes + '</div>' + ' '
                         + '<span class="song-name">' + song.songTitle + '</span>' + ' '
                         + '<span class="song-artist">' + song.songArtist + '</span>'
                     +  '</div>'
 
                     + '<div class="vote-wrapper">'
-                        + '<div class="vote" id="' + song.songId + '"></div>'
-                        + '<div class="vote-count">' + song.upvotes + '</div>'
+                        + '<div class="vote" id="' + song.id + '"></div>'
+
                     + '</div>'
                 +  '</div>';
             }
@@ -62,7 +63,7 @@ class Playlist extends BindingClass {
                 btn.addEventListener('click', event => {
                     for (song of playlist.songs) {
                         this.clientLoaded();
-                        if (song.songId == event.target.id) {
+                        if (song.id == event.target.id) {
                             this.client.addUpvoteToSong(event.target.id, '01', song.songTitle, song.songArtist);
                             console.log(event.target.id);
                             event.currentTarget.classList.toggle('on');
