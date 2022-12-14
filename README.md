@@ -4,5 +4,7 @@ This is a team project designed and built over a 2 1/2 week period by Jake Price
 
 It features an interactive frontend written in JavaScript that provides users a fluid, functioning layout.
 
+We ran through two week-long sprints and held daily scrum meetings to discuss design, planning and implementation of our project.
+
 ## Stack
 This application was built with a custom API that interacts with DynamoDB. Our language stack includes Java, JavaScript, HTML and CSS.
