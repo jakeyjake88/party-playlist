@@ -6,5 +6,16 @@ It features an interactive frontend written in JavaScript that provides users a 
 
 We ran through two week-long sprints and held daily scrum meetings to discuss design, planning and implementation of our project.
 
-## Stack
-This application was built with a custom API that interacts with DynamoDB. Our language stack includes Java, JavaScript, HTML and CSS.
+
+### Built With
+
+
+* [![JavaScript][JavaScript]][JavaScript-url]
+* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+* [![Java][Java]][Java-url]
+* [![DynamoDB][DynamoDB]][DynamoDB-url]
+* [![Lambda][Lambda]][Lambda-url]
+* [![AWS CloudFront][AWS CloudFront]][CloudFront-url]
+* [![API Gateway][API Gateway]][Gateway-url]
+* [![AWS CloudFormation][AWS CloudFormation]][CloudFormation-url]
+
