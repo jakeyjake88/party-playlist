@@ -8,7 +8,14 @@ We ran through two week-long sprints and held daily scrum meetings to discuss de
 
 
 ### Built With
-
+* Java
+* JavaScript
+* Bootstamp
+* DynamoDB
+* Lambda
+* AWS CloudFront
+* AWS Gateway
+* AWS CloudFormation
 
 * [![JavaScript][JavaScript]][JavaScript-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
