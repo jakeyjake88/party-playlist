@@ -17,12 +17,4 @@ We ran through two week-long sprints and held daily scrum meetings to discuss de
 * AWS Gateway
 * AWS CloudFormation
 
-* [![JavaScript][JavaScript]][JavaScript-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![Java][Java]][Java-url]
-* [![DynamoDB][DynamoDB]][DynamoDB-url]
-* [![Lambda][Lambda]][Lambda-url]
-* [![AWS CloudFront][AWS CloudFront]][CloudFront-url]
-* [![API Gateway][API Gateway]][Gateway-url]
-* [![AWS CloudFormation][AWS CloudFormation]][CloudFormation-url]
 
